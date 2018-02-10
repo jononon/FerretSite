@@ -1,86 +1,135 @@
 <head>
-  <link href="https://fonts.googleapis.com/css?family=Lobster|Roboto+Slab" rel="stylesheet">
+  <script src="static/js/jquery-2.1.4.min.js"></script>
+  <script type="text/javascript" src=""></script>
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+  <script src="https://use.fontawesome.com/eeee0612d0.js"></script>
+  <link rel="stylesheet" type="text/css" href="static/css/animate.css">
   <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
-  <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-</head>
-<body>
   <style>
-    body {
-      position: relative;
-    }
-
-    #background-image {
-      z-index: -200;
-      position:fixed;
-      width: 100%;
-      height: 100%;
-
-      background-image: url(black.jpg);
-      -webkit-background-size: contain;
-      -moz-background-size: contain;
-      -o-background-size: contain;
-      background-size: contain;
-      background-position: center;
-
-      background-repeat: no-repeat;
-
-      background-color: #000;
-    }
-
-    #main-text{
-      position: absolute;
-      top: 45%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-    #company-name {
-      font-family: 'Lobster', cursive;
-      font-size: 15vw;
-      color:#fff;
-    }
-
-    #company-sub {
-      font-family: 'Roboto Slab', serif;
-      font-size: 5vw;
-      color:#fff;
-    }
-
-    #contact {
-      position: fixed;
-      left: 0px;
-      bottom: 0px;
-      transform: translate(50%, -50%);
-
-      font-family: 'Roboto Slab', serif;
-      font-size: 30;
-      color:#fff;
-    }
-
-    a:link
-    {
-       text-decoration: none;
-       color: #737373;
-    }
-    a:visited
-    {
-       text-decoration: none;
-       color: #737373;
-    }
-    a:hover
-    {
-       text-decoration: none;
-       color: #474747;
-    }
-    a:active
-    {
-       text-decoration: none;
-       color: #474747;
-    }
+    @font-face { font-family: texgyreadventor; src: url('static/fonts/texgyreadventor-regular.otf'); }
+    @font-face { font-family: texgyreadventor; font-weight: bold; src: url('static/fonts/texgyreadventor-bold.otf');}
+    @font-face { font-family: texgyreadventor; font-style: italic; src: url('static/fonts/texgyreadventor-italic.otf');}
+    @font-face { font-family: texgyreadventor; font-weight: bold; font-style: italic; src: url('static/fonts/texgyreadventor-bolditalic.otf');}
   </style>
-  <div id=background-image class="animated fadeIn"></div>
+  <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' type='text/css'>
+  <script type="text/javascript" src="static/js/js.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+</head>
+<style>
+  .splash {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    filter: brightness(50%);
+    position: fixed;
+    z-index: -10;
+  }
+  .logo {
+    margin-top:70px;
+    width:100%;
+  }
 
-  <center>
-  </center>
-  <!--<div id=contact><a href=mailto:cameron@provadesign.com>Contact</a></div>-->
+  body {
+    color:white;
+    font-size: 16;
+    font-family:'texgyreadventor', sans-serif;
+  }
+
+  a:link
+  {
+     text-decoration: none;
+     color: #cbc8c8;
+  }
+  a:visited
+  {
+     text-decoration: none;
+     color: #cbc8c8;
+  }
+  a:hover
+  {
+     text-decoration: none;
+     color: #cbc8c8;
+  }
+  a:active
+  {
+     text-decoration: none;
+     color: #cbc8c8;
+  }
+
+  .footer {
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+  }
+</style>
+<body id=body>
+  <img class=splash src="static/splashimages/DSC_3130.JPG">
+
+  <div class=container>
+    <center class="col-xs-12 col-sm-8 col-sm-offset-2">
+      <img class=logo src="static/images/provawhitefulllogo.png">
+      <br>
+      <div>We're building the best bag in the world for students.</div>
+      <div>Add yourself to our mailing list to be the first to hear when we launch!</div>
+      <br>
+      <div class="input-group" style="width:90%">
+        <input id=email type="email" class="form-control" placeholder="email">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button" onclick="addToMailingList()">Go!</button>
+        </span>
+      </div>
+    </center>
+  </div>
+  <div class=footer><center><a href="mailto:jonathan@provadesign.com">Contact</a><center></div>
 </body>
+<script>
+
+  function handleSuccess() {
+    console.log("success");
+    $("#body").append("<div class=\"alert alert-success alert-dismissable col-xs-12 col-sm-8 col-sm-offset-2\" style=\"margin-top:20px;position:fixed;z-index:100\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Success!</strong> Thanks for the interest!</div>")
+  }
+
+  function handleError() {
+    console.log("failure");
+    $("#body").append("<div class=\"alert alert-warning alert-dismissable col-xs-12 col-sm-8 col-sm-offset-2\" style=\"margin-top:20px;position:fixed;z-index:100\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Oh No!</strong> There was an error. Please try again later.</div>")
+  }
+
+  function addToMailingList() {
+
+    var recipientSettings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "https://api.sendgrid.com/v3/contactdb/recipients",
+      "method": "POST",
+      "headers": {
+        "authorization": "Bearer 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",
+        "content-type": "application/json"
+      },
+      "processData": false,
+      "data": "[{\"email\":\""+$("#email").val()+"\"}]"
+    }
+
+    $.ajax(recipientSettings).done(function (response) {
+      var listSettings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://api.sendgrid.com/v3/contactdb/lists/2987102/recipients/"+response.persisted_recipients[0],
+        "method": "POST",
+        "headers": {
+          "authorization": "Bearer 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"
+        },
+        "data": "{}",
+        statusCode: {
+          201: handleSuccess,
+          400: handleError,
+          404: handleError,
+          401: handleError
+        }
+      }
+      $.ajax(listSettings).done(function (response) {
+        console.log("success");
+      });
+    });
+  }
+</script>
