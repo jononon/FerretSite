@@ -115,12 +115,13 @@
 
   function handleSuccess() {
     console.log("success");
-    $("#body").append("<div class=\"alert alert-success alert-dismissable col-xs-12 col-sm-8 col-sm-offset-2\" style=\"margin-top:20px;position:fixed;z-index:100\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Success!</strong> Thanks for the interest!</div>")
+    $("#body").append("<div class=\"alert alert-success alert-dismissable col-xs-12 col-sm-8 col-sm-offset-2\" style=\"margin-top:20px;position:fixed;z-index:100\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Success!</strong> Thanks for the interest!</div>");
+    fbq('track', 'CompleteRegistration');
   }
 
   function handleError() {
     console.log("failure");
-    $("#body").append("<div class=\"alert alert-warning alert-dismissable col-xs-12 col-sm-8 col-sm-offset-2\" style=\"margin-top:20px;position:fixed;z-index:100\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Oh No!</strong> There was an error. Please try again later.</div>")
+    $("#body").append("<div class=\"alert alert-warning alert-dismissable col-xs-12 col-sm-8 col-sm-offset-2\" style=\"margin-top:20px;position:fixed;z-index:100\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Oh No!</strong> There was an error. Please try again later.</div>");
   }
 
   function addToMailingList() {
