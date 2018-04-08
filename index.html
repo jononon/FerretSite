@@ -92,7 +92,11 @@
   }
 </style>
 <body id=body>
-  <img class=splash src="static/splashimages/DSC_3130.JPG">
+  <img class=splash id=backgroundSplash src="static/splashimages/DSC_3130_TINY.JPG">
+  <img src="static/splashimages/DSC_3130_SMALL.JPG" id="splashSmall">
+  <img src="static/splashimages/DSC_3130_MED.JPG" id="splashMed">
+  <img src="static/splashimages/DSC_3130_MEDLRG.JPG" id="splashMedLrg">
+  <img src="static/splashimages/DSC_3130_LRG.JPG" id="splashLrg">
 
   <div class=container>
     <center class="col-xs-12 col-sm-8 col-sm-offset-2">
@@ -112,6 +116,12 @@
   <div class=footer><center><a href="mailto:jonathan@provadesign.com">Contact</a><center></div>
 </body>
 <script>
+  $(document).ready(function (){
+    $("#splashSmall").hide();
+    $("#splashMed").hide();
+    $("#splashMedLrg").hide();
+    $("#splashLrg").hide();
+  });
 
   function handleSuccess() {
     console.log("success");
@@ -161,4 +171,20 @@
       });
     });
   }
+
+  $("#splashSmall").load(function() {
+    $("#backgroundSplash").attr("src", $("#splashSmall").attr("src"));
+  });
+
+  $("#splashMed").load(function() {
+    $("#backgroundSplash").attr("src", $("#splashMed").attr("src"));
+  });
+
+  $("#splashMedLrg").load(function() {
+    $("#backgroundSplash").attr("src", $("#splashMedLrg").attr("src"));
+  });
+
+  $("#splashLrg").load(function() {
+    $("#backgroundSplash").attr("src", $("#splashLrg").attr("src"));
+  });
 </script>
