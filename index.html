@@ -93,10 +93,10 @@
 </style>
 <body id=body>
   <img class=splash id=backgroundSplash src="static/splashimages/DSC_3130_TINY.JPG">
-  <img src="static/splashimages/DSC_3130_SMALL.JPG" id="splashSmall">
-  <img src="static/splashimages/DSC_3130_MED.JPG" id="splashMed">
-  <img src="static/splashimages/DSC_3130_MEDLRG.JPG" id="splashMedLrg">
-  <img src="static/splashimages/DSC_3130_LRG.JPG" id="splashLrg">
+  <img src="static/splashimages/DSC_3130_SMALL.JPG" id="splashSmall" style="display: none;">
+  <img src="static/splashimages/DSC_3130_MED.JPG" id="splashMed" style="display: none;">
+  <img src="static/splashimages/DSC_3130_MEDLRG.JPG" id="splashMedLrg" style="display: none;">
+  <img src="static/splashimages/DSC_3130_LRG.JPG" id="splashLrg" style="display: none;">
 
   <div class=container>
     <center class="col-xs-12 col-sm-8 col-sm-offset-2">
@@ -116,13 +116,6 @@
   <div class=footer><center><a href="mailto:jonathan@provadesign.com">Contact</a><center></div>
 </body>
 <script>
-  $(document).ready(function (){
-    $("#splashSmall").hide();
-    $("#splashMed").hide();
-    $("#splashMedLrg").hide();
-    $("#splashLrg").hide();
-  });
-
   function handleSuccess() {
     console.log("success");
     $("#body").append("<div class=\"alert alert-success alert-dismissable col-xs-12 col-sm-8 col-sm-offset-2\" style=\"margin-top:20px;position:fixed;z-index:100\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Success!</strong> Thanks for the interest!</div>");
