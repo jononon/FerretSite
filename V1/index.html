@@ -330,7 +330,8 @@
     console.log("success");
     $("#emailForm").fadeOut();
     $("#body").append("<div class=\"alert alert-success alert-dismissable col-xs-12 col-sm-8 col-sm-offset-2\" style=\"margin-top:20px;position:fixed;z-index:200\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Success!</strong> Thanks for the interest!</div>");
-    fbq('track', 'CompleteRegistration');
+  	fbq('track', 'CompleteRegistration');
+
   }
 
   function handleError() {
