@@ -1,0 +1,432 @@
+<head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-56540125-7"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-56540125-7');
+	</script>
+
+	<!-- Facebook Pixel Code -->
+	<script>
+	  !function(f,b,e,v,n,t,s)
+	  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+	  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+	  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+	  n.queue=[];t=b.createElement(e);t.async=!0;
+	  t.src=v;s=b.getElementsByTagName(e)[0];
+	  s.parentNode.insertBefore(t,s)}(window, document,'script',
+	  'https://connect.facebook.net/en_US/fbevents.js');
+	  fbq('init', '659251834285324');
+	  fbq('track', 'PageView');
+	</script>
+	<noscript><img height="1" width="1" style="display:none"
+	  src="https://www.facebook.com/tr?id=659251834285324&ev=PageView&noscript=1"
+	/></noscript>
+	<!-- End Facebook Pixel Code -->
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<script src="static/js/jquery-3.1.0.min.js"></script>
+	<script src="static/js/bootstrap.bundle.min.js"></script>
+	<script src="static/js/masonry.pkgd.min.js"></script>
+	<script src="static/js/typed.min.js"></script>
+	<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+	<link rel="stylesheet" type="text/css" href="static/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+	<title>//prova design//</title>
+</head>
+<style type="text/css">
+
+	@font-face{ 
+		font-family: 'texgyreadventor-regular-webfont';
+		src: url('static/fonts/texgyreadventor-regular-webfont.woff') format('woff');
+	}
+
+	@font-face{ 
+		font-family: 'texgyreadventor-bold-webfont';
+		src: url('static/fonts/texgyreadventor-bold-webfont.woff') format('woff');
+	}
+
+	@font-face{ 
+		font-family: 'texgyreadventor-bolditalic-webfont';
+		src: url('static/fonts/texgyreadventor-bolditalic-webfont.woff') format('woff');
+	}
+
+	@font-face{ 
+		font-family: 'texgyreadventor-italic-webfont';
+		src: url('static/fonts/texgyreadventor-italic-webfont.woff') format('woff');
+	}
+
+	.box {
+		width:300px;
+		border-color: black;
+		-webkit-transition: all 0.25s;
+	       -moz-transition: all 0.25s;
+	         -o-transition: all 0.25s;
+	            transition: all 0.25s;
+	}
+
+	.med {
+		width:600px;
+	}
+
+	.big {
+		width:600px;
+	}
+
+	.boxtext {
+		display:inline-block;
+	    border-top:2px solid rgba(0,0,0,0);
+	    border-bottom:2px solid rgba(0,0,0,0);
+	    border-top:;
+	    border-bottom:;
+	    padding:2px;
+	    letter-spacing: 2px;
+	    color:white;
+	    font-size:20;
+	    font-family:texgyreadventor-regular-webfont;
+	}
+
+    .gigante2 {
+    	-webkit-transition: all 0.25s;
+	       -moz-transition: all 0.25s;
+	         -o-transition: all 0.25s;
+	            transition: all 0.25s;
+            border-bottom:2px solid white;
+	    	border-top:2px solid white;
+	    	/*border-bottom:0px;*/
+	    	/*border-top:0px;*/
+	    	font-size: 20;
+    }
+
+    #overlay{
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 10;
+		background-color: rgba(0,0,0,0.9); /*dim the background*/
+		display: none;
+	}
+
+	.jonModal {
+		position: absolute;
+		top: 20px;
+		z-index: 10;
+		width:100%;
+		overflow-y: auto;
+		display: none;
+		color:white;
+	}
+
+	#home {
+		position: fixed;
+		height:100%;
+		width:100%;
+	}
+
+	#emailForm {
+		display:none;
+		/*width:50%;*/
+	}
+	#typed {
+		width:50%;
+	}
+
+	#emailInput {
+		background-color: rgba(0,0,0,0);
+	    color: white;
+	    border-left-color: rgba(0,0,0,0);
+	    border-top-color: rgba(0,0,0,0);
+	    border-right-color: rgba(0,0,0,0);
+	    border-bottom-color: white;
+	    border-radius: 0;
+	    border-bottom-width: 3px;
+	}
+
+	#contact {
+		height: 100%;
+		width: 100%;
+	}
+
+
+	a:link {
+	    color:#FFFFFF;
+	}
+
+	a:visited {
+	    color:#FFFFFF;
+	}
+
+	a:hover {
+	    color:#FFFFFF;
+	}
+	a {
+	    color:#FFFFFF;
+	}
+</style>
+<body id=body>
+	<div id=home style="color:white;">
+		<div style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(static/images/UNADJUSTEDNONRAW_thumb_9ab.jpg);background-size:cover;background-repeat:no-repeat;background-position: center;height:100%;width:100%;display: flex;align-items: center;justify-content: center;flex-direction: column;">
+			<div class=container>
+				<div class="row">
+					<div class="col-lg-6 offset-lg-3 col-sm-10 offset-sm-1 col-xs-12">
+						<img style="display:inline-block;" src="static/logos/provawhitefulllogo.png" width=100%></img>
+			<div id="typed-strings" style="height:300px;text-align: left;">
+			    <p>The best backpack in the world.^1000<br>Built for students, by students.<br><br>Be the first to know when we launch!<br></p>
+			</div>
+			<span id="typed"></span>
+			
+						<form id=emailForm>
+							<div class="form-group">
+								<input id=emailInput type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+							</div>
+							<button type="button" class="btn btn-outline-light" style="float:right;" onclick="addToMailingList()">Submit</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id=navbar style="position:fixed;top:20;right:20">
+		  	<div class=boxtext onclick="showGallery()">
+		  		gallery
+		  	</div>
+		  	&nbsp&nbsp&nbsp
+		  	<div class=boxtext onclick="showStory()">
+		  		story
+		  	</div>
+		  	&nbsp&nbsp&nbsp
+		  	<div class=boxtext onclick="showContact()">
+		  		contact
+		  	</div>
+		  	&nbsp&nbsp&nbsp
+		  	<div class=boxtext onclick="window.location.href ='https://drive.google.com/file/d/1p0kTF6gNUH-4_EzQWjAS-2dhFzaeB-wF/view?usp=sharing'">
+		  		press kit
+		  	</div>
+		</div>
+	</div>
+	<div id=overlay></div>
+	<div id=gallery class="jonModal">
+		<i class="fas fa-times" style="color:white;padding-left:20px;font-size:40;" onclick="closeGallery()"></i>
+		<center>
+		<div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 300, "fitWidth":true }'>
+			<div class="grid-item box"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_91b.jpg></div>
+			<div class="grid-item box"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_9ab.jpg></div>
+			<div class="grid-item box big"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_9c0.jpg></div>
+			<div class="grid-item box"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_9ce.jpg></div>
+			<div class="grid-item box"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_b61.jpg></div>
+			<div class="grid-item box"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_b71.jpg></div>
+			<div class="grid-item box big"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_b73.jpg></div>
+			<div class="grid-item box"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_b75.jpg></div>
+			<div class="grid-item box"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_9e7.jpg></div>
+			<div class="grid-item box"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_9ef.jpg></div>
+			<div class="grid-item box big"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_a1d.jpg></div>
+			<div class="grid-item box"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_a36.jpg></div>
+			<div class="grid-item box"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_a39.jpg></div>
+			<div class="grid-item box"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_a4b.jpg></div>
+			<div class="grid-item box"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_a4c.jpg></div>
+			<div class="grid-item box"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_a4d.jpg></div>
+			<div class="grid-item box"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_a52.jpg></div>
+			<div class="grid-item box big"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_a5c.jpg></div>
+			<div class="grid-item box"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_a8b.jpg></div>
+			<div class="grid-item box"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_a8c.jpg></div>
+			<div class="grid-item box"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_abb.jpg></div>
+			<div class="grid-item box"><img width=100%  src=static/images/bagshot1.jpg></div>
+		</div>
+	</center>
+	</div>
+	<div id=story class="jonModal">
+		<i class="fas fa-times" style="color:white;padding-left:20px;font-size:40;" onclick="closeStory()"></i>
+		<div class=container>
+			<p>
+				It all started when we looked around at school one day. Books and pencil cases were getting stuffed to the brim in poorly sized pockets and it wasn’t hard to find a broken or torn up bag. When we started to do some research online, we found that almost every company in the student backpack market was founded upon as something completely non-school related.
+			</p>
+			<p>
+				Student backpacks weren’t designed for students: they were descendants of hiking backpacks that just happened to sell well in school bookstores in the 70s. Nobody has bothered to try anything new since then and there has never been a backpack truly built from the student perspective.
+			</p>
+			<img width=50% src=static/images/DSC_0706-2.JPG><img width=50% src=static/images/DSC_0501.JPG>
+			<p>
+				We took it upon ourselves to re-invent the school backpack. As competitive robotics engineers, we knew how to design the mechanisms, but that only got us so far. We assembled an all-student team, learned how to sew, and went through dozens of prototypes. After thousands of noes, we finally got enough yesses to make our dream a reality.
+			</p>
+			<p>
+				We’re excited to share Series One with the world. We truly believe that this is the best bag in the world for students.
+			</p>
+			<img width=100% src=static/images/samdrawing.jpg>
+		</div>
+	</div>
+	<div id=contact class="jonModal">
+		<i class="fas fa-times" style="color:white;padding-left:20px;font-size:40;position: absolute;" onclick="closeContact()"></i>
+		<div style="display: table;height: 100%;width: 100%;">
+		  <div style="display: table-cell;vertical-align: middle;height: 100%;width: 100%;"><center>Please send all inquiries to<br><a href="mailto:cameron@provadesign.com">cameron@provadesign.com</a><br><a href="mailto:jonathan@provadesign.com">jonathan@provadesign.com</a></center></div>
+		</div>
+	</div>
+</body>
+<script>
+	$('.boxtext').mouseover( function() {
+	  $(this).toggleClass('gigante2');
+	});
+	$('.boxtext').mouseout(function() {
+	  $(this).toggleClass('gigante2');
+	});
+
+	function showGallery () {
+		// window.location.href = 'gallery.html';
+		$("#overlay").fadeIn();
+		$("#gallery").fadeIn();
+		$("#navbar").fadeOut();
+		$(".grid").masonry("layout");
+	}
+
+	function closeGallery() {
+		$("#overlay").fadeOut();
+		$("#gallery").fadeOut();
+		$("#navbar").fadeIn();
+	}
+
+	function showStory () {
+		// window.location.href = 'gallery.html';
+		$("#overlay").fadeIn();
+		$("#story").fadeIn();
+		$("#navbar").fadeOut();
+	}
+
+	function closeStory() {
+		$("#overlay").fadeOut();
+		$("#story").fadeOut();
+		$("#navbar").fadeIn();
+	}
+
+	function showContact () {
+		// window.location.href = 'gallery.html';
+		$("#overlay").fadeIn();
+		$("#contact").fadeIn();
+		$("#navbar").fadeOut();
+	}
+
+	function closeContact () {
+		$("#overlay").fadeOut();
+		$("#contact").fadeOut();
+		$("#navbar").fadeIn();
+	}
+
+
+	var typed = new Typed('#typed', {
+		stringsElement: '#typed-strings',
+		showCursor: false,
+		typeSpeed: 10,
+		backSpeed: 0,
+		onComplete: function (self) {
+			$("#emailForm").fadeIn();
+		}
+	});
+
+	function handleSuccess() {
+    console.log("success");
+    $("#emailForm").fadeOut();
+    $("#body").append("<div class=\"alert alert-success alert-dismissable col-xs-12 col-sm-8 col-sm-offset-2\" style=\"margin-top:20px;position:fixed;z-index:200\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Success!</strong> Thanks for the interest!</div>");
+    fbq('track', 'CompleteRegistration');
+  }
+
+  function handleError() {
+    console.log("failure");
+    $("#body").append("<div class=\"alert alert-warning alert-dismissable col-xs-12 col-sm-8 col-sm-offset-2\" style=\"margin-top:20px;position:fixed;z-index:200\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Oh No!</strong> There was an error. Please try again later.</div>");
+  }
+
+  function addToMailingList() {
+
+    var recipientSettings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "https://api.sendgrid.com/v3/contactdb/recipients",
+      "method": "POST",
+      "headers": {
+        "authorization": "Bearer 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",
+        "content-type": "application/json"
+      },
+      "processData": false,
+      "data": "[{\"email\":\""+$("#emailInput").val()+"\"}]"
+    }
+
+    $.ajax(recipientSettings).done(function (response) {
+      var listSettings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://api.sendgrid.com/v3/contactdb/lists/2987102/recipients/"+response.persisted_recipients[0],
+        "method": "POST",
+        "headers": {
+          "authorization": "Bearer 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"
+        },
+        "data": "{}",
+        statusCode: {
+          201: handleSuccess,
+          400: handleError,
+          404: handleError,
+          401: handleError
+        }
+      }
+      $.ajax(listSettings).done(function (response) {
+        console.log("success");
+      });
+    });
+
+  }
+
+  $("#emailForm").keypress(function preventEnterSubmit(e) {
+    if (e.which == 13) {
+        var $targ = $(e.target);
+
+        if (!$targ.is("textarea") && !$targ.is(":button,:submit")) {
+            var focusNext = false;
+            $(this).find(":input:visible:not([disabled],[readonly]), a").each(function(){
+                if (this === e.target) {
+                    focusNext = true;
+                }
+                else if (focusNext){
+                    $(this).focus();
+                    return false;
+                }
+            });
+
+            return false;
+        }
+    }
+});
+
+  	function resize() {
+		var windowWidth = $(window).width();
+	  // var windowHeight = $(window).height();
+	  console.log(windowWidth);	
+	  if(windowWidth < 435) {
+	  	$(".boxtext").css("font-size",15);
+	  	
+	  } else {
+	  	$(".boxtext").css("font-size",20);
+	  }
+
+	  if(windowWidth<300) {
+	  	$(".box").css("max-width",windowWidth-20);
+	  	$(".grid").masonry("layout");
+	  } else if (windowWidth<600) {
+	  	$(".box").css("max-width",300);
+	  	$(".grid").masonry("layout");
+	  } else if (windowWidth<900) {
+	  	$(".box").css("max-width",600);
+	  	$(".grid").masonry("layout");
+	  } else {
+	  	$(".box").css("max-width","");
+	  	$(".grid").masonry("layout");
+	  }
+  	}
+	$(window).resize( function(){
+	  resize();
+	});
+
+	$(document).ready(function () {
+	    resize();
+	});
+
+</script>

@@ -1,0 +1,191 @@
+<head>
+  <script src="static/js/jquery-3.1.0.min.js"></script>
+  <script type="text/javascript" src=""></script>
+  <script src="static/js/bootstrap.min.js"></script>
+  <script src="https://use.fontawesome.com/eeee0612d0.js"></script>
+  <link rel="stylesheet" type="text/css" href="static/css/bootstrap.min.css">
+  <style>
+    @font-face { font-family: texgyreadventor; src: url('static/fonts/texgyreadventor-regular.otf'); }
+    @font-face { font-family: texgyreadventor; font-weight: bold; src: url('static/fonts/texgyreadventor-bold.otf');}
+    @font-face { font-family: texgyreadventor; font-style: italic; src: url('static/fonts/texgyreadventor-italic.otf');}
+    @font-face { font-family: texgyreadventor; font-weight: bold; font-style: italic; src: url('static/fonts/texgyreadventor-bolditalic.otf');}
+  </style>
+  <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' type='text/css'>
+  <script type="text/javascript" src="static/js/js.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<style>
+  body {
+      font-family:'texgyreadventor', sans-serif;
+  }
+</style>
+<body>
+  <div class=container>
+    <form onsubmit="return formSubmit()">
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="email" class="form-control" id="email" placeholder="johnsmith@mail.tld">
+      </div>
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text:checked" class="form-control" id="firstName" placeholder="John">
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" class="form-control" id="lastName" placeholder="Smith">
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" id="mailingList"> Add to IR Mailing List
+        </label>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" id="marketingList"> Add to Marketing Mailing List
+        </label>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" id="welcomeEmail"> Send Welcome Email
+        </label>
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form> 
+  </div>
+</body>
+<script>
+  //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
+  function formSubmit() {
+    if($("#mailingList:checked").val() == "on") {
+      var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://api.sendgrid.com/v3/contactdb/recipients",
+        "method": "POST",
+        "headers": {
+          "authorization": "Bearer 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",
+          "content-type": "application/json"
+        },
+        "processData": false,
+        "data": "[{\"email\": \""+$("#email").val()+"\",\"first_name\": \""+$("#firstName").val()+"\",\"last_name\": \""+$("#lastName").val()+"\"}]"
+      }
+
+      $.ajax(settings).done(function (response) {
+        var newsettings = {
+          "async": true,
+          "crossDomain": true,
+          "url": "https://api.sendgrid.com/v3/contactdb/lists/3290503/recipients/"+response.persisted_recipients[0],
+          "method": "POST",
+          "headers": {
+            "authorization": "Bearer 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"
+          },
+          "data": "null",
+          statusCode: {
+            404: function() {
+              alert("Unable to add to IR");
+            },
+            401: function() {
+              alert("Unable to add to IR");
+            },
+            400: function() {
+              alert("Unable to add to IR");
+            },
+            201: function() {
+              alert("Added to IR");
+            }
+          }
+        }
+
+        $.ajax(newsettings);
+      });
+    }
+    if($("#marketingList:checked").val() == "on") {
+      var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://api.sendgrid.com/v3/contactdb/recipients",
+        "method": "POST",
+        "headers": {
+          "authorization": "Bearer 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",
+          "content-type": "application/json"
+        },
+        "processData": false,
+        "data": "[{\"email\": \""+$("#email").val()+"\",\"first_name\": \""+$("#firstName").val()+"\",\"last_name\": \""+$("#lastName").val()+"\"}]"
+      }
+
+      $.ajax(settings).done(function (response) {
+        var newsettings = {
+          "async": true,
+          "crossDomain": true,
+          "url": "https://api.sendgrid.com/v3/contactdb/lists/2987102/recipients/"+response.persisted_recipients[0],
+          "method": "POST",
+          "headers": {
+            "authorization": "Bearer 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"
+          },
+          "data": "null",
+          statusCode: {
+            404: function() {
+              alert("Unable to add to Marketing");
+            },
+            401: function() {
+              alert("Unable to add to Marketing");
+            },
+            400: function() {
+              alert("Unable to add to Marketing");
+            },
+            201: function() {
+              alert("Added to Marketing");
+            }
+          }
+        }
+
+        $.ajax(newsettings);
+      });
+    }
+    if($("#welcomeEmail:checked").val() == "on") {
+      var ref = firebase.database().ref("/emails/").push();
+      ref.set({
+        "personalizations": [
+          {
+            "to": [
+              {
+                "email": $("#email").val(),
+                "name": $("#firstName").val() + " " + $("#lastName").val()
+              }
+            ],
+            "subject": "Welcome to Prova!"
+          }
+        ],
+        "from": {
+          "email": "jonathan@provadesign.com",
+          "name": "Jonathan Damico"
+        },
+        "reply_to": {
+          "email": "jonathan@provadesign.com",
+          "name": "Jonathan Damico"
+        },
+        "substitutions": {
+          "name": $("#firstName").val()
+        },
+        "template_id":"aaeebcd8-72f8-4518-aca6-de759dad5f7d"
+      });
+    }
+    return false;
+  }
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCqRZLA4jdheu6G7Ev4JA64XgcxvkO2Bm4",
+    authDomain: "prova-email-sends.firebaseapp.com",
+    databaseURL: "https://prova-email-sends.firebaseio.com",
+    projectId: "prova-email-sends",
+    storageBucket: "prova-email-sends.appspot.com",
+    messagingSenderId: "44002534741"
+  };
+  firebase.initializeApp(config);
+</script>
