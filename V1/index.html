@@ -74,7 +74,7 @@
 	            transition: all 0.25s;
 	}
 
-	.med {
+	.ed {
 		width:600px;
 	}
 
@@ -219,27 +219,27 @@
 		<i class="fas fa-times" style="color:white;padding-left:20px;font-size:40;" onclick="closeGallery()"></i>
 		<center>
 		<div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 300, "fitWidth":true }'>
-			<div class="grid-item box"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_91b.jpg></div>
-			<div class="grid-item box"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_9ab.jpg></div>
-			<div class="grid-item box big"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_9c0.jpg></div>
-			<div class="grid-item box"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_9ce.jpg></div>
-			<div class="grid-item box"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_b61.jpg></div>
-			<div class="grid-item box"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_b71.jpg></div>
-			<div class="grid-item box big"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_b73.jpg></div>
-			<div class="grid-item box"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_b75.jpg></div>
-			<div class="grid-item box"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_9e7.jpg></div>
-			<div class="grid-item box"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_9ef.jpg></div>
-			<div class="grid-item box big"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_a1d.jpg></div>
-			<div class="grid-item box"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_a36.jpg></div>
-			<div class="grid-item box"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_a39.jpg></div>
-			<div class="grid-item box"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_a4b.jpg></div>
-			<div class="grid-item box"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_a4c.jpg></div>
-			<div class="grid-item box"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_a4d.jpg></div>
-			<div class="grid-item box"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_a52.jpg></div>
-			<div class="grid-item box big"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_a5c.jpg></div>
-			<div class="grid-item box"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_a8b.jpg></div>
-			<div class="grid-item box"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_a8c.jpg></div>
-			<div class="grid-item box"><img width=100%  src=static/images/UNADJUSTEDNONRAW_thumb_abb.jpg></div>
+			<div class="grid-item box"><img width=100%  id=static/images/UNADJUSTEDNONRAW_thumb_91b.jpg></div>
+			<div class="grid-item box"><img width=100%  id=static/images/UNADJUSTEDNONRAW_thumb_9ab.jpg></div>
+		<div class="grid-item box big"><img width=100%  id=static/images/UNADJUSTEDNONRAW_thumb_9c0.jpg></div>
+			<div class="grid-item box"><img width=100%  id=static/images/UNADJUSTEDNONRAW_thumb_9ce.jpg></div>
+			<div class="grid-item box"><img width=100%  id=static/images/UNADJUSTEDNONRAW_thumb_b61.jpg></div>
+			<div class="grid-item box"><img width=100%  id=static/images/UNADJUSTEDNONRAW_thumb_b71.jpg></div>
+		<div class="grid-item box big"><img width=100%  id=static/images/UNADJUSTEDNONRAW_thumb_b73.jpg></div>
+			<div class="grid-item box"><img width=100%  id=static/images/UNADJUSTEDNONRAW_thumb_b75.jpg></div>
+			<div class="grid-item box"><img width=100%  id=static/images/UNADJUSTEDNONRAW_thumb_9e7.jpg></div>
+			<div class="grid-item box"><img width=100%  id=static/images/UNADJUSTEDNONRAW_thumb_9ef.jpg></div>
+		<div class="grid-item box big"><img width=100%  id=static/images/UNADJUSTEDNONRAW_thumb_a1d.jpg></div>
+			<div class="grid-item box"><img width=100%  id=static/images/UNADJUSTEDNONRAW_thumb_a36.jpg></div>
+			<div class="grid-item box"><img width=100%  id=static/images/UNADJUSTEDNONRAW_thumb_a39.jpg></div>
+			<div class="grid-item box"><img width=100%  id=static/images/UNADJUSTEDNONRAW_thumb_a4b.jpg></div>
+			<div class="grid-item box"><img width=100%  id=static/images/UNADJUSTEDNONRAW_thumb_a4c.jpg></div>
+			<div class="grid-item box"><img width=100%  id=static/images/UNADJUSTEDNONRAW_thumb_a4d.jpg></div>
+			<div class="grid-item box"><img width=100%  id=static/images/UNADJUSTEDNONRAW_thumb_a52.jpg></div>
+		<div class="grid-item box big"><img width=100%  id=static/images/UNADJUSTEDNONRAW_thumb_a5c.jpg></div>
+			<div class="grid-item box"><img width=100%  id=static/images/UNADJUSTEDNONRAW_thumb_a8b.jpg></div>
+			<div class="grid-item box"><img width=100%  id=static/images/UNADJUSTEDNONRAW_thumb_a8c.jpg></div>
+			<div class="grid-item box"><img width=100%  id=static/images/UNADJUSTEDNONRAW_thumb_abb.jpg></div>
 			<div class="grid-item box"><img width=100%  src=static/images/bagshot1.jpg></div>
 		</div>
 	</center>
@@ -433,6 +433,27 @@
 
 	$(document).ready(function () {
 	    resize();
+	    $("#static/images/UNADJUSTEDNONRAW_thumb_91b.jpg").attr("src","static/images/UNADJUSTEDNONRAW_thumb_91b.jpg");
+		$("#static/images/UNADJUSTEDNONRAW_thumb_9ab.jpg").attr("src","static/images/UNADJUSTEDNONRAW_thumb_9ab.jpg");
+		$("#static/images/UNADJUSTEDNONRAW_thumb_9c0.jpg").attr("src","static/images/UNADJUSTEDNONRAW_thumb_9c0.jpg");
+		$("#static/images/UNADJUSTEDNONRAW_thumb_9ce.jpg").attr("src","static/images/UNADJUSTEDNONRAW_thumb_9ce.jpg");
+		$("#static/images/UNADJUSTEDNONRAW_thumb_b61.jpg").attr("src","static/images/UNADJUSTEDNONRAW_thumb_b61.jpg");
+		$("#static/images/UNADJUSTEDNONRAW_thumb_b71.jpg").attr("src","static/images/UNADJUSTEDNONRAW_thumb_b71.jpg");
+		$("#static/images/UNADJUSTEDNONRAW_thumb_b73.jpg").attr("src","static/images/UNADJUSTEDNONRAW_thumb_b73.jpg");
+		$("#static/images/UNADJUSTEDNONRAW_thumb_b75.jpg").attr("src","static/images/UNADJUSTEDNONRAW_thumb_b75.jpg");
+		$("#static/images/UNADJUSTEDNONRAW_thumb_9e7.jpg").attr("src","static/images/UNADJUSTEDNONRAW_thumb_9e7.jpg");
+		$("#static/images/UNADJUSTEDNONRAW_thumb_9ef.jpg").attr("src","static/images/UNADJUSTEDNONRAW_thumb_9ef.jpg");
+		$("#static/images/UNADJUSTEDNONRAW_thumb_a1d.jpg").attr("src","static/images/UNADJUSTEDNONRAW_thumb_a1d.jpg");
+		$("#static/images/UNADJUSTEDNONRAW_thumb_a36.jpg").attr("src","static/images/UNADJUSTEDNONRAW_thumb_a36.jpg");
+		$("#static/images/UNADJUSTEDNONRAW_thumb_a39.jpg").attr("src","static/images/UNADJUSTEDNONRAW_thumb_a39.jpg");
+		$("#static/images/UNADJUSTEDNONRAW_thumb_a4b.jpg").attr("src","static/images/UNADJUSTEDNONRAW_thumb_a4b.jpg");
+		$("#static/images/UNADJUSTEDNONRAW_thumb_a4c.jpg").attr("src","static/images/UNADJUSTEDNONRAW_thumb_a4c.jpg");
+		$("#static/images/UNADJUSTEDNONRAW_thumb_a4d.jpg").attr("src","static/images/UNADJUSTEDNONRAW_thumb_a4d.jpg");
+		$("#static/images/UNADJUSTEDNONRAW_thumb_a52.jpg").attr("src","static/images/UNADJUSTEDNONRAW_thumb_a52.jpg");
+		$("#static/images/UNADJUSTEDNONRAW_thumb_a5c.jpg").attr("src","static/images/UNADJUSTEDNONRAW_thumb_a5c.jpg");
+		$("#static/images/UNADJUSTEDNONRAW_thumb_a8b.jpg").attr("src","static/images/UNADJUSTEDNONRAW_thumb_a8b.jpg");
+		$("#static/images/UNADJUSTEDNONRAW_thumb_a8c.jpg").attr("src","static/images/UNADJUSTEDNONRAW_thumb_a8c.jpg");
+		$("#static/images/UNADJUSTEDNONRAW_thumb_abb.jpg").attr("src","static/images/UNADJUSTEDNONRAW_thumb_abb.jpg");
 	});
 
 </script>
