@@ -240,7 +240,7 @@
 			<div class="grid-item box"><img width=100%  id=UNADJUSTEDNONRAW_thumb_a8b></div>
 			<div class="grid-item box"><img width=100%  id=UNADJUSTEDNONRAW_thumb_a8c></div>
 			<div class="grid-item box"><img width=100%  id=UNADJUSTEDNONRAW_thumb_abb></div>
-			<div class="grid-item box"><img width=100%  src=static/images/bagshot1.jpg></div>
+			<div class="grid-item box"><img width=100%  id=bagshot1></div>
 		</div>
 	</center>
 	</div>
@@ -253,14 +253,14 @@
 			<p>
 				Student backpacks weren't designed for students: they were descendants of hiking backpacks that just happened to sell well in school bookstores in the 70s. Nobody has bothered to try anything new since then and there has never been a backpack truly built from the student perspective.
 			</p>
-			<img width=50% src=static/images/DSC_0706-2.JPG><img width=50% src=static/images/DSC_0501.JPG>
+			<img width=50% id=DSC_0706-2><img width=50% id=DSC_0501>
 			<p>
 				We took it upon ourselves to re-invent the school backpack. As competitive robotics engineers, we knew how to design the mechanisms, but that only got us so far. We assembled an all-student team, learned how to sew, and went through dozens of prototypes. After thousands of noes, we finally got enough yesses to make our dream a reality.
 			</p>
 			<p>
 				We're excited to share Series One with the world. We truly believe that this is the best bag in the world for students.
 			</p>
-			<img width=100% src=static/images/samdrawing.jpg>
+			<img width=100% id=samdrawing>
 		</div>
 	</div>
 	<div id=contact class="jonModal">
@@ -453,6 +453,11 @@
 		$("#UNADJUSTEDNONRAW_thumb_a8b").attr("src","static/images/UNADJUSTEDNONRAW_thumb_a8b.jpg");
 		$("#UNADJUSTEDNONRAW_thumb_a8c").attr("src","static/images/UNADJUSTEDNONRAW_thumb_a8c.jpg");
 		$("#UNADJUSTEDNONRAW_thumb_abb").attr("src","static/images/UNADJUSTEDNONRAW_thumb_abb.jpg");
+		$("#bagshot1").attr("src","static/images/bagshot1.jpg");
+		$("#DSC_0706-2").attr("src","static/images/DSC_0706-2.JPG");
+		$("#DSC_0501").attr("src","static/images/DSC_0501.JPG");
+		$("#samdrawing").attr("src","static/images/samdrawing.jpg");
+		
 		resize();
 	});
 
