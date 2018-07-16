@@ -319,15 +319,7 @@
 	}
 
 
-	var typed = new Typed('#typed', {
-		stringsElement: '#typed-strings',
-		showCursor: false,
-		typeSpeed: 10,
-		backSpeed: 0,
-		onComplete: function (self) {
-			$("#emailForm").fadeIn();
-		}
-	});
+	
 
 	function handleSuccess() {
     console.log("success");
@@ -431,6 +423,12 @@
 	  resize();
 	});
 
+	function gup(name, url) {
+	  name = name.replace(/[\[]/, '\\\[').replace(/[\]]/, '\\\]');
+	  var results = new RegExp('[?&]'+name+'=?([^&#]*)').exec(url || window.location.href);
+	  return results == null ? null : results[1] || true;
+	}
+
 	$(document).ready(function () {
 	    $("#UNADJUSTEDNONRAW_thumb_91b").attr("src","static/images/UNADJUSTEDNONRAW_thumb_91b.jpg");
 		$("#UNADJUSTEDNONRAW_thumb_9ab").attr("src","static/images/UNADJUSTEDNONRAW_thumb_9ab.jpg");
@@ -460,6 +458,20 @@
 
 		
 		resize();
+		
+		if (gup("text") == "eb1") {
+			$("#typed-strings").html("<p>The best bag in the world for students.<br>Enter your email now to get an early bird discount when we launch!</p>");
+		}
+
+		var typed = new Typed('#typed', {
+			stringsElement: '#typed-strings',
+			showCursor: false,
+			typeSpeed: 10,
+			backSpeed: 0,
+			onComplete: function (self) {
+				$("#emailForm").fadeIn();
+			}
+		});
 	});
 
 </script>
