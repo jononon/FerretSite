@@ -65,6 +65,10 @@
 		src: url('static/fonts/texgyreadventor-italic-webfont.woff') format('woff');
 	}
 
+	body{ 
+	 	    font-family: texgyreadventor-regular-webfont;
+ 	}
+ 	
 	.box {
 		width:300px;
 		border-color: black;
@@ -220,6 +224,7 @@
 		<i class="fas fa-times" style="color:white;padding-left:20px;font-size:40;" onclick="closeGallery()"></i>
 		<center>
 		<div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 300, "fitWidth":true }'>
+		<div class="grid-item box big"><img width=100% id=_F4C1312></div>
 			<div class="grid-item box"><img width=100% id=UNADJUSTEDNONRAW_thumb_91b></div>
 			<div class="grid-item box"><img width=100% id=UNADJUSTEDNONRAW_thumb_9ab></div>
 		<div class="grid-item box big"><img width=100% id=UNADJUSTEDNONRAW_thumb_9c0></div>
@@ -242,6 +247,15 @@
 			<div class="grid-item box"><img width=100% id=UNADJUSTEDNONRAW_thumb_a8c></div>
 			<div class="grid-item box"><img width=100% id=UNADJUSTEDNONRAW_thumb_abb></div>
 			<div class="grid-item box"><img width=100% id=bagshot1></div>
+		<div class="grid-item box big"><img width=100% id=AndrewBack></div>
+		<div class="grid-item box big"><img width=100% id=Clip0093></div>
+			<div class="grid-item box"><img width=100% id=DSC_3107></div>
+			<div class="grid-item box"><img width=100% id=DSC_3167></div>
+			<div class="grid-item box"><img width=100% id=DSC_3276></div>
+			<div class="grid-item box"><img width=100% id=DSC_3449></div>
+		<div class="grid-item box big"><img width=100% id=DylanBack></div>
+			<div class="grid-item box"><img width=100% id=GabeLocker></div>
+			<div class="grid-item box"><img width=100% id=_F4C1323></div>
 		</div>
 	</center>
 	</div>
@@ -456,8 +470,17 @@
 		$("#DSC_0706-2").attr("src","static/images/DSC_0706-2.JPG");
 		$("#DSC_0501").attr("src","static/images/DSC_0501.JPG");
 		$("#samdrawing").attr("src","static/images/samdrawing.jpg");
+		$("#AndrewBack").attr("src","static/images/AndrewBack.png");
+		$("#Clip0093").attr("src","static/images/Clip0093.png");
+		$("#DSC_3107").attr("src","static/images/DSC_3107.JPG");
+		$("#DSC_3167").attr("src","static/images/DSC_3167.JPG");
+		$("#DSC_3276").attr("src","static/images/DSC_3276.JPG");
+		$("#DSC_3449").attr("src","static/images/DSC_3449.JPG");
+		$("#DylanBack").attr("src","static/images/DylanBack.png");
+		$("#GabeLocker").attr("src","static/images/GabeLocker.png");
+		$("#_F4C1312").attr("src","static/images/_F4C1312.jpg");
+		$("#_F4C1323").attr("src","static/images/_F4C1323.jpg");
 
-		
 		resize();
 		
 		if (gup("text") == "eb1") {
