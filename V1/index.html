@@ -485,14 +485,16 @@
 			$("#mainText").html("<p>The best bag in the world for students.<br>Enter your email now to get an early bird discount when we launch!</p>");
 		}
 	});
+	
 	setTimeout(function () {
 		$("#mainLogo").fadeIn();
 		$("#emailForm").fadeIn();
-	}, 400);
+	}, 200);
 	
-
-	$("<img src='static/images/_F4C1312.jpg'>").on("load", function() {
-	    $("#main").attr("style", "background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(static/images/_F4C1312.jpg);background-size:cover;background-repeat:no-repeat;background-position: center;height:100%;width:100%;display: flex;align-items: center;justify-content: center;flex-direction: column;");
-	});
+	setTimeout(function () {
+		$("<img src='static/images/_F4C1312.jpg'>").on("load", function() {
+		    $("#main").attr("style", "background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(static/images/_F4C1312.jpg);background-size:cover;background-repeat:no-repeat;background-position: center;height:100%;width:100%;display: flex;align-items: center;justify-content: center;flex-direction: column;");
+		});
+	}, 800);
 
 </script>
