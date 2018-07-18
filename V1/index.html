@@ -231,38 +231,44 @@
 	<div id=overlay></div>
 	<div id=whiteoverlay></div>
 	<div id=gallery class="jonModal">
-		<i class="fas fa-times" style="color:white;width:100%;text-align:right;padding-right:20px;font-size:40;" onclick="closeGallery()"></i>
+		<i class="fas fa-times" style="color:white;width:100%;text-align:right;padding-right:20px;font-size:40;position: fixed;z-index:200" onclick="closeGallery()"></i>
 		<center>
-		<div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 300, "fitWidth":false }' style="max-width:1200px">
-			<div class="grid-item box"><img width=100% id=UNADJUSTEDNONRAW_thumb_9ce></div>
-			<div class="grid-item box"><img width=100% id=DSC_3107></div>
-			<div class="grid-item box"><img width=100% id=UNADJUSTEDNONRAW_thumb_b71></div>
-			<div class="grid-item box"><img width=100% id=_F4C1323></div>
-			<div class="grid-item box"><img width=100% id=UNADJUSTEDNONRAW_thumb_9e7></div>
-		<div class="grid-item box big"><img width=100% id=GabeLocker></div>
-			<div class="grid-item box"><img width=100% id=UNADJUSTEDNONRAW_thumb_9ef></div>
-			<div class="grid-item box"><img width=100% id=UNADJUSTEDNONRAW_thumb_a39></div>
-		<div class="grid-item box big"><img width=100% id=_F4C1312></div>
-			<div class="grid-item box"><img width=100% id=UNADJUSTEDNONRAW_thumb_a4b></div>
-			<div class="grid-item box"><img width=100% id=UNADJUSTEDNONRAW_thumb_a4d></div>
-			<div class="grid-item box"><img width=100% id=UNADJUSTEDNONRAW_thumb_a52></div>
-		<div class="grid-item box big"><img width=100% id=UNADJUSTEDNONRAW_thumb_9c0></div>
-			<div class="grid-item box"><img width=100% id=DylanBack></div>
-			<div class="grid-item box"><img width=100% id=UNADJUSTEDNONRAW_thumb_b61></div>
-		<div class="grid-item box big"><img width=100% id=UNADJUSTEDNONRAW_thumb_a5c></div>
-			<div class="grid-item box"><img width=100% id=UNADJUSTEDNONRAW_thumb_a8b></div>
-			<div class="grid-item box"><img width=100% id=UNADJUSTEDNONRAW_thumb_a8c></div>
-			<div class="grid-item box"><img width=100% id=UNADJUSTEDNONRAW_thumb_abb></div>
-		<div class="grid-item box big"><img width=100% id=AndrewBack></div>
-		<div class="grid-item box big"><img width=100% id=Clip0093></div>
-			<div class="grid-item box"><img width=100% id=DSC_3167></div>
-			<div class="grid-item box"><img width=100% id=DSC_3276></div>
-			<div class="grid-item box"><img width=100% id=DSC_3449></div>
-		</div>
-	</center>
+			<div style="max-width:1200px">
+				<div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 300, "fitWidth":true }'>
+					<div class="grid-item box"><img width=100% id=UNADJUSTEDNONRAW_thumb_9ce></div>
+					<div class="grid-item box"><img width=100% id=DSC_3107></div>
+					<div class="grid-item box"><img width=100% id=UNADJUSTEDNONRAW_thumb_b71></div>
+					<div class="grid-item box"><img width=100% id=_F4C1323></div>
+					<div class="grid-item box"><img width=100% id=UNADJUSTEDNONRAW_thumb_9e7></div>
+				<div class="grid-item box big"><img width=100% id=GabeLocker></div>
+					<div class="grid-item box"><img width=100% id=UNADJUSTEDNONRAW_thumb_9ef></div>
+					<div class="grid-item box"><img width=100% id=UNADJUSTEDNONRAW_thumb_a39></div>
+				<div class="grid-item box big"><img width=100% id=_F4C1312></div>
+					<div class="grid-item box"><img width=100% id=UNADJUSTEDNONRAW_thumb_a4b></div>
+					<div class="grid-item box"><img width=100% id=UNADJUSTEDNONRAW_thumb_a4d></div>
+					<div class="grid-item box"><img width=100% id=UNADJUSTEDNONRAW_thumb_a52></div>
+				<div class="grid-item box big"><img width=100% id=UNADJUSTEDNONRAW_thumb_9c0></div>
+					<div class="grid-item box"><img width=100% id=DylanBack></div>
+					<div class="grid-item box"><img width=100% id=UNADJUSTEDNONRAW_thumb_b61></div>
+				<div class="grid-item box big"><img width=100% id=UNADJUSTEDNONRAW_thumb_a5c></div>
+					<div class="grid-item box"><img width=100% id=UNADJUSTEDNONRAW_thumb_a8b></div>
+					<div class="grid-item box"><img width=100% id=UNADJUSTEDNONRAW_thumb_a8c></div>
+					<div class="grid-item box"><img width=100% id=UNADJUSTEDNONRAW_thumb_abb></div>
+				<div class="grid-item box big"><img width=100% id=AndrewBack></div>
+				<div class="grid-item box big"><img width=100% id=Clip0093></div>
+					<div class="grid-item box"><img width=100% id=DSC_3167></div>
+					<div class="grid-item box"><img width=100% id=DSC_3276></div>
+					<div class="grid-item box"><img width=100% id=DSC_3449></div>
+					<div class="grid-item box big"><img width=100% id=techpack1></div>
+					<div class="grid-item box"><img width=100% id=techpack3></div>
+					<div class="grid-item box"><img width=100% id=techpack4></div>
+					<div class="grid-item box"><img width=100% id=techpack5></div>
+				</div>
+			</div>
+		</center>
 	</div>
 	<div id=story class="jonModal" style="color:black;">
-		<i class="fas fa-times" style="color:black;width:100%;text-align:right;padding-right:20px;font-size:40;" onclick="closeStory()"></i>
+		<i class="fas fa-times" style="color:white;width:100%;text-align:right;padding-right:20px;font-size:40;position: fixed;z-index:200" onclick="closeStory()"></i>
 		<div class=container>
 			<row>
 				<div class="col-lg-6 offset-lg-3">
@@ -298,7 +304,7 @@
 		</div>
 	</div>
 	<div id=contact class="jonModal">
-		<i class="fas fa-times" style="color:white;width:100%;text-align:right;padding-right:20px;font-size:40;" onclick="closeContact()"></i>
+		<i class="fas fa-times" style="color:white;width:100%;text-align:right;padding-right:20px;font-size:40;position: fixed;z-index:200" onclick="closeContact()"></i>
 		<div style="display: table;height: 100%;width: 100%;">
 		  <div style="display: table-cell;vertical-align: middle;height: 100%;width: 100%;"><center><a href="mailto:cameron@provadesign.com">cameron@provadesign.com</a><br><a href="mailto:jonathan@provadesign.com">jonathan@provadesign.com</a></center></div>
 		</div>
@@ -494,6 +500,10 @@
 		$("#nprjansport").attr("src","static/images/nprjansport.jpg");
 		$("#IMG_1648").attr("src","static/images/IMG_1648.JPG");
 		$("#DSC_3355").attr("src","static/images/DSC_3355.JPG");
+		$("#techpack1").attr("src","static/images/techpack1.png");
+		$("#techpack4").attr("src","static/images/techpack4.png");
+		$("#techpack3").attr("src","static/images/techpack3.png");
+		$("#techpack5").attr("src","static/images/techpack5.png");
 
 		resize();
 		
