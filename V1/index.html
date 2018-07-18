@@ -34,7 +34,6 @@
 	<script src="static/js/jquery-3.1.0.min.js"></script>
 	<script src="static/js/bootstrap.bundle.min.js"></script>
 	<script src="static/js/masonry.pkgd.min.js"></script>
-	<script src="static/js/typed.min.js"></script>
 	<link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 	<link rel="stylesheet" type="text/css" href="static/css/bootstrap.min.css">
@@ -118,7 +117,7 @@
 		width: 100%;
 		height: 100%;
 		z-index: 10;
-		background-color: rgba(0,0,0,0.7); /*dim the background*/
+		background-color: rgba(0,0,0,0.9); /*dim the background*/
 		display: none;
 	}
 
@@ -181,19 +180,19 @@
 <body id=body>
 	<div id=home style="color:white;">
 		<!--UNADJUSTEDNONRAW_thumb_9ab-->
-		<div id=main style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(static/images/F4C1312_1_11.jpg);background-size:cover;background-repeat:no-repeat;background-position: center;height:100%;width:100%;">
+		<div id=main style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(static/images/F4C1312_1_11.jpg);background-size:cover;background-repeat:no-repeat;background-position: center;height:100%;width:100%;display: flex;align-items: center;justify-content: center;flex-direction: column;">
 			<div class=container>
 				<div class="row">
-					<div class="col-lg-6 offset-lg-3 col-sm-10 offset-sm-1 col-xs-12" style="padding-top:100px;">
-						<img style="display:inline-block;" src="static/logos/provawhitefulllogo.png" width=100%></img>
-			<div id="typed-strings" style="height:300px;text-align: left;">
-			    <p><br><br>The best backpack in the world.<br>Built for students, by students.<br><br>Be the first to know when we launch!<br><br></p>
-			</div>
-			<span id="typed"></span>
-			
-						<form id=emailForm>
+					<div class="col-lg-6 offset-lg-3 col-sm-10 offset-sm-1 col-xs-12">
+						<img id=mainLogo style="display:none;padding-bottom:40%;" src="static/logos/provawhitefulllogo.png" width=100%></img>
+
+						<div id="mainText" style="display:none;">
+						    <p>The best backpack in the world - for students, by students.</p>
+						</div>
+						
+						<form id=emailForm style="display:none;">
 							<div class="form-group">
-								<input id=emailInput type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+								<input id=emailInput type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your email to know when we launch!">
 							</div>
 							<button type="button" class="btn btn-outline-light" style="float:right;" onclick="addToMailingList()">Submit</button>
 						</form>
@@ -486,22 +485,18 @@
 		resize();
 		
 		if (gup("text") == "eb1") {
-			$("#typed-strings").html("<p>The best bag in the world for students.<br>Enter your email now to get an early bird discount when we launch!</p>");
+			$("#mainText").html("<p>The best bag in the world for students.<br>Enter your email now to get an early bird discount when we launch!</p>");
 		}
-
-		var typed = new Typed('#typed', {
-			stringsElement: '#typed-strings',
-			showCursor: false,
-			typeSpeed: 10,
-			backSpeed: 0,
-			onComplete: function (self) {
-				$("#emailForm").fadeIn();
-			}
-		});
 	});
+	setTimeout(function () {
+		$("#mainLogo").fadeIn();
+		$("#mainText").fadeIn();	
+		$("#emailForm").fadeIn();
+	}, 50);
+	
 
 	$("<img src='static/images/_F4C1312.jpg'>").on("load", function() {
-	    $("#main").attr("style", "background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(static/images/_F4C1312.jpg);background-size:cover;background-repeat:no-repeat;background-position: center;height:100%;width:100%;");
+	    $("#main").attr("style", "background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(static/images/_F4C1312.jpg);background-size:cover;background-repeat:no-repeat;background-position: center;height:100%;width:100%;display: flex;align-items: center;justify-content: center;flex-direction: column;");
 	});
 
 </script>
