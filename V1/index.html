@@ -184,15 +184,17 @@
 			<div class=container>
 				<div class="row">
 					<div class="col-lg-6 offset-lg-3 col-sm-10 offset-sm-1 col-xs-12">
-						<img id=mainLogo style="display:none;padding-bottom:40%;" src="static/logos/provawhitefulllogo.png" width=100%></img>
+						<img id=mainLogo style="padding-top:20%;padding-bottom:40%;" src="static/logos/provawhitefulllogo.png" width=100%></img>
 
 						
-						<form id=emailForm style="display:none;">
-							<div class="form-group">
-								<input id=emailInput type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your email to know when we launch!">
-							</div>
-							<button type="button" class="btn btn-outline-light" style="float:right;" onclick="addToMailingList()">Submit</button>
-						</form>
+						<div style="height:94px;">
+							<form id=emailForm style="display:none;">
+								<div class="form-group">
+									<input id=emailInput type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your email to know when we launch!">
+								</div>
+								<button type="button" class="btn btn-outline-light" style="float:right;" onclick="addToMailingList()">Submit</button>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -487,7 +489,6 @@
 	});
 	
 	setTimeout(function () {
-		$("#mainLogo").fadeIn();
 		$("#emailForm").fadeIn();
 	}, 200);
 	
