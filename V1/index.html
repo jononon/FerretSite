@@ -121,6 +121,17 @@
 		display: none;
 	}
 
+	#whiteoverlay{
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 10;
+		background-color: rgba(255,255,255,0.9); /*dim the background*/
+		display: none;
+	}
+
 	.jonModal {
 		position: absolute;
 		top: 20px;
@@ -218,6 +229,7 @@
 		</div>
 	</div>
 	<div id=overlay></div>
+	<div id=whiteoverlay></div>
 	<div id=gallery class="jonModal">
 		<i class="fas fa-times" style="color:white;width:100%;text-align:right;padding-right:20px;font-size:40;" onclick="closeGallery()"></i>
 		<center>
@@ -249,8 +261,8 @@
 		</div>
 	</center>
 	</div>
-	<div id=story class="jonModal">
-		<i class="fas fa-times" style="color:white;width:100%;text-align:right;padding-right:20px;font-size:40;" onclick="closeStory()"></i>
+	<div id=story class="jonModal" style="color:black;">
+		<i class="fas fa-times" style="color:black;width:100%;text-align:right;padding-right:20px;font-size:40;" onclick="closeStory()"></i>
 		<div class=container>
 			<p style="text-align: center;">
 				<img width=100% id=samdrawing style="max-width: 668px;">
@@ -268,10 +280,10 @@
 				Nobody has bothered to try anything new since then and there has never been a backpack truly built from the student perspective.
 			</p>
 			<img width=50% id=DSC_0706-2><img width=50% id=DSC_0501>
+			<img width=100% id=DSC_3355>
 			<p>
 				We took it upon ourselves to re-invent the school backpack. As competitive robotics engineers, we knew how to design the mechanisms, but that only got us so far. We assembled an all-student team, learned how to sew, and went through dozens of prototypes. 
 			</p>
-			<img width=100% id=DSC_3355>
 			<p>
 				After thousands of noes, we finally got enough yesses to make our dream a reality.
 			</p>
@@ -313,13 +325,13 @@
 
 	function showStory () {
 		// window.location.href = 'gallery.html';
-		$("#overlay").fadeIn();
+		$("#whiteoverlay").fadeIn();
 		$("#story").fadeIn();
 		$("#navbar").fadeOut();
 	}
 
 	function closeStory() {
-		$("#overlay").fadeOut();
+		$("#whiteoverlay").fadeOut();
 		$("#story").fadeOut();
 		$("#navbar").fadeIn();
 	}
