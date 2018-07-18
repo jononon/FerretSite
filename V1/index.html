@@ -181,13 +181,13 @@
 <body id=body>
 	<div id=home style="color:white;">
 		<!--UNADJUSTEDNONRAW_thumb_9ab-->
-		<div style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(static/images/F4C1312_1_11.jpg);background-size:cover;background-repeat:no-repeat;background-position: center;height:100%;width:100%;display: flex;align-items: center;justify-content: center;flex-direction: column;">
+		<div id=main style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(static/images/F4C1312_1_11.jpg);background-size:cover;background-repeat:no-repeat;background-position: center;height:100%;width:100%;display: flex;align-items: center;justify-content: center;flex-direction: column;">
 			<div class=container>
 				<div class="row">
 					<div class="col-lg-6 offset-lg-3 col-sm-10 offset-sm-1 col-xs-12">
 						<img style="display:inline-block;" src="static/logos/provawhitefulllogo.png" width=100%></img>
 			<div id="typed-strings" style="height:300px;text-align: left;">
-			    <p>The best backpack in the world.<br>Built for students, by students.<br><br>Be the first to know when we launch!<br></p>
+			    <p><br><br>The best backpack in the world.<br>Built for students, by students.<br><br>Be the first to know when we launch!<br><br></p>
 			</div>
 			<span id="typed"></span>
 			
@@ -221,7 +221,7 @@
 	</div>
 	<div id=overlay></div>
 	<div id=gallery class="jonModal">
-		<i class="fas fa-times" style="color:white;padding-left:20px;font-size:40;" onclick="closeGallery()"></i>
+		<i class="fas fa-times" style="color:white;width:100%;text-align:right;padding-right:20px;font-size:40;" onclick="closeGallery()"></i>
 		<center>
 		<div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 300, "fitWidth":true }'>
 		<div class="grid-item box big"><img width=100% id=_F4C1312></div>
@@ -260,7 +260,7 @@
 	</center>
 	</div>
 	<div id=story class="jonModal">
-		<i class="fas fa-times" style="color:white;padding-left:20px;font-size:40;" onclick="closeStory()"></i>
+		<i class="fas fa-times" style="color:white;width:100%;text-align:right;padding-right:20px;font-size:40;" onclick="closeStory()"></i>
 		<div class=container>
 			<p>
 				It all started when we looked around at school one day. Books and pencil cases were getting stuffed to the brim in poorly sized pockets and it wasn't hard to find a broken or torn up bag. When we started to do some research online, we found that almost every company in the student backpack market was founded upon as something completely non-school related.
@@ -275,11 +275,13 @@
 			<p>
 				We're excited to share Series One with the world. We truly believe that this is the best bag in the world for students.
 			</p>
-			<img width=100% id=samdrawing>
+			<p style="text-align: center;">
+				<img width=100% id=samdrawing style="max-width: 668px;">
+			</p>
 		</div>
 	</div>
 	<div id=contact class="jonModal">
-		<i class="fas fa-times" style="color:white;padding-left:20px;font-size:40;position: absolute;" onclick="closeContact()"></i>
+		<i class="fas fa-times" style="color:white;width:100%;text-align:right;padding-right:20px;font-size:40;" onclick="closeContact()"></i>
 		<div style="display: table;height: 100%;width: 100%;">
 		  <div style="display: table-cell;vertical-align: middle;height: 100%;width: 100%;"><center>Please send all inquiries to<br><a href="mailto:cameron@provadesign.com">cameron@provadesign.com</a><br><a href="mailto:jonathan@provadesign.com">jonathan@provadesign.com</a></center></div>
 		</div>
@@ -469,7 +471,7 @@
 		$("#bagshot1").attr("src","static/images/bagshot1.jpg");
 		$("#DSC_0706-2").attr("src","static/images/DSC_0706-2.JPG");
 		$("#DSC_0501").attr("src","static/images/DSC_0501.JPG");
-		$("#samdrawing").attr("src","static/images/samdrawing.jpg");
+		$("#samdrawing").attr("src","static/images/factory.png");
 		$("#AndrewBack").attr("src","static/images/AndrewBack.png");
 		$("#Clip0093").attr("src","static/images/Clip0093.png");
 		$("#DSC_3107").attr("src","static/images/DSC_3107.JPG");
@@ -496,6 +498,10 @@
 				$("#emailForm").fadeIn();
 			}
 		});
+	});
+
+	$("<img src='static/images/_F4C1312.jpg'>").on("load", function() {
+	    $("#main").attr("style", "background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(static/images/_F4C1312.jpg);background-size:cover;background-repeat:no-repeat;background-position: center;height:100%;width:100%;display: flex;align-items: center;justify-content: center;flex-direction: column;");
 	});
 
 </script>
