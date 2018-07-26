@@ -343,6 +343,7 @@
 		$("#gallery").fadeIn();
 		$("#navbar").fadeOut();
 		$(".grid").masonry("layout");
+		fbq('trackCustom', 'viewGallery');
 	}
 
 	function closeGallery() {
@@ -356,6 +357,7 @@
 		$("#whiteoverlay").fadeIn();
 		$("#story").fadeIn();
 		$("#navbar").fadeOut();
+		fbq('trackCustom', 'viewStory');
 	}
 
 	function closeStory() {
@@ -369,6 +371,7 @@
 		$("#overlay").fadeIn();
 		$("#contact").fadeIn();
 		$("#navbar").fadeOut();
+		fbq('trackCustom', 'viewContact');
 	}
 
 	function closeContact () {
