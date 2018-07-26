@@ -19,7 +19,7 @@
 	  t.src=v;s=b.getElementsByTagName(e)[0];
 	  s.parentNode.insertBefore(t,s)}(window, document,'script',
 	  'https://connect.facebook.net/en_US/fbevents.js');
-	  fbq('init', ' ');
+	  fbq('init', '1989278401384904');
 	  fbq('track', 'PageView');
 	</script>
 	<noscript><img height="1" width="1" style="display:none"
@@ -381,12 +381,12 @@
 	
 
 	function handleSuccess() {
-    console.log("success");
-    $("#emailForm").fadeOut();
-    $("#body").append("<div class=\"alert alert-success alert-dismissable col-xs-12 col-sm-8 col-sm-offset-2\" style=\"margin-top:20px;position:fixed;z-index:200\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Success!</strong> Thanks for the interest!</div>");
-  	fbq('track', 'CompleteRegistration');
+	    console.log("success");
+	    $("#emailForm").fadeOut();
+	    $("#body").append("<div class=\"alert alert-success alert-dismissable col-xs-12 col-sm-8 col-sm-offset-2\" style=\"margin-top:20px;position:fixed;z-index:200\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><strong>Success!</strong> Thanks for the interest!</div>");
+	  	fbq('track', 'CompleteRegistration');
 
-  }
+	}
 
   function handleError() {
     console.log("failure");
