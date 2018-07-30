@@ -242,8 +242,11 @@
 			<div class=container>
 				<div class="row">
 					<div class="col-lg-6 offset-lg-3 col-sm-10 offset-sm-1 col-xs-12">
-						<img id=mainLogo style="padding-top:20%;padding-bottom:40%;" src="static/logos/provawhitefulllogo.png" width=100%></img>
+						<img id=mainLogo style="padding-top:20%;padding-bottom:10%;" src="static/logos/provawhitefulllogo.png" width=100%></img>
 
+						<div style="padding-bottom:15%;">
+							<p><center>Launching August 2nd. Huge discount available on launch day.</center></p>
+						</div>
 						
 						<div style="height:94px;">
 							<form id=emailForm style="display:none;">
@@ -496,9 +499,10 @@
 		var windowWidth = $(window).width();
 	  // var windowHeight = $(window).height();
 	  console.log(windowWidth);	
-	  if(windowWidth < 435) {
+	  if(windowWidth<370) {
+	  	$(".boxtext").css("font-size",11);
+	  } else if(windowWidth < 435) {
 	  	$(".boxtext").css("font-size",15);
-	  	
 	  } else {
 	  	$(".boxtext").css("font-size",20);
 	  }
@@ -516,6 +520,7 @@
 	  	$(".box").css("max-width","");
 	  	$(".grid").masonry("layout");
 	  }
+
   	}
 	$(window).resize( function(){
 	  resize();
