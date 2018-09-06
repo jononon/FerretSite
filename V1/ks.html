@@ -1,0 +1,16 @@
+<head>
+	<title>Prova Design // Redirecting</title>
+	<meta name="description" content="Prova Design strives to make incredible products for students, by students. We're excited to launch our first product, Series One: the best backpack in the world for students">
+</head>
+<body>
+If not redirected, click <a href="http://defaulte.fnd.to/prova">here</a>.
+</body>
+<script>
+	function gup(name, url) {
+	  name = name.replace(/[\[]/, '\\\[').replace(/[\]]/, '\\\]');
+	  var results = new RegExp('[?&]'+name+'=?([^&#]*)').exec(url || window.location.href);
+	  return results == null ? null : results[1] || true;
+	}
+	var ref = gup("ref");
+	window.location.replace("kickstarter.html?ref="+ref);
+</script>
