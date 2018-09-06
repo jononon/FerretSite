@@ -363,7 +363,7 @@
 		var productHTML = "";
 		for(var product in products) {
 			if(products[product].available) {
-			productHTML += "<div class='card'><div class='card-body'><div class='media'><img class='mr-3' src='static/images/"+products[product].image+"' width=200px><div class='media-body'><h5 class='mt-0'>"+products[product].name+"</h5><p>"+products[product].description+"</p><a href='#' class='btn btn-primary' onclick=\"addToCart('"+product+"')\">Add to Cart <i class='fas fa-cart-plus'></i></a></div></div></div></div>"
+			productHTML += "<div class='card'><div class='card-body'><div class='row'><div class='col-md-3 col-12'><img width=100% src='static/images/"+products[product].image+"'></div><div class='col-md-9 col-12'><h5 class='mt-0'>"+products[product].name+"</h5><p>"+products[product].description+"</p><a href='#' class='btn btn-primary' onclick=\"addToCart('"+product+"')\">Add to Cart <i class='fas fa-cart-plus'></i></a></div></div></div></div>"
 			}
 		}
 
@@ -434,7 +434,7 @@
 				if(products[cart[i].productID].ksValue != undefined) {
 					hiddenPrice += products[cart[i].productID].ksValue;
 				}
-				accordionHTML += "<div class='card'><div class='card-body'><div class=container-fluid><div class='media'><img class='mr-3' id='productImage"+itemNumber+"' src='static/images/"+products[cart[i].productID].image+"' width=200px><div class='media-body'><h5 class='mt-0'>"+products[cart[i].productID].name+"<div style='color:white;float:right;'><small>"+price+"</small></h5><p><em><small>"+products[cart[i].productID].description+"</small></em></p>";
+				accordionHTML += "<div class='card'><div class='card-body'><div class=container-fluid><div class='row'><div class='col-md-3 col-12'><img class='mr-3' id='productImage"+itemNumber+"' src='static/images/"+products[cart[i].productID].image+"' width=100%></div><div class='col-md-9 col-12'><h5 class='mt-0'>"+products[cart[i].productID].name+"<div style='color:white;float:right;'><small>"+price+"</small></h5><p><em><small>"+products[cart[i].productID].description+"</small></em></p>";
 				if(products[cart[i].productID].customisation != undefined) {
 					accordionHTML += "<h6>Select Color Preference <small>(Red, Blue, or Black)</small></h6><p><div class='dot red' onclick=\"colorPreferenceSelected('red','"+i+"');;\"><center style='padding-top: 5px'><i id='red"+itemNumber+"' class='fas 'class='fas'>&nbsp</i></center></div> <div class='dot blue' onclick=\"colorPreferenceSelected('blue','"+i+"');\"><center style='padding-top: 5px'><i id='blue"+itemNumber+"' class='fas'>&nbsp</i></center></div> <div id='red"+itemNumber+"' class='dot black' onclick=\"colorPreferenceSelected('black','"+i+"');\"><center style='padding-top: 5px'><i id='black"+itemNumber+"'class='fas'>&nbsp</i></center></div><a href='#' role='button' onclick=\"removeItemFromCart('"+i+"',"+products[cart[i].productID].price+");\" class='btn btn-danger' style='float:right'>Remove from Cart</a></p>"
 				} else {
