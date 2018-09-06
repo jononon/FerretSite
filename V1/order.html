@@ -548,11 +548,16 @@
 				var cart = cartSnapshot.val();
 				for(item in cart) {
 					if(products[cart[item].productID].customisation != undefined && cart[item].color == undefined) {
-						showErrorBox("Please select a color for every backpack.")
+						showErrorBox("Please select a color for every backpack.");
 						errorOccured = true;
+						break;
 					}
 				}
 
+				if($("#shippingName").parent().is(":visible") && $("#shippingName").val() == "") {
+					showErrorBox("Please ensure you have entered your name for shipping.")
+					errorOccured = true;
+				}
 				if($("#country").parent().is(":visible") && $("#country").val() == "") {
 					showErrorBox("Please ensure you have entered a country.")
 					errorOccured = true;
@@ -584,12 +589,14 @@
 				}
 
 				var address = {
+					name: $("#shippingName").val(),
 					country: $("#country").val(),
 					thoroughfare: $("#thoroughfare").val(),
 					premise: $("#premise").val(),
 					city: $("#city").val(),
 					state: $("#state").val(),
-					zip: $("#zip").val()
+					zip: $("#zip").val(),
+					email: $("#email").val()
 				};
 				firebase.database().ref("/orders/"+orderID+"/address/").set(address);
 
