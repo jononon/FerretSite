@@ -216,57 +216,12 @@
 						<div> <!-- class="col-lg-9"> -->
 							<h5>Cart</h5>
 							<div id="accordion">
-							  <div class="card">
-							    <div class="card-header" id="headingOne">
-							      <h5 class="mb-0">
-							        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="color:white">
-							          Item 1: Backpack
-							        </button>
-							        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="color:white;float:right;"><small>Already Purchased</small></button>
-							      </h5>
-							    </div>
-
-							    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-							      <div class="card-body">
-							      	<div class=container-fluid>
-							      		<div class="media">
-										 	<img class="mr-3" src="static/images/UNADJUSTEDNONRAW_thumb_a4b.jpg" alt="Generic placeholder image" width=200px>
-										 	<div class="media-body">
-											    <h5 class="mt-0">Series One Backpack</h5>
-											    <h6>Select Color Preference <small>(Red, Blue, or Black)</small></h6>
-										        <p>
-										        	<div class="dot red" onclick="console.log('red');"><center style="padding-top: 5px"><i class="fas fa-check"></center></i></div> 
-											        <div class="dot blue" onclick="console.log('blu');"><center style="padding-top: 5px"><i class="fas">&nbsp</i></center></div> 
-											        <div class="dot black" onclick="console.log('blk');"><center style="padding-top: 5px"><i class="fas">&nbsp</i></center></div>
-											    </p>
-										 	</div>
-										</div>
-									</div>
-							      </div>
-							    </div>
-							  </div>
 							</div>
 						</div>
 						<br>
 						<div> <!-- class="col-lg-3"> -->
 							<h5>Addons</h5>
 							<div class=card-group id=addons>
-								<div class="card">
-								  <img class="card-img-top" src="static/images/UNADJUSTEDNONRAW_thumb_a4b.jpg">
-								  <div class="card-body">
-								    <h5 class="card-title">Series One Backpack</h5>
-								    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-								    <a href="#" class="btn btn-primary">Add to Cart <i class="fas fa-cart-plus"></i></a>
-								  </div>
-								</div>
-								<div class="card">
-								  <img class="card-img-top" src="static/images/UNADJUSTEDNONRAW_thumb_a4b.jpg">
-								  <div class="card-body">
-								    <h5 class="card-title">Series One Backpack</h5>
-								    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-								    <a href="#" class="btn btn-primary">Add to Cart <i class="fas fa-cart-plus"></i></a>
-								  </div>
-								</div>
 							</div>
 						</div>
 						<br>
@@ -405,7 +360,7 @@
 		var productHTML = "";
 		for(var product in products) {
 			if(products[product].available) {
-			productHTML += "<div class='card'><div class='card-body'><div class='media'><img class='mr-3' src='static/images/"+products[product].image+"' width=200px><div class='media-body'><h5 class='mt-0'>"+products[product].name+"</h5>"+products[product].description+"<a href='#' class='btn btn-primary' onclick=\"addToCart('"+product+"')\">Add to Cart <i class='fas fa-cart-plus'></i></a></div></div></div></div>"
+			productHTML += "<div class='card'><div class='card-body'><div class='media'><img class='mr-3' src='static/images/"+products[product].image+"' width=200px><div class='media-body'><h5 class='mt-0'>"+products[product].name+"</h5><p>"+products[product].description+"</p><a href='#' class='btn btn-primary' onclick=\"addToCart('"+product+"')\">Add to Cart <i class='fas fa-cart-plus'></i></a></div></div></div></div>"
 			}
 		}
 
