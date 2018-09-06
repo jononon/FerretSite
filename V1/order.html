@@ -629,4 +629,17 @@
 	    postalcode: '#zip'
 	  }
 	});
+
+	var images = new Array()
+	function preload() {
+		for (i = 0; i < preload.arguments.length; i++) {
+			images[i] = new Image()
+			images[i].src = preload.arguments[i]
+		}
+	}
+	preload(
+		"static/images/productPreview_blue.jpg",
+		"static/images/productPreview_red.jpg",
+		"static/images/productPreview_black.jpg"
+	)	
 </script>
