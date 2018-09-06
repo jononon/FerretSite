@@ -343,7 +343,10 @@
 
 	var orderID = gup("order");
 	if(orderID == undefined) {
-		orderID = "TESTABC123";
+		// orderID = "TESTABC123";
+		$("#confirmed").hide();
+		$("#order").hide();
+		alert("No order number specified");
 	}
 	$("#orderNumber").html("You will receive an email confirming your order shortly. Your order number is "+orderID);
 
