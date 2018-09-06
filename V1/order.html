@@ -1,0 +1,674 @@
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<script src="static/js/jquery-3.1.0.min.js"></script>
+	<script src="static/js/bootstrap.bundle.min.js"></script>
+	<script src="static/js/masonry.pkgd.min.js"></script>
+	<script src="static/js/jquery.addressfield.min.js"></script>
+	<script src="https://checkout.stripe.com/checkout.js"></script>
+	<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+	<link rel="stylesheet" type="text/css" href="static/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+	<link rel="shortcut icon" href="static/logos/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="static/logos/favicon.ico" type="image/x-icon">
+	<title>Prova Design</title>
+	<meta name="description" content="Prova Design strives to make incredible products for students, by students. We're excited to launch our first product, Series One: the best backpack in the world for students">
+</head>
+<style type="text/css">
+
+	@font-face{ 
+		font-family: 'texgyreadventor-regular-webfont';
+		src: url('static/fonts/texgyreadventor-regular-webfont.woff') format('woff');
+	}
+
+	@font-face{ 
+		font-family: 'texgyreadventor-bold-webfont';
+		src: url('static/fonts/texgyreadventor-bold-webfont.woff') format('woff');
+	}
+
+	@font-face{ 
+		font-family: 'texgyreadventor-bolditalic-webfont';
+		src: url('static/fonts/texgyreadventor-bolditalic-webfont.woff') format('woff');
+	}
+
+	@font-face{ 
+		font-family: 'texgyreadventor-italic-webfont';
+		src: url('static/fonts/texgyreadventor-italic-webfont.woff') format('woff');
+	}
+
+	body{ 
+	 	font-family: texgyreadventor-regular-webfont;
+	 	background:black;
+ 	}
+ 	
+	.box {
+		width:300px;
+		border-color: black;
+		-webkit-transition: all 0.25s;
+	       -moz-transition: all 0.25s;
+	         -o-transition: all 0.25s;
+	            transition: all 0.25s;
+	}
+
+	.ed {
+		width:600px;
+	}
+
+	.big {
+		width:600px;
+	}
+
+	.boxtext {
+		display:inline-block;
+	    border-top:2px solid rgba(0,0,0,0);
+	    border-bottom:2px solid rgba(0,0,0,0);
+	    border-top:;
+	    border-bottom:;
+	    padding:2px;
+	    letter-spacing: 2px;
+	    color:white;
+	    font-size:20;
+	    font-family:texgyreadventor-regular-webfont;
+	}
+
+    .gigante2 {
+    	-webkit-transition: all 0.25s;
+	       -moz-transition: all 0.25s;
+	         -o-transition: all 0.25s;
+	            transition: all 0.25s;
+            border-bottom:2px solid white;
+	    	border-top:2px solid white;
+	    	/*border-bottom:0px;*/
+	    	/*border-top:0px;*/
+	    	font-size: 20;
+    }
+
+    #overlay{
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 10;
+		background-color: rgba(0,0,0,0.9); /*dim the background*/
+		display: none;
+	}
+
+	#whiteoverlay{
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 10;
+		background-color: rgba(255,255,255,0.95); /*dim the background*/
+		display: none;
+	}
+
+	.jonModal {
+		position: absolute;
+		top: 20px;
+		z-index: 10;
+		width:100%;
+		display: none;
+		color:white;
+	}
+
+	#home {
+		position: fixed;
+		height:100%;
+		width:100%;
+	}
+
+	#emailForm {
+		display:none;
+		/*width:50%;*/
+	}
+	#typed {
+		width:50%;
+	}
+
+	#emailInput {
+		background-color: rgba(0,0,0,0);
+	    color: white;
+	    border-left-color: rgba(0,0,0,0);
+	    border-top-color: rgba(0,0,0,0);
+	    border-right-color: rgba(0,0,0,0);
+	    border-bottom-color: white;
+	    border-radius: 0;
+	    border-bottom-width: 3px;
+	}
+
+	#contact {
+		height: 100%;
+		width: 100%;
+	}
+
+
+	a:link {
+	    color:#FFFFFF;
+	}
+
+	a:visited {
+	    color:#FFFFFF;
+	}
+
+	a:hover {
+	    color:#FFFFFF;
+	}
+	a {
+	    color:#FFFFFF;
+	}
+
+	.blueLink a:link {
+	    color:#4286f4;
+	}
+
+	.blueLink a:visited {
+	    color:#4286f4;
+	}
+
+	.blueLink a:hover {
+	    color:#4286f4;
+	}
+	.blueLink a {
+	    color:#4286f4;
+	}
+
+	.dot {
+		height: 25px;
+		width: 25px;
+		background-color: #bbb;
+		border-radius: 50%;
+		display: inline-block;
+	}
+
+	.card {
+		background-color: rgba(255,255,255,0.2);
+		color:white;
+	}
+
+	.red {
+		background-color: #ca2300;
+	}
+	.blue {
+		background-color: #0f00e3;
+	}
+	.black {
+		background-color: #666;
+	}
+
+
+
+</style>
+<body id=body>
+	<div id=home style="color:white;">
+		<!--UNADJUSTEDNONRAW_thumb_9ab-->
+		<div id=main style="background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url(static/images/F4C1312_1_11.jpg);background-size:cover;background-repeat:no-repeat;background-position: center;height:100%;width:100%;overflow-y: scroll;padding-bottom: 50px">
+			<div class=container-fluid>
+				<div class="row">
+					<div class="col-lg-10 offset-lg-1 col-sm-10 offset-sm-1 col-xs-12" style="padding-top:50px;" id=order>
+						<img src="static/logos/provawhitefulllogo.png" width=300px></img>
+						<br><br>
+						<h3>Thanks for your order!</h3>
+						<h6>We just need to collect your shipping address and color preferences. If you want to add additional bags or products to your order, you can do so here as well.</h6>
+						<br><br>
+						<div> <!-- class="col-lg-9"> -->
+							<h5>Cart</h5>
+							<div id="accordion">
+							  <div class="card">
+							    <div class="card-header" id="headingOne">
+							      <h5 class="mb-0">
+							        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="color:white">
+							          Item 1: Backpack
+							        </button>
+							        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="color:white;float:right;"><small>Already Purchased</small></button>
+							      </h5>
+							    </div>
+
+							    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+							      <div class="card-body">
+							      	<div class=container-fluid>
+							      		<div class="media">
+										 	<img class="mr-3" src="static/images/UNADJUSTEDNONRAW_thumb_a4b.jpg" alt="Generic placeholder image" width=200px>
+										 	<div class="media-body">
+											    <h5 class="mt-0">Series One Backpack</h5>
+											    <h6>Select Color Preference <small>(Red, Blue, or Black)</small></h6>
+										        <p>
+										        	<div class="dot red" onclick="console.log('red');"><center style="padding-top: 5px"><i class="fas fa-check"></center></i></div> 
+											        <div class="dot blue" onclick="console.log('blu');"><center style="padding-top: 5px"><i class="fas">&nbsp</i></center></div> 
+											        <div class="dot black" onclick="console.log('blk');"><center style="padding-top: 5px"><i class="fas">&nbsp</i></center></div>
+											    </p>
+										 	</div>
+										</div>
+									</div>
+							      </div>
+							    </div>
+							  </div>
+							</div>
+						</div>
+						<br>
+						<div> <!-- class="col-lg-3"> -->
+							<h5>Addons</h5>
+							<div class=card-group id=addons>
+								<div class="card">
+								  <img class="card-img-top" src="static/images/UNADJUSTEDNONRAW_thumb_a4b.jpg">
+								  <div class="card-body">
+								    <h5 class="card-title">Series One Backpack</h5>
+								    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+								    <a href="#" class="btn btn-primary">Add to Cart <i class="fas fa-cart-plus"></i></a>
+								  </div>
+								</div>
+								<div class="card">
+								  <img class="card-img-top" src="static/images/UNADJUSTEDNONRAW_thumb_a4b.jpg">
+								  <div class="card-body">
+								    <h5 class="card-title">Series One Backpack</h5>
+								    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+								    <a href="#" class="btn btn-primary">Add to Cart <i class="fas fa-cart-plus"></i></a>
+								  </div>
+								</div>
+							</div>
+						</div>
+						<br>
+						<div> <!-- class="col-lg-3"> -->
+							<h5>Shipping Info</h5>
+							<form id=addressform>
+							  <div class="field-wrapper">
+							    <div class="field-wrapper form-group row">
+							      <label for="country" class="col-sm-2 col-form-label">Country</label>
+							      <div class="col-sm-10">
+								      <select id="country">
+								      	<option value="AF">Afghanistan</option><option value="AX">Aland Islands</option><option value="AL">Albania</option><option value="DZ">Algeria</option><option value="AS">American Samoa</option><option value="AD">Andorra</option><option value="AO">Angola</option><option value="AI">Anguilla</option><option value="AQ">Antarctica</option><option value="AG">Antigua and Barbuda</option><option value="AR">Argentina</option><option value="AM">Armenia</option><option value="AW">Aruba</option><option value="AU">Australia</option><option value="AT">Austria</option><option value="AZ">Azerbaijan</option><option value="BS">Bahamas</option><option value="BH">Bahrain</option><option value="BD">Bangladesh</option><option value="BB">Barbados</option><option value="BY">Belarus</option><option value="BE">Belgium</option><option value="BZ">Belize</option><option value="BJ">Benin</option><option value="BM">Bermuda</option><option value="BT">Bhutan</option><option value="BO">Bolivia</option><option value="BA">Bosnia and Herzegovina</option><option value="BW">Botswana</option><option value="BV">Bouvet Island</option><option value="BR">Brazil</option><option value="IO">British Indian Ocean Territory</option><option value="VG">British Virgin Islands</option><option value="BN">Brunei</option><option value="BG">Bulgaria</option><option value="BF">Burkina Faso</option><option value="BI">Burundi</option><option value="KH">Cambodia</option><option value="CM">Cameroon</option><option value="CA">Canada</option><option value="CV">Cape Verde</option><option value="KY">Cayman Islands</option><option value="CF">Central African Republic</option><option value="TD">Chad</option><option value="CL">Chile</option><option value="CN">China</option><option value="CX">Christmas Island</option><option value="CC">Cocos (Keeling) Islands</option><option value="CO">Colombia</option><option value="KM">Comoros</option><option value="CG">Congo (Brazzaville)</option><option value="CD">Congo (Kinshasa)</option><option value="CK">Cook Islands</option><option value="CR">Costa Rica</option><option value="CU">Cuba</option><option value="HR">Croatia</option><option value="CW">CuraÁao</option><option value="CY">Cyprus</option><option value="CZ">Czech Republic</option><option value="DK">Denmark</option><option value="DJ">Djibouti</option><option value="DM">Dominica</option><option value="DO">Dominican Republic</option><option value="EC">Ecuador</option><option value="EG">Egypt</option><option value="SV">El Salvador</option><option value="GQ">Equatorial Guinea</option><option value="ER">Eritrea</option><option value="EE">Estonia</option><option value="ET">Ethiopia</option><option value="FK">Falkland Islands</option><option value="FO">Faroe Islands</option><option value="FJ">Fiji</option><option value="FI">Finland</option><option value="FR">France</option><option value="GF">French Guiana</option><option value="PF">French Polynesia</option><option value="TF">French Southern Territories</option><option value="GA">Gabon</option><option value="GM">Gambia</option><option value="GE">Georgia</option><option value="DE">Germany</option><option value="GH">Ghana</option><option value="GI">Gibraltar</option><option value="GR">Greece</option><option value="GL">Greenland</option><option value="GD">Grenada</option><option value="GP">Guadeloupe</option><option value="GU">Guam</option><option value="GT">Guatemala</option><option value="GG">Guernsey</option><option value="GN">Guinea</option><option value="GW">Guinea-Bissau</option><option value="GY">Guyana</option><option value="HT">Haiti</option><option value="HM">Heard Island and McDonald Islands</option><option value="HN">Honduras</option><option value="HK">Hong Kong S.A.R., China</option><option value="HU">Hungary</option><option value="IS">Iceland</option><option value="IN">India</option><option value="ID">Indonesia</option><option value="IR">Iran</option><option value="IQ">Iraq</option><option value="IE">Ireland</option><option value="IM">Isle of Man</option><option value="IL">Israel</option><option value="IT">Italy</option><option value="CI">Ivory Coast</option><option value="JM">Jamaica</option><option value="JP">Japan</option><option value="JE">Jersey</option><option value="JO">Jordan</option><option value="KZ">Kazakhstan</option><option value="KE">Kenya</option><option value="KI">Kiribati</option><option value="KW">Kuwait</option><option value="KG">Kyrgyzstan</option><option value="LA">Laos</option><option value="LV">Latvia</option><option value="LB">Lebanon</option><option value="LS">Lesotho</option><option value="LR">Liberia</option><option value="LY">Libya</option><option value="LI">Liechtenstein</option><option value="LT">Lithuania</option><option value="LU">Luxembourg</option><option value="MO">Macao S.A.R., China</option><option value="MK">Macedonia</option><option value="MG">Madagascar</option><option value="MW">Malawi</option><option value="MY">Malaysia</option><option value="MV">Maldives</option><option value="ML">Mali</option><option value="MT">Malta</option><option value="MH">Marshall Islands</option><option value="MQ">Martinique</option><option value="MR">Mauritania</option><option value="MU">Mauritius</option><option value="YT">Mayotte</option><option value="MX">Mexico</option><option value="FM">Micronesia</option><option value="MD">Moldova</option><option value="MC">Monaco</option><option value="MN">Mongolia</option><option value="ME">Montenegro</option><option value="MS">Montserrat</option><option value="MA">Morocco</option><option value="MZ">Mozambique</option><option value="MM">Myanmar</option><option value="NA">Namibia</option><option value="NR">Nauru</option><option value="NP">Nepal</option><option value="NL">Netherlands</option><option value="AN">Netherlands Antilles</option><option value="NC">New Caledonia</option><option value="NZ">New Zealand</option><option value="NI">Nicaragua</option><option value="NE">Niger</option><option value="NG">Nigeria</option><option value="NU">Niue</option><option value="NF">Norfolk Island</option><option value="MP">Northern Mariana Islands</option><option value="KP">North Korea</option><option value="NO">Norway</option><option value="OM">Oman</option><option value="PK">Pakistan</option><option value="PW">Palau</option><option value="PS">Palestinian Territory</option><option value="PA">Panama</option><option value="PG">Papua New Guinea</option><option value="PY">Paraguay</option><option value="PE">Peru</option><option value="PH">Philippines</option><option value="PN">Pitcairn</option><option value="PL">Poland</option><option value="PT">Portugal</option><option value="PR">Puerto Rico</option><option value="QA">Qatar</option><option value="RE">Reunion</option><option value="RO">Romania</option><option value="RU">Russia</option><option value="RW">Rwanda</option><option value="BL">Saint BarthÈlemy</option><option value="SH">Saint Helena</option><option value="KN">Saint Kitts and Nevis</option><option value="LC">Saint Lucia</option><option value="MF">Saint Martin (French part)</option><option value="PM">Saint Pierre and Miquelon</option><option value="VC">Saint Vincent and the Grenadines</option><option value="WS">Samoa</option><option value="SM">San Marino</option><option value="ST">Sao Tome and Principe</option><option value="SA">Saudi Arabia</option><option value="SN">Senegal</option><option value="RS">Serbia</option><option value="SC">Seychelles</option><option value="SL">Sierra Leone</option><option value="SG">Singapore</option><option value="SK">Slovakia</option><option value="SI">Slovenia</option><option value="SB">Solomon Islands</option><option value="SO">Somalia</option><option value="ZA">South Africa</option><option value="GS">South Georgia and the South Sandwich Islands</option><option value="KR">South Korea</option><option value="ES">Spain</option><option value="LK">Sri Lanka</option><option value="SD">Sudan</option><option value="SR">Suriname</option><option value="SJ">Svalbard and Jan Mayen</option><option value="SZ">Swaziland</option><option value="SE">Sweden</option><option value="CH">Switzerland</option><option value="SY">Syria</option><option value="TW">Taiwan</option><option value="TJ">Tajikistan</option><option value="TZ">Tanzania</option><option value="TH">Thailand</option><option value="TL">Timor-Leste</option><option value="TG">Togo</option><option value="TK">Tokelau</option><option value="TO">Tonga</option><option value="TT">Trinidad and Tobago</option><option value="TN">Tunisia</option><option value="TR">Turkey</option><option value="TM">Turkmenistan</option><option value="TC">Turks and Caicos Islands</option><option value="TV">Tuvalu</option><option value="VI">U.S. Virgin Islands</option><option value="UG">Uganda</option><option value="UA">Ukraine</option><option value="AE">United Arab Emirates</option><option value="GB">United Kingdom</option><option value="US">United States</option><option value="UM">United States Minor Outlying Islands</option><option value="UY">Uruguay</option><option value="UZ">Uzbekistan</option><option value="VU">Vanuatu</option><option value="VA">Vatican</option><option value="VE">Venezuela</option><option value="VN">Vietnam</option><option value="WF">Wallis and Futuna</option><option value="EH">Western Sahara</option><option value="YE">Yemen</option><option value="ZM">Zambia</option><option value="ZW">Zimbabwe</option>
+								      </select>
+								  </div>
+							    </div>
+							  </div>
+							  <div class="field-wrapper form-group row">
+							      <label for="thoroughfare" class="col-sm-2 col-form-label">Thoroughfare</label>
+							      <div class="col-sm-10">
+							      	<input type="text" class="form-control" id="thoroughfare" />
+							      </div>
+							    </div>
+							    <div class="field-wrapper form-group row">
+							      <label for="premise" class="col-sm-2 col-form-label">Premise</label>
+							      <div class="col-sm-10">
+							      	<input type="text" class="form-control" id="premise" />
+							      </div>
+							    </div>
+							  <div id="locality-fields">
+							    <div class="field-wrapper form-group row">
+							      <label for="city" class="col-sm-2 col-form-label">City</label>
+							      <div class="col-sm-10">
+							      	<input type="text" class="form-control" id="city" />
+							      </div>
+							    </div>
+							    <div class="field-wrapper form-group row">
+							      <label for="state" class="col-sm-2 col-form-label">Administrative Area</label>
+							      <div class="col-sm-10">
+							      	<input type="text" class="form-control" id="state" />
+							      </div>
+							    </div>
+							    <div class="field-wrapper form-group row">
+							      <label for="zip" class="col-sm-2 col-form-label">Postal Code</label>
+							      <div class="col-sm-10">
+							      	<input type="text" class="form-control" id="zip" />
+							      </div>
+							    </div>
+							  </div>
+							  <div class="form-group row">
+						    	<label for="email" class="col-sm-2 col-form-label">Email</label>
+						    	<div class="col-sm-10">
+						    		<input type="email" class="form-control" aria-describedby="emailHelp" id="email" />
+						    		<small id="emailHelp" class="form-text text-muted">Your email helps us authenticate your order. Please use the same email that you used on Kickstarter. Your email won't be used for mailing lists unless you opt-in below.</small>
+						    	</div>
+							   </div>
+							   <!-- <div class="form-group row">
+							    <div class="col-sm-10 offset-sm-2">
+							      <div class="form-check">
+							        <input class="form-check-input" type="checkbox" id="gridCheck1">
+							        <label class="form-check-label" for="gridCheck1">
+							          Subscribe to our mailing list!
+							        </label>
+							      </div>
+							    </div>
+							  </div> -->
+							</form>
+						</div>
+						<div>
+							<h5>Total</h5>
+							<p id=subtotal>Subtotal: $0.00</p>
+							<p id=shipping>Shipping: $0.00</p>
+							<p id=internationalShippingWarning><small>You have selected a country outside of the United States but have not paid for International Shipping on Kickstarter. To avoid shipping costs, please enter an address within the United States.</small></p>
+							<br>
+							<p id=credit>Credit: $0.00</p>
+							<p id=creditDesc><small>This is extra money you have pledged to our campaign. If not used, it'll be lost! <a onclick="addToCart('RETAIL_SER_ONE')"><u>Consider adding a bag!</u></a></small></p>
+							<br>
+							<p id=total><b>Total: $0.00</b></p>
+						</div>
+						<div> <!-- class="col-lg-3"> -->
+							<div class="alert alert-danger" role="alert" id="errorBox">
+							  A simple danger alert—check it out!
+							</div>
+							<a id="confirmOrderButton" role="button" onclick="confirmOrder();" class="btn btn-success">Confirm Order!</a>
+						</div>
+					</div>
+					<div class="col-lg-10 offset-lg-1 col-sm-10 offset-sm-1 col-xs-12" style="padding-top:50px;" id=confirmed>
+						<img src="static/logos/provawhitefulllogo.png" width=300px></img>
+						<br><br>
+						<h3>Your order has been confirmed!</h3>
+						<h6 id=orderNumber></h6>
+						<p>Thank you for the support! We look forward to delivering your bags soon.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDVfbz-9JfRUha9a9O6gv49Q6tdRDNS2OQ",
+    authDomain: "prova-llc.firebaseapp.com",
+    databaseURL: "https://prova-llc.firebaseio.com",
+    projectId: "prova-llc",
+    storageBucket: "",
+    messagingSenderId: "970130907892"
+  };
+  firebase.initializeApp(config);
+</script>
+<script>
+	function gup(name, url) {
+	  name = name.replace(/[\[]/, '\\\[').replace(/[\]]/, '\\\]');
+	  var results = new RegExp('[?&]'+name+'=?([^&#]*)').exec(url || window.location.href);
+	  return results == null ? null : results[1] || true;
+	}
+
+	$("#confirmed").hide();
+
+	var orderID = gup("order");
+	if(orderID == undefined) {
+		orderID = "TESTABC123";
+	}
+	$("#orderNumber").html("You will receive an email confirming your order shortly. Your order number is "+orderID);
+
+	var products = [];
+	var cartPrice = 0;
+	var hiddenPrice = 0;
+	var pledgeAmount = 0;
+	var shipping = 0;
+	var total = 0;
+
+	firebase.database().ref('products').once('value').then(function(snapshot) {
+		products = snapshot.val();
+
+		var productHTML = "";
+		for(var product in products) {
+			if(products[product].available) {
+			productHTML += "<div class='card'><div class='card-body'><div class='media'><img class='mr-3' src='static/images/"+products[product].image+"' width=200px><div class='media-body'><h5 class='mt-0'>"+products[product].name+"</h5>"+products[product].description+"<a href='#' class='btn btn-primary' onclick=\"addToCart('"+product+"')\">Add to Cart <i class='fas fa-cart-plus'></i></a></div></div></div></div>"
+			}
+		}
+
+		$("#addons").html(productHTML);
+	});
+
+	function updatePrices () {
+		shipping = 0;
+		if(country == "United States" && $("#country").val() != "US") {
+    		$("#internationalShippingWarning").show();
+    	} else {
+    		$("#internationalShippingWarning").hide();
+    	}
+    	if($("#country").val() == "US" ) {
+    		shipping = 0;
+    	} else if(country == "United States" && $("#country").val() != "US") {
+    		shipping = 13;
+    	}
+
+    	if ($("#country").val() != "US" && cartPrice>50) {
+    		shipping += 5;
+    	} 
+
+    	var leftoverCredit = pledgeAmount-hiddenPrice;
+
+    	if(leftoverCredit>0) {
+    		$("#credit").show();
+    		$("#creditDesc").show();
+    	} else {
+    		$("#credit").hide();
+    		$("#creditDesc").hide();
+    	}
+
+		$("#subtotal").html("Subtotal: $"+cartPrice+".00");
+		$("#shipping").html("Shipping: $"+shipping+".00");
+		$("#credit").html("Kickstarter Credit: $"+leftoverCredit+".00")
+		if(shipping+cartPrice-leftoverCredit<0) {
+			total = 0;
+		} else {
+			total = shipping+cartPrice-leftoverCredit
+		}
+		$("#total").html("<strong>Total: $"+total+".00</strong>");
+
+		if((shipping+cartPrice)>0) {
+			$("#stripeButton").show();
+		} else {
+			$("#stripeButton").hide();
+		}
+	}
+
+	var country = "";
+
+	function drawOrders () {
+		firebase.database().ref('/orders/' + orderID).once('value').then(function(snapshot) {
+			var accordionHTML = "";
+			if(snapshot.val().status == "confirmed") {
+				$("#confirmed").show();
+			    $("#order").hide();
+			}
+			var cart = snapshot.val().cart;
+			pledgeAmount = snapshot.val().kickstarter.pledgeAmount
+			var itemNumber = 0;
+			cartPrice = 0;
+			hiddenPrice = 0;
+			for(var i in cart) {
+				var price = (products[cart[i].productID].price==0)?"Already Purchased":("$"+products[cart[i].productID].price+".00");
+				cartPrice += products[cart[i].productID].price;
+				if(products[cart[i].productID].ksValue != undefined) {
+					hiddenPrice += products[cart[i].productID].ksValue;
+				}
+				accordionHTML += "<div class='card'><div class='card-body'><div class=container-fluid><div class='media'><img class='mr-3' id='productImage"+itemNumber+"' src='static/images/"+products[cart[i].productID].image+"' width=200px><div class='media-body'><h5 class='mt-0'>"+products[cart[i].productID].name+"<div style='color:white;float:right;'><small>"+price+"</small></h5><p><em><small>"+products[cart[i].productID].description+"</small></em></p>";
+				if(products[cart[i].productID].customisation != undefined) {
+					accordionHTML += "<h6>Select Color Preference <small>(Red, Blue, or Black)</small></h6><p><div class='dot red' onclick=\"colorPreferenceSelected('red','"+i+"');;\"><center style='padding-top: 5px'><i id='red"+itemNumber+"' class='fas 'class='fas'>&nbsp</i></center></div> <div class='dot blue' onclick=\"colorPreferenceSelected('blue','"+i+"');\"><center style='padding-top: 5px'><i id='blue"+itemNumber+"' class='fas'>&nbsp</i></center></div> <div id='red"+itemNumber+"' class='dot black' onclick=\"colorPreferenceSelected('black','"+i+"');\"><center style='padding-top: 5px'><i id='black"+itemNumber+"'class='fas'>&nbsp</i></center></div><a href='#' role='button' onclick=\"removeItemFromCart('"+i+"',"+products[cart[i].productID].price+");\" class='btn btn-danger' style='float:right'>Remove from Cart</a></p>"
+				} else {
+					accordionHTML += "<a href='#' role='button' onclick=\"removeItemFromCart('"+i+"',"+products[cart[i].productID].price+");\" class='btn btn-danger' style='float:right'>Remove from Cart</a>";
+				}
+				accordionHTML += "</div></div></div></div></div>";
+				itemNumber++;
+			}
+			$("#accordion").html(accordionHTML);
+			itemNumber = 0;
+			for(var i in cart) {
+				if(cart[i].color == "red") {
+					drawColorPreferences("red",itemNumber);
+				} else if(cart[i].color == "blue") {
+					drawColorPreferences("blue",itemNumber);
+				} else if(cart[i].color == "black") {
+					drawColorPreferences("black",itemNumber);
+				} 
+				itemNumber++;
+			}
+			country = snapshot.val().kickstarter.shippingCountry;
+			updatePrices();
+		});
+	}
+
+	drawOrders();
+
+	function drawColorPreferences(color,id) {
+		$("#red"+id).html("&nbsp")
+		$("#blue"+id).html("&nbsp")
+		$("#black"+id).html("&nbsp")
+		$("#red"+id).removeClass("fa-check")
+		$("#blue"+id).removeClass("fa-check")
+		$("#black"+id).removeClass("fa-check")
+		$("#"+color+id).html("")
+		$("#"+color+id).addClass("fa-check")
+		$("#productImage"+id).attr("src","static/images/productPreview_"+color+".jpg");
+	}
+
+	function colorPreferenceSelected(color,id) {
+		firebase.database().ref("/orders/"+orderID+"/cart/"+id+"/color/").set(color);
+		drawOrders();
+	}
+
+	function addToCart(product) {
+		var newItemRef = firebase.database().ref("/orders/"+orderID+"/cart/").push();
+		newItemRef.set({"productID":product});
+		drawOrders();
+	}
+
+	function removeItemFromCart(product,price) {
+		if(price == 0) {
+			var r = confirm("Warning: this item was included in your original kickstarter order. If removed, you will not be able to add it back. Please kit OK if you still wish to remove the product.");
+			if (r == true) {
+			    firebase.database().ref("/orders/"+orderID+"/cart/"+product).remove()
+			}
+		} else {
+			firebase.database().ref("/orders/"+orderID+"/cart/"+product).remove()
+		}
+		drawOrders();
+	}
+
+    var handler = StripeCheckout.configure({
+      key: 'pk_test_9UyR47yeAUmkpzB24WFPnUWj',
+      image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+      locale: 'auto',
+      token: function(token) {
+        firebase.database().ref('/orders/' + orderID + '/payment/').push({
+          amount: (cartPrice+shipping)*100,
+          token: token
+        });
+        $("#confirmed").show();
+		$("#order").hide();
+      }
+	});
+	
+	// Close Checkout on page navigation:
+    window.addEventListener('popstate', function() {
+      handler.close();
+    });
+
+    document.getElementById("country").onchange = function() {
+    	updatePrices();
+    };
+
+    function getLang() {
+	 if (navigator.languages != undefined) {
+	 	$("#country").val(navigator.languages[0].substring(3));
+	 }
+	}
+	getLang();
+
+	function showErrorBox(err){
+		$("#errorBox").show();
+		$("#errorBox").append("<p>"+err+"</p>");
+	}
+	$("#errorBox").hide();
+	function confirmOrder() {
+		var errorOccured = false;
+		$("#errorBox").hide();
+		$("#errorBox").html("");
+		firebase.database().ref("/products/").once('value').then(function(productSnapshot) {
+			var products = productSnapshot.val();
+			firebase.database().ref("/orders/"+orderID+"/cart/").once('value').then(function(cartSnapshot) {
+				var cart = cartSnapshot.val();
+				for(item in cart) {
+					if(products[cart[item].productID].customisation != undefined && cart[item].color == undefined) {
+						showErrorBox("Please select a color for every backpack.")
+						errorOccured = true;
+					}
+				}
+
+				if($("#country").parent().is(":visible") && $("#country").val() == "") {
+					showErrorBox("Please ensure you have entered a country.")
+					errorOccured = true;
+				}
+				if($("#thoroughfare").parent().is(":visible") && $("#thoroughfare").val() == "") {
+					showErrorBox("Please ensure you have entered a street.")
+					errorOccured = true;
+				}
+				if($("#city").parent().is(":visible") && $("#city").val() == "") {
+					showErrorBox("Please ensure you have entered a city.")
+					errorOccured = true;
+				}
+				if($("#state").parent().is(":visible") && $("#state").val() == "") {
+					showErrorBox("Please ensure you have entered a state.")
+					errorOccured = true;
+				}
+				if($("#zip").parent().is(":visible") && $("#zip").val() == "") {
+					showErrorBox("Please ensure you have entered a zip.")
+					errorOccured = true;
+				}
+
+				if($("#email").val() == "") {
+					showErrorBox("Please ensure you have entered an email.")
+					errorOccured = true;
+				}
+
+				if(errorOccured) {
+					return;
+				}
+
+				var address = {
+					country: $("#country").val(),
+					thoroughfare: $("#thoroughfare").val(),
+					premise: $("#premise").val(),
+					city: $("#city").val(),
+					state: $("#state").val(),
+					zip: $("#zip").val()
+				};
+				firebase.database().ref("/orders/"+orderID+"/address/").set(address);
+
+				if(total>0) {
+					// Open Checkout with further options:
+			        handler.open({
+			          name: 'Prova Order',
+			          description: 'Additional Items',
+			          amount: total*100,
+			          locale: 'auto',
+			          zipCode: true,
+			          bitcoin: false,
+			          email: $("#email").val()
+			        });
+			        e.preventDefault();
+			    } else {
+			    	firebase.database().ref("/orders/"+orderID+"/status/").set("confirmed");
+			    	$("#confirmed").show();
+			    	$("#order").hide();
+			    }
+		        
+		    });
+		});
+	}
+
+    var json = {"label":"Country","options":[{"label":"Afghanistan","iso":"AF","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"postalcode":{"label":"Postal code","format":"^\\d{4}$","eg":"1001"}}]}]},{"label":"Aland Islands","iso":"AX","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"postalcode":{"label":"Postal code","format":"^22\\d{3}$","eg":"22150"}}]}]},{"label":"Albania","iso":"AL","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Algeria","iso":"DZ","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"American Samoa","iso":"AS","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"administrativearea":{"label":"State"}},{"postalcode":{"label":"ZIP code"}}]}]},{"label":"Andorra","iso":"AD","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Angola","iso":"AO","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Anguilla","iso":"AI","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Antarctica","iso":"AQ","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Antigua and Barbuda","iso":"AG","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Argentina","iso":"AR","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code","format":"^((?:[A-HJ-NP-Z])?\\d{4})([A-Z]{3})?$","eg":"B1921"}},{"localityname":{"label":"City"}},{"administrativearea":{"label":"State","options":[{"":"--"},{"B":"Buenos Aires"},{"K":"Catamarca"},{"H":"Chaco"},{"U":"Chubut"},{"C":"Ciudad de Buenos Aires"},{"X":"Córdoba"},{"W":"Corrientes"},{"E":"Entre Ríos"},{"P":"Formosa"},{"Y":"Jujuy"},{"L":"La Pampa"},{"F":"La Rioja"},{"M":"Mendoza"},{"N":"Misiones"},{"Q":"Neuquén"},{"R":"Río Negro"},{"A":"Salta"},{"J":"San Juan"},{"D":"San Luis"},{"Z":"Santa Cruz"},{"S":"Santa Fe"},{"G":"Santiago del Estero"},{"V":"Tierra del Fuego"},{"T":"Tucumán"}]}}]}]},{"label":"Armenia","iso":"AM","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}},{"administrativearea":{"label":"Province"}}]}]},{"label":"Aruba","iso":"AW","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Australia","iso":"AU","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City/suburb"}},{"administrativearea":{"label":"State","options":[{"":"--"},{"ACT":"Australian Capital Territory"},{"NSW":"New South Wales"},{"NT":"Northern Territory"},{"QLD":"Queensland"},{"SA":"South Australia"},{"TAS":"Tasmania"},{"VIC":"Victoria"},{"WA":"Western Australia"}]}},{"postalcode":{"label":"Postcode","format":"^\\d{4}$","eg":"2000"}}]}]},{"label":"Austria","iso":"AT","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code","format":"^\\d{4}$","eg":"3741"}},{"localityname":{"label":"City"}}]}]},{"label":"Azerbaijan","iso":"AZ","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Bahamas","iso":"BS","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"administrativearea":{"label":"Island"}}]}]},{"label":"Bahrain","iso":"BH","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"postalcode":{"label":"Postal code"}}]}]},{"label":"Bangladesh","iso":"BD","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"postalcode":{"label":"Postal code"}}]}]},{"label":"Barbados","iso":"BB","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Belarus","iso":"BY","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}},{"administrativearea":{"label":"Province"}}]}]},{"label":"Belgium","iso":"BE","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code","format":"^\\d{4}$","eg":"4000"}},{"localityname":{"label":"City"}}]}]},{"label":"Belize","iso":"BZ","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"administrativearea":{"label":"State"}}]}]},{"label":"Benin","iso":"BJ","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Bermuda","iso":"BM","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"postalcode":{"label":"Postal code"}}]}]},{"label":"Bhutan","iso":"BT","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"postalcode":{"label":"Postal code"}}]}]},{"label":"Bolivia","iso":"BO","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Bosnia and Herzegovina","iso":"BA","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Botswana","iso":"BW","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Bouvet Island","iso":"BV","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Brazil","iso":"BR","fields":[{"thoroughfare":{"label":"Thoroughfare"}},{"premise":{"label":"Complement"}},{"locality":[{"dependent_localityname":{"label":"Neighborhood"}},{"localityname":{"label":"City"}},{"administrativearea":{"label":"State","options":[{"":"--"},{"AC":"Acre"},{"AL":"Alagoas"},{"AM":"Amazonas"},{"AP":"Amapa"},{"BA":"Bahia"},{"CE":"Ceara"},{"DF":"Distrito Federal"},{"ES":"Espirito Santo"},{"GO":"Goias"},{"MA":"Maranhao"},{"MG":"Minas Gerais"},{"MS":"Mato Grosso do Sul"},{"MT":"Mato Grosso"},{"PA":"Para"},{"PB":"Paraiba"},{"PE":"Pernambuco"},{"PI":"Piaui"},{"PR":"Parana"},{"RJ":"Rio de Janeiro"},{"RN":"Rio Grande do Norte"},{"RO":"Rondonia"},{"RR":"Roraima"},{"RS":"Rio Grande do Sul"},{"SC":"Santa Catarina"},{"SE":"Sergipe"},{"SP":"Sao Paulo"},{"TO":"Tocantins"}]}},{"postalcode":{"label":"Postal code","format":"^\\d{5}[\\-]?\\d{3}$","eg":"10025-345"}}]}]},{"label":"British Indian Ocean Territory","iso":"IO","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"British Virgin Islands","iso":"VG","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"postalcode":{"label":"Postal code"}}]}]},{"label":"Brunei","iso":"BN","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"postalcode":{"label":"Postal code"}}]}]},{"label":"Bulgaria","iso":"BG","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Burkina Faso","iso":"BF","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"postalcode":{"label":"Postal code"}}]}]},{"label":"Burundi","iso":"BI","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Cambodia","iso":"KH","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"postalcode":{"label":"Postal code"}}]}]},{"label":"Cameroon","iso":"CM","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Canada","iso":"CA","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"administrativearea":{"label":"Province","options":[{"":"--"},{"AB":"Alberta"},{"BC":"British Columbia"},{"MB":"Manitoba"},{"NB":"New Brunswick"},{"NL":"Newfoundland"},{"NT":"Northwest Territories"},{"NS":"Nova Scotia"},{"NU":"Nunavut"},{"ON":"Ontario"},{"PE":"Prince Edward Island"},{"QC":"Quebec"},{"SK":"Saskatchewan"},{"YT":"Yukon Territory"}]}},{"postalcode":{"label":"Postal code","format":"^[ABCEGHJKLMNPRSTVXY]\\d[ABCEGHJ-NPRSTV-Z][ ]?\\d[ABCEGHJ-NPRSTV-Z]\\d$","eg":"K1A 0B1"}}]}]},{"label":"Cape Verde","iso":"CV","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}},{"administrativearea":{"label":"Island"}}]}]},{"label":"Cayman Islands","iso":"KY","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"administrativearea":{"label":"Island"}}]}]},{"label":"Central African Republic","iso":"CF","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Chad","iso":"TD","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Chile","iso":"CL","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}},{"administrativearea":{"label":"State","options":[{"":"--"},{"AI":"Aysén del General Carlos Ibáñez del Campo"},{"AN":"Antofagasta"},{"AR":"Araucanía"},{"AP":"Arica y Parinacota"},{"AT":"Atacama"},{"BI":"Biobío"},{"CO":"Coquimbo"},{"LI":"Libertador General Bernardo O'Higgins"},{"LL":"Los Lagos"},{"LR":"Los Ríos"},{"MA":"Magallanes y de la Antártica Chilena"},{"ML":"Maule"},{"RM":"Metropolitana de Santiago"},{"TA":"Tarapacá"},{"VS":"Valparaíso"}]}}]}]},{"label":"China","iso":"CN","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"dependent_localityname":{"label":"District"}},{"localityname":{"label":"City"}},{"administrativearea":{"label":"Province","options":[{"":"--"},{"BJ":"Beijing"},{"SH":"Shanghai"},{"GD":"Guangdong"},{"TJ":"Tianjin"},{"HE":"Hebei"},{"SX":"Shanxi"},{"NM":"Inner Mongolia"},{"LN":"Liaoning"},{"JL":"Jilin"},{"HL":"Heilongjiang"},{"JS":"Jiangsu"},{"ZJ":"Zhejiang"},{"AH":"Anhui"},{"FJ":"Fujian"},{"JX":"Jiangxi"},{"SD":"Shandong"},{"HA":"Henan"},{"HB":"Hubei"},{"HN":"Hunan"},{"GX":"Guangxi"},{"HI":"Hainan"},{"CQ":"Chongqing"},{"SC":"Sichuan"},{"GZ":"Guizhou"},{"YN":"Yunnan"},{"XZ":"Tibet"},{"SN":"Shaanxi"},{"GS":"Gansu"},{"QH":"Qinghai"},{"NX":"Ningxia Hui"},{"XJ":"Xinjiang Uyghur"}]}},{"postalcode":{"label":"Postal code","format":"^\\d{6}$","eg":"101200"}}]}]},{"label":"Christmas Island","iso":"CX","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"administrativearea":{"label":"Province"}},{"postalcode":{"label":"Postal code"}}]}]},{"label":"Cocos (Keeling) Islands","iso":"CC","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"administrativearea":{"label":"Province"}},{"postalcode":{"label":"Postal code"}}]}]},{"label":"Colombia","iso":"CO","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Comoros","iso":"KM","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Congo (Brazzaville)","iso":"CG","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Congo (Kinshasa)","iso":"CD","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Cook Islands","iso":"CK","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Costa Rica","iso":"CR","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Cuba","iso":"CU","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Croatia","iso":"HR","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"CuraÁao","iso":"CW","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Cyprus","iso":"CY","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Czech Republic","iso":"CZ","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Denmark","iso":"DK","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code","format":"^\\d{4}$","eg":"8660"}},{"localityname":{"label":"City"}}]}]},{"label":"Djibouti","iso":"DJ","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Dominica","iso":"DM","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Dominican Republic","iso":"DO","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}},{"administrativearea":{"label":"State"}}]}]},{"label":"Ecuador","iso":"EC","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Egypt","iso":"EG","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"administrativearea":{"label":"Governorate","options":[{"":"--"},{"ALX":"Alexandria"},{"ASN":"Aswan"},{"AST":"Asyut"},{"BH":"Beheira"},{"BNS":"Beni Suef"},{"C":"Cairo"},{"DK":"Dakahlia"},{"DT":"Damietta"},{"FYM":"Faiyum"},{"GH":"Gharbia"},{"GZ":"Giza"},{"IS":"Ismailia"},{"KFS":"Kafr el-Sheikh"},{"MT":"Matruh"},{"MN":"Minya"},{"MNF":"Monufia"},{"WAD":"New Valley"},{"SIN":"North Sinai"},{"PTS":"Port Said"},{"KB":"Qalyubia"},{"KN":"Qena"},{"BA":"Red Sea"},{"SHR":"Sharqia"},{"SHG":"Sohag"},{"JS":"South Sinai"},{"SUZ":"Suez"},{"LX":"Luxor"}]}},{"postalcode":{"label":"Postal code"}}]}]},{"label":"El Salvador","iso":"SV","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}},{"administrativearea":{"label":"Province"}}]}]},{"label":"Equatorial Guinea","iso":"GQ","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Eritrea","iso":"ER","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Estonia","iso":"EE","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Ethiopia","iso":"ET","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Falkland Islands","iso":"FK","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Faroe Islands","iso":"FO","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Fiji","iso":"FJ","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"administrativearea":{"label":"State"}}]}]},{"label":"Finland","iso":"FI","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code","format":"^\\d{5}$","eg":"00550"}},{"localityname":{"label":"City"}}]}]},{"label":"France","iso":"FR","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code","format":"^\\d{2}[ ]?\\d{3}$","eg":"75002"}},{"localityname":{"label":"City"}}]}]},{"label":"French Guiana","iso":"GF","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code","format":"^9[78]3\\d{2}$","eg":"97300"}},{"localityname":{"label":"City"}}]}]},{"label":"French Polynesia","iso":"PF","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}},{"administrativearea":{"label":"Island"}}]}]},{"label":"French Southern Territories","iso":"TF","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Gabon","iso":"GA","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Gambia","iso":"GM","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Georgia","iso":"GE","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Germany","iso":"DE","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code","format":"^\\d{5}$","eg":"60322"}},{"localityname":{"label":"City"}}]}]},{"label":"Ghana","iso":"GH","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Gibraltar","iso":"GI","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}}]}]},{"label":"Greece","iso":"GR","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code","format":"^\\d{3} ?\\d{2}$","eg":"151 24"}},{"localityname":{"label":"City"}}]}]},{"label":"Greenland","iso":"GL","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code","format":"^39\\d{2}$","eg":"3911"}},{"localityname":{"label":"City"}}]}]},{"label":"Grenada","iso":"GD","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Guadeloupe","iso":"GP","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code","format":"^9[78][01]\\d{2}$","eg":"97100"}},{"localityname":{"label":"City"}}]}]},{"label":"Guam","iso":"GU","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"administrativearea":{"label":"State"}},{"postalcode":{"label":"ZIP code"}}]}]},{"label":"Guatemala","iso":"GT","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Guernsey","iso":"GG","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code","format":"^GY\\d[\\dA-Z]?[ ]?\\d[ABD-HJLN-UW-Z]{2}$","eg":"GY1 1AA"}},{"localityname":{"label":"City"}}]}]},{"label":"Guinea","iso":"GN","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Guinea-Bissau","iso":"GW","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Guyana","iso":"GY","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Haiti","iso":"HT","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Heard Island and McDonald Islands","iso":"HM","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Honduras","iso":"HN","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"administrativearea":{"label":"Province"}},{"postalcode":{"label":"Postal code"}}]}]},{"label":"Hong Kong S.A.R., China","iso":"HK","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"District"}},{"administrativearea":{"label":"Area","options":[{"":"--"},{"Kowloon":"Kowloon"},{"Hong Kong Island":"Hong Kong Island"},{"New Territories":"New Territories"}]}}]}]},{"label":"Hungary","iso":"HU","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Iceland","iso":"IS","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"India","iso":"IN","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"administrativearea":{"label":"State","options":[{"":"--"},{"AP":"Andhra Pradesh"},{"AR":"Arunachal Pradesh"},{"AS":"Assam"},{"BR":"Bihar"},{"CT":"Chhattisgarh"},{"GA":"Goa"},{"GJ":"Gujarat"},{"HR":"Haryana"},{"HP":"Himachal Pradesh"},{"JK":"Jammu and Kashmir"},{"JH":"Jharkhand"},{"KA":"Karnataka"},{"KL":"Kerala"},{"MP":"Madhya Pradesh"},{"MH":"Maharashtra"},{"MN":"Manipur"},{"ML":"Meghalaya"},{"MZ":"Mizoram"},{"NL":"Nagaland"},{"OR":"Odisha"},{"PB":"Punjab"},{"RJ":"Rajasthan"},{"SK":"Sikkim"},{"TN":"Tamil Nadu"},{"TR":"Tripura"},{"UP":"Uttar Pradesh"},{"UT":"Uttarakhand"},{"WB":"West Bengal"},{"":"--"},{"AN":"Andaman and Nicobar Islands"},{"CH":"Chandigarh"},{"DN":"Dadra and Nagar Haveli"},{"DD":"Daman and Diu"},{"LD":"Lakshadweep"},{"DL":"National Capital Territory of Delhi"},{"PY":"Puducherry"}]}},{"postalcode":{"label":"PIN code","format":"^\\d{6}$","eg":"110005"}}]}]},{"label":"Indonesia","iso":"ID","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City/regency"}},{"postalcode":{"label":"Postal code"}},{"administrativearea":{"label":"Province","options":[{"":"--"},{"AC":"Aceh"},{"BA":"Bali"},{"BB":"Bangka Belitung"},{"BT":"Banten"},{"BE":"Bengkulu"},{"JK":"DKI Jakarta"},{"YO":"D.I. Yogyakarta"},{"GO":"Gorontalo"},{"JA":"Jambi"},{"JB":"Jawa Barat"},{"JT":"Jawa Tengah"},{"JI":"Jawa Timur"},{"KB":"Kalimantan Barat"},{"KS":"Kalimantan Selatan"},{"KT":"Kalimantan Tengah"},{"KI":"Kalimantan Timur"},{"KR":"Kepulauan Riau"},{"LA":"Lampung"},{"MA":"Maluku"},{"MU":"Maluku Utara"},{"NB":"Nusa Tenggara Barat"},{"NT":"Nusa Tenggara Timur"},{"PA":"Papua"},{"PB":"Papua Barat"},{"RI":"Riau"},{"SR":"Sulawesi Barat"},{"SN":"Sulawesi Selatan"},{"ST":"Sulawesi Tengah"},{"SG":"Sulawesi Tenggara"},{"SA":"Sulawesi Utara"},{"SB":"Sumatera Barat"},{"SS":"Sumatera Selatan"},{"SU":"Sumatera Utara"}]}}]}]},{"label":"Iran","iso":"IR","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"dependent_localityname":{"label":"Neighborhood"}},{"localityname":{"label":"City"}},{"administrativearea":{"label":"Province"}},{"postalcode":{"label":"Postal code"}}]}]},{"label":"Iraq","iso":"IQ","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"administrativearea":{"label":"Province"}},{"postalcode":{"label":"Postal code"}}]}]},{"label":"Ireland","iso":"IE","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"Town/city"}},{"administrativearea":{"label":"County","options":[{"":"--"},{"CW":"Co Carlow"},{"CN":"Co Cavan"},{"CE":"Co Clare"},{"CO":"Co Cork"},{"DL":"Co Donegal"},{"D":"Co Dublin"},{"D1":"Dublin 1"},{"D2":"Dublin 2"},{"D3":"Dublin 3"},{"D4":"Dublin 4"},{"D5":"Dublin 5"},{"D6":"Dublin 6"},{"D6W":"Dublin 6w"},{"D7":"Dublin 7"},{"D8":"Dublin 8"},{"D9":"Dublin 9"},{"D10":"Dublin 10"},{"D11":"Dublin 11"},{"D12":"Dublin 12"},{"D13":"Dublin 13"},{"D14":"Dublin 14"},{"D15":"Dublin 15"},{"D16":"Dublin 16"},{"D17":"Dublin 17"},{"D18":"Dublin 18"},{"D19":"Dublin 19"},{"D20":"Dublin 20"},{"D21":"Dublin 21"},{"D22":"Dublin 22"},{"D23":"Dublin 23"},{"D24":"Dublin 24"},{"G":"Co Galway"},{"KY":"Co Kerry"},{"KE":"Co Kildare"},{"KK":"Co Kilkenny"},{"LS":"Co Laois"},{"LM":"Co Leitrim"},{"LK":"Co Limerick"},{"LD":"Co Longford"},{"LH":"Co Louth"},{"MO":"Co Mayo"},{"MH":"Co Meath"},{"MN":"Co Monaghan"},{"OY":"Co Offaly"},{"RN":"Co Roscommon"},{"SO":"Co Sligo"},{"TA":"Co Tipperary"},{"WD":"Co Waterford"},{"WH":"Co Westmeath"},{"WX":"Co Wexford"},{"WW":"Co Wicklow"}]}}]}]},{"label":"Isle of Man","iso":"IM","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code","format":"^IM\\d[\\dA-Z]?[ ]?\\d[ABD-HJLN-UW-Z]{2}$","eg":"IM99 1PS"}},{"localityname":{"label":"City"}}]}]},{"label":"Israel","iso":"IL","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Italy","iso":"IT","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}},{"administrativearea":{"label":"Province","options":[{"":"--"},{"AG":"Agrigento"},{"AL":"Alessandria"},{"AN":"Ancona"},{"AO":"Valle d'Aosta/VallÈe d'Aoste"},{"AP":"Ascoli Piceno"},{"AQ":"L'Aquila"},{"AR":"Arezzo"},{"AT":"Asti"},{"AV":"Avellino"},{"BA":"Bari"},{"BG":"Bergamo"},{"BI":"Biella"},{"BL":"Belluno"},{"BN":"Benevento"},{"BO":"Bologna"},{"BR":"Brindisi"},{"BS":"Brescia"},{"BT":"Barletta-Andria-Trani"},{"BZ":"Bolzano/Bozen"},{"CA":"Cagliari"},{"CB":"Campobasso"},{"CE":"Caserta"},{"CH":"Chieti"},{"CI":"Carbonia-Iglesias"},{"CL":"Caltanissetta"},{"CN":"Cuneo"},{"CO":"Como"},{"CR":"Cremona"},{"CS":"Cosenza"},{"CT":"Catania"},{"CZ":"Catanzaro"},{"EN":"Enna"},{"FC":"ForlÏ-Cesena"},{"FE":"Ferrara"},{"FG":"Foggia"},{"FI":"Firenze"},{"FM":"Fermo"},{"FR":"Frosinone"},{"GE":"Genova"},{"GO":"Gorizia"},{"GR":"Grosseto"},{"IM":"Imperia"},{"IS":"Isernia"},{"KR":"Crotone"},{"LC":"Lecco"},{"LE":"Lecce"},{"LI":"Livorno"},{"LO":"Lodi"},{"LT":"Latina"},{"LU":"Lucca"},{"MB":"Monza e Brianza"},{"MC":"Macerata"},{"ME":"Messina"},{"MI":"Milano"},{"MN":"Mantova"},{"MO":"Modena"},{"MS":"Massa-Carrara"},{"MT":"Matera"},{"NA":"Napoli"},{"NO":"Novara"},{"NU":"Nuoro"},{"OG":"Ogliastra"},{"OR":"Oristano"},{"OT":"Olbia-Tempio"},{"PA":"Palermo"},{"PC":"Piacenza"},{"PD":"Padova"},{"PE":"Pescara"},{"PG":"Perugia"},{"PI":"Pisa"},{"PN":"Pordenone"},{"PO":"Prato"},{"PR":"Parma"},{"PT":"Pistoia"},{"PU":"Pesaro e Urbino"},{"PV":"Pavia"},{"PZ":"Potenza"},{"RA":"Ravenna"},{"RC":"Reggio di Calabria"},{"RE":"Reggio nell'Emilia"},{"RG":"Ragusa"},{"RI":"Rieti"},{"RM":"Roma"},{"RN":"Rimini"},{"RO":"Rovigo"},{"SA":"Salerno"},{"SI":"Siena"},{"SO":"Sondrio"},{"SP":"La Spezia"},{"SR":"Siracusa"},{"SS":"Sassari"},{"SV":"Savona"},{"TA":"Taranto"},{"TE":"Teramo"},{"TN":"Trento"},{"TO":"Torino"},{"TP":"Trapani"},{"TR":"Terni"},{"TS":"Trieste"},{"TV":"Treviso"},{"UD":"Udine"},{"VA":"Varese"},{"VB":"Verbano-Cusio-Ossola"},{"VC":"Vercelli"},{"VE":"Venezia"},{"VI":"Vicenza"},{"VR":"Verona"},{"VS":"Medio Campidano"},{"VT":"Viterbo"},{"VV":"Vibo Valentia"}]}}]}]},{"label":"Ivory Coast","iso":"CI","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Jamaica","iso":"JM","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"administrativearea":{"label":"Parish","options":[{"":"--"},{"Clarendon":"Clarendon"},{"Hanover":"Hanover"},{"Kingston":"Kingston"},{"Manchester":"Manchester"},{"Portland":"Portland"},{"St. Andrew":"St. Andrew"},{"St. Ann":"St. Ann"},{"St. Catherine":"St. Catherine"},{"St. Elizabeth":"St. Elizabeth"},{"St. James":"St. James"},{"St. Mary":"St. Mary"},{"St. Thomas":"St. Thomas"},{"Trelawny":"Trelawny"},{"Westmoreland":"Westmoreland"}]}}]}]},{"label":"Japan","iso":"JP","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code","format":"^\\d{3}-?\\d{4}$","eg":"142-0062"}},{"localityname":{"label":"City"}},{"administrativearea":{"label":"Prefecture","options":[{"":"--"},{"Hokkaido":"Hokkaido"},{"Aomori":"Aomori"},{"Iwate":"Iwate"},{"Miyagi":"Miyagi"},{"Akita":"Akita"},{"Yamagata":"Yamagata"},{"Fukushima":"Fukushima"},{"Ibaraki":"Ibaraki"},{"Tochigi":"Tochigi"},{"Gunma":"Gunma"},{"Saitama":"Saitama"},{"Chiba":"Chiba"},{"Tokyo":"Tokyo"},{"Kanagawa":"Kanagawa"},{"Niigata":"Niigata"},{"Toyama":"Toyama"},{"Ishikawa":"Ishikawa"},{"Fukui":"Fukui"},{"Yamanashi":"Yamanashi"},{"Nagano":"Nagano"},{"Gifu":"Gifu"},{"Shizuoka":"Shizuoka"},{"Aichi":"Aichi"},{"Mie":"Mie"},{"Shiga":"Shiga"},{"Kyoto":"Kyoto"},{"Osaka":"Osaka"},{"Hyogo":"Hyogo"},{"Nara":"Nara"},{"Wakayama":"Wakayama"},{"Tottori":"Tottori"},{"Shimane":"Shimane"},{"Okayama":"Okayama"},{"Hiroshima":"Hiroshima"},{"Yamaguchi":"Yamaguchi"},{"Tokushima":"Tokushima"},{"Kagawa":"Kagawa"},{"Ehime":"Ehime"},{"Kochi":"Kochi"},{"Fukuoka":"Fukuoka"},{"Saga":"Saga"},{"Nagasaki":"Nagasaki"},{"Kumamoto":"Kumamoto"},{"Oita":"Oita"},{"Miyazaki":"Miyazaki"},{"Kagoshima":"Kagoshima"},{"Okinawa":"Okinawa"}]}}]}]},{"label":"Jersey","iso":"JE","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code","format":"^JE\\d[\\dA-Z]?[ ]?\\d[ABD-HJLN-UW-Z]{2}$","eg":"JE2 2BT"}},{"localityname":{"label":"City"}}]}]},{"label":"Jordan","iso":"JO","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"administrativearea":{"label":"State"}},{"postalcode":{"label":"Postal code"}}]}]},{"label":"Kazakhstan","iso":"KZ","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}},{"administrativearea":{"label":"Province"}}]}]},{"label":"Kenya","iso":"KE","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Kiribati","iso":"KI","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"administrativearea":{"label":"Island"}}]}]},{"label":"Kuwait","iso":"KW","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}},{"administrativearea":{"label":"State"}}]}]},{"label":"Kyrgyzstan","iso":"KG","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Laos","iso":"LA","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Latvia","iso":"LV","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"postalcode":{"label":"Postal code"}}]}]},{"label":"Lebanon","iso":"LB","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"postalcode":{"label":"Postal code"}}]}]},{"label":"Lesotho","iso":"LS","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"postalcode":{"label":"Postal code"}}]}]},{"label":"Liberia","iso":"LR","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Libya","iso":"LY","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Liechtenstein","iso":"LI","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code","format":"^(948[5-9])|(949[0-7])$","eg":"9496"}},{"localityname":{"label":"City"}}]}]},{"label":"Lithuania","iso":"LT","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Luxembourg","iso":"LU","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code","format":"^\\d{4}$","eg":"4750"}},{"localityname":{"label":"City"}}]}]},{"label":"Macao S.A.R., China","iso":"MO","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Macedonia","iso":"MK","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Madagascar","iso":"MG","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Malawi","iso":"MW","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"postalcode":{"label":"Postal code"}}]}]},{"label":"Malaysia","iso":"MY","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"dependent_localityname":{"label":"Village/township"}},{"localityname":{"label":"City"}},{"administrativearea":{"label":"State","options":[{"":"--"},{"Johor":"Johor"},{"Kedah":"Kedah"},{"Kelantan":"Kelantan"},{"Kuala Lumpur":"Kuala Lumpur"},{"Labuan":"Labuan"},{"Melaka":"Melaka"},{"Negeri Sembilan":"Negeri Sembilan"},{"Pahang":"Pahang"},{"Perak":"Perak"},{"Perlis":"Perlis"},{"Pulau Pinang":"Pulau Pinang"},{"Putrajaya":"Putrajaya"},{"Sabah":"Sabah"},{"Sarawak":"Sarawak"},{"Selangor":"Selangor"},{"Terengganu":"Terengganu"}]}},{"postalcode":{"label":"Postal code"}}]}]},{"label":"Maldives","iso":"MV","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"postalcode":{"label":"Postal code"}}]}]},{"label":"Mali","iso":"ML","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Malta","iso":"MT","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Marshall Islands","iso":"MH","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"administrativearea":{"label":"State"}},{"postalcode":{"label":"ZIP code"}}]}]},{"label":"Martinique","iso":"MQ","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code","format":"^9[78]2\\d{2}$","eg":"97220"}},{"localityname":{"label":"City"}}]}]},{"label":"Mauritania","iso":"MR","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Mauritius","iso":"MU","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Mayotte","iso":"YT","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code","format":"^976\\d{2}$","eg":"97600"}},{"localityname":{"label":"City"}}]}]},{"label":"Mexico","iso":"MX","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"dependent_localityname":{"label":"Neighborhood"}},{"localityname":{"label":"City"}},{"administrativearea":{"label":"State","options":[{"":"--"},{"AGU":"Aguascalientes"},{"BCN":"Baja California"},{"BCS":"Baja California Sur"},{"CAM":"Campeche"},{"COA":"Coahuila"},{"COL":"Colima"},{"CHP":"Chiapas"},{"CHH":"Chihuahua"},{"DIF":"Distrito Federal"},{"DUG":"Durango"},{"MEX":"Estado de México"},{"GUA":"Guanajuato"},{"GRO":"Guerrero"},{"HID":"Hidalgo"},{"JAL":"Jalisco"},{"MIC":"Michoacán"},{"MOR":"Morelos"},{"NAY":"Nayarit"},{"NLE":"Nuevo León"},{"OAX":"Oaxaca"},{"PUE":"Puebla"},{"QUE":"Queretaro"},{"ROO":"Quintana Roo"},{"SLP":"San Luis Potosí"},{"SIN":"Sinaloa"},{"SON":"Sonora"},{"TAB":"Tabasco"},{"TAM":"Tamaulipas"},{"TLA":"Tlaxcala"},{"VER":"Veracruz"},{"YUC":"Yucatán"},{"ZAC":"Zacatecas"}]}},{"postalcode":{"label":"Postal code","format":"^\\d{5}$","eg":"03400"}}]}]},{"label":"Micronesia","iso":"FM","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"administrativearea":{"label":"State"}},{"postalcode":{"label":"ZIP code"}}]}]},{"label":"Moldova","iso":"MD","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Monaco","iso":"MC","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Mongolia","iso":"MN","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"administrativearea":{"label":"Province"}},{"postalcode":{"label":"Postal code"}}]}]},{"label":"Montenegro","iso":"ME","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Montserrat","iso":"MS","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Morocco","iso":"MA","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Mozambique","iso":"MZ","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}},{"administrativearea":{"label":"Province"}}]}]},{"label":"Myanmar","iso":"MM","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"postalcode":{"label":"Postal code"}}]}]},{"label":"Namibia","iso":"NA","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Nauru","iso":"NR","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"administrativearea":{"label":"District"}}]}]},{"label":"Nepal","iso":"NP","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"postalcode":{"label":"Postal code"}}]}]},{"label":"Netherlands","iso":"NL","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code","format":"^\\d{4}[ ]?[A-Z]{2}$","eg":"2585 GJ"}},{"localityname":{"label":"City"}}]}]},{"label":"Netherlands Antilles","iso":"AN","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"New Caledonia","iso":"NC","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code","format":"^988\\d{2}$","eg":"98814"}},{"localityname":{"label":"City"}}]}]},{"label":"New Zealand","iso":"NZ","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"Town/city"}},{"administrativearea":{"label":"Region","options":[{"":"--"},{"AUK":"Auckland"},{"BOP":"Bay of Plenty"},{"CAN":"Canterbury"},{"HKB":"Hawke's Bay"},{"MWT":"Manawatu-Wanganui"},{"NTL":"Northland"},{"OTA":"Otago"},{"STL":"Southland"},{"TKI":"Taranaki"},{"WKO":"Waikato"},{"WGN":"Wellington"},{"WTC":"West Coast"},{"GIS":"Gisborne District"},{"MBH":"Marlborough District"},{"NSN":"Nelson"},{"TAS":"Tasman District"},{"CIT":"Chatham Islands Territory"}]}},{"postalcode":{"label":"Postcode"}}]}]},{"label":"Nicaragua","iso":"NI","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}},{"administrativearea":{"label":"Department"}}]}]},{"label":"Niger","iso":"NE","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Nigeria","iso":"NG","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"administrativearea":{"label":"State"}},{"postalcode":{"label":"Postal code"}}]}]},{"label":"Niue","iso":"NU","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Norfolk Island","iso":"NF","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"administrativearea":{"label":"Province"}},{"postalcode":{"label":"Postal code"}}]}]},{"label":"Northern Mariana Islands","iso":"MP","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"administrativearea":{"label":"State"}},{"postalcode":{"label":"ZIP code"}}]}]},{"label":"North Korea","iso":"KP","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Norway","iso":"NO","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code","format":"^\\d{4}$","eg":"0025"}},{"localityname":{"label":"City"}}]}]},{"label":"Oman","iso":"OM","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"postalcode":{"label":"Postal code"}},{"administrativearea":{"label":"State"}}]}]},{"label":"Pakistan","iso":"PK","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"postalcode":{"label":"Postal code"}}]}]},{"label":"Palau","iso":"PW","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"administrativearea":{"label":"State"}},{"postalcode":{"label":"ZIP code"}}]}]},{"label":"Palestinian Territory","iso":"PS","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Panama","iso":"PA","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"administrativearea":{"label":"Province"}}]}]},{"label":"Papua New Guinea","iso":"PG","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"administrativearea":{"label":"Province"}},{"postalcode":{"label":"Postal code"}}]}]},{"label":"Paraguay","iso":"PY","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Peru","iso":"PE","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"administrativearea":{"label":"Region","options":[{"":"--"},{"AMA":"Amazonas"},{"ANC":"Ancash"},{"APU":"Apurimac"},{"ARE":"Arequipa"},{"AYA":"Ayacucho"},{"CAJ":"Cajamarca"},{"CAL":"Callao"},{"CUS":"Cusco"},{"HUV":"Huancavelica"},{"HUC":"Huanuco"},{"ICA":"Ica"},{"JUN":"Junin"},{"LAL":"La Libertad"},{"LAM":"Lambayeque"},{"LIM":"Lima"},{"LOR":"Loreto"},{"MDD":"Madre de Dios"},{"MOQ":"Moquegua"},{"PAS":"Pasco"},{"PIU":"Piura"},{"PUN":"Puno"},{"SAM":"San Martin"},{"TAC":"Tacna"},{"TUM":"Tumbes"},{"UCA":"Ucayali"}]}},{"localityname":{"label":"District"}}]}]},{"label":"Philippines","iso":"PH","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"dependent_localityname":{"label":"Suburb"}},{"localityname":{"label":"City"}},{"administrativearea":{"label":"Province"}},{"postalcode":{"label":"Postal code"}}]}]},{"label":"Pitcairn","iso":"PN","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Poland","iso":"PL","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code","format":"^\\d{2}-?\\d{3}$","eg":"00-950"}},{"localityname":{"label":"City"}}]}]},{"label":"Portugal","iso":"PT","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code","format":"^\\d{4}-?\\d{3}$","eg":"2725-079"}},{"localityname":{"label":"City"}}]}]},{"label":"Puerto Rico","iso":"PR","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"postalcode":{"label":"ZIP code"}}]}]},{"label":"Qatar","iso":"QA","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Reunion","iso":"RE","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code","format":"^9[78]4\\d{2}$","eg":"97400"}},{"localityname":{"label":"City"}}]}]},{"label":"Romania","iso":"RO","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Russia","iso":"RU","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"administrativearea":{"label":"Province","options":[{"":"--"},{"MOW":"Moskva"},{"SPE":"Sankt-Peterburg"},{"AD":"Adygeya, Respublika"},{"AL":"Altay, Respublika"},{"BA":"Bashkortostan, Respublika"},{"BU":"Buryatiya, Respublika"},{"CE":"Chechenskaya Respublika"},{"CU":"Chuvashskaya Respublika"},{"DA":"Dagestan, Respublika"},{"IN":"Ingushetiya, Respublika"},{"KB":"Kabardino-Balkarskaya Respublika"},{"KL":"Kalmykiya, Respublika"},{"KC":"Karachayevo-Cherkesskaya Respublika"},{"KR":"Kareliya, Respublika"},{"KK":"Khakasiya, Respublika"},{"KO":"Komi, Respublika"},{"ME":"Mariy El, Respublika"},{"MO":"Mordoviya, Respublika"},{"SA":"Sakha, Respublika [Yakutiya]"},{"SE":"Severnaya Osetiya-Alaniya, Respublika"},{"TA":"Tatarstan, Respublika"},{"TY":"Tyva, Respublika [Tuva]"},{"UD":"Udmurtskaya Respublika"},{"ALT":"Altayskiy kray"},{"KAM":"Kamchatskiy kray"},{"KHA":"Khabarovskiy kray"},{"KDA":"Krasnodarskiy kray"},{"KYA":"Krasnoyarskiy kray"},{"PER":"Permskiy kray"},{"PRI":"Primorskiy kray"},{"STA":"Stavropolskiy kray"},{"ZAB":"Zabaykalskiy kray"},{"AMU":"Amurskaya oblast"},{"ARK":"Arkhangelskaya oblast"},{"AST":"Astrakhanskaya oblast"},{"BEL":"Belgorodskaya oblast"},{"BRY":"Bryanskaya oblast"},{"CHE":"Chelyabinskaya oblast"},{"IRK":"Irkutskaya oblast"},{"IVA":"Ivanovskaya oblast"},{"KGD":"Kaliningradskaya oblast"},{"KLU":"Kaluzhskaya oblast"},{"KEM":"Kemerovskaya oblast"},{"KIR":"Kirovskaya oblast"},{"KOS":"Kostromskaya oblast"},{"KGN":"Kurganskaya oblast"},{"KRS":"Kurskaya oblast"},{"LEN":"Leningradskaya oblast"},{"LIP":"Lipetskaya oblast"},{"MAG":"Magadanskaya oblast"},{"MOS":"Moskovskaya oblast"},{"MUR":"Murmanskaya oblast"},{"NIZ":"Nizhegorodskaya oblast"},{"NGR":"Novgorodskaya oblast"},{"NVS":"Novosibirskaya oblast"},{"OMS":"Omskaya oblast"},{"ORE":"Orenburgskaya oblast"},{"ORL":"Orlovskaya oblast"},{"PNZ":"Penzenskaya oblast"},{"PSK":"Pskovskaya oblast"},{"ROS":"Rostovskaya oblast"},{"RYA":"Ryazanskaya oblast"},{"SAK":"Sakhalinskaya oblast"},{"SAM":"Samarskaya oblast"},{"SAR":"Saratovskaya oblast"},{"SMO":"Smolenskaya oblast"},{"SVE":"Sverdlovskaya oblast"},{"TAM":"Tambovskaya oblast"},{"TOM":"Tomskaya oblast"},{"TUL":"Tulskaya oblast"},{"TVE":"Tverskaya oblast"},{"TYU":"Tyumenskaya oblast"},{"ULY":"Ulyanovskaya oblast"},{"VLA":"Vladimirskaya oblast"},{"VGG":"Volgogradskaya oblast"},{"VLG":"Vologodskaya oblast"},{"VOR":"Voronezhskaya oblast"},{"YAR":"Yaroslavskaya oblast"},{"YEV":"Yevreyskaya avtonomnaya oblast"},{"CHU":"Chukotskiy avtonomnyy okrug"},{"KHM":"Khanty-Mansiyskiy avtonomnyy okrug-Yugra"},{"NEN":"Nenetskiy avtonomnyy okrug"},{"YAN":"Yamalo-Nenetskiy avtonomnyy okrug"}]}},{"postalcode":{"label":"Postal code"}}]}]},{"label":"Rwanda","iso":"RW","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Saint BarthÈlemy","iso":"BL","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code","format":"^9[78][01]\\d{2}$","eg":"97100"}},{"localityname":{"label":"City"}}]}]},{"label":"Saint Helena","iso":"SH","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code","format":"^(ASCN|STHL)[ ]?1ZZ$","eg":"STHL 1ZZ"}},{"localityname":{"label":"City"}}]}]},{"label":"Saint Kitts and Nevis","iso":"KN","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"administrativearea":{"label":"Island"}}]}]},{"label":"Saint Lucia","iso":"LC","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Saint Martin (French part)","iso":"MF","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code","format":"^9[78][01]\\d{2}$","eg":"97100"}},{"localityname":{"label":"City"}}]}]},{"label":"Saint Pierre and Miquelon","iso":"PM","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code","format":"^9[78]5\\d{2}$","eg":"97500"}},{"localityname":{"label":"City"}}]}]},{"label":"Saint Vincent and the Grenadines","iso":"VC","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Samoa","iso":"WS","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"San Marino","iso":"SM","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Sao Tome and Principe","iso":"ST","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Saudi Arabia","iso":"SA","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"postalcode":{"label":"Postal code"}}]}]},{"label":"Senegal","iso":"SN","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Serbia","iso":"RS","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Seychelles","iso":"SC","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"administrativearea":{"label":"Island"}}]}]},{"label":"Sierra Leone","iso":"SL","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Singapore","iso":"SG","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"postalcode":{"label":"Postal code","format":"^\\d{6}$","eg":"238880"}}]}]},{"label":"Slovakia","iso":"SK","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Slovenia","iso":"SI","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Solomon Islands","iso":"SB","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Somalia","iso":"SO","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"administrativearea":{"label":"Province"}},{"postalcode":{"label":"Postal code"}}]}]},{"label":"South Africa","iso":"ZA","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}},{"administrativearea":{"label":"Province","options":[{"":"--"},{"Eastern Cape":"Eastern Cape"},{"Free State":"Free State"},{"Gauteng":"Gauteng"},{"KwaZulu-Natal":"KwaZulu-Natal"},{"Limpopo":"Limpopo"},{"Mpumalanga":"Mpumalanga"},{"North West":"North West"},{"Northern Cape":"Northern Cape"},{"Western Cape":"Western Cape"}]}}]}]},{"label":"South Georgia and the South Sandwich Islands","iso":"GS","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"South Korea","iso":"KR","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"dependent_localityname":{"label":"District"}},{"localityname":{"label":"City"}},{"administrativearea":{"label":"Province","options":[{"":"--"},{"Seoul":"Seoul"},{"Busan":"Busan"},{"Daegu":"Daegu"},{"Daejeon":"Daejeon"},{"Gwangju":"Gwangju"},{"Incheon":"Incheon"},{"Ulsan":"Ulsan"},{"Chungcheongbuk-do":"Chungcheongbuk-do"},{"Chungcheongnam-do":"Chungcheongnam-do"},{"Gangwon-do":"Gangwon-do"},{"Gyeonggi-do":"Gyeonggi-do"},{"Gyeongsangbuk-do":"Gyeongsangbuk-do"},{"Gyeongsangnam-do":"Gyeongsangnam-do"},{"Jeju-do":"Jeju-do"},{"Jeollabuk-do":"Jeollabuk-do"},{"Jeollanam-do":"Jeollanam-do"},{"Sejong":"Sejong"}]}},{"postalcode":{"label":"Postal code"}}]}]},{"label":"Spain","iso":"ES","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}},{"administrativearea":{"label":"Province","options":[{"":"--"},{"C":"A Coruña"},{"VI":"Alava"},{"AB":"Albacete"},{"A":"Alicante"},{"AL":"Almería"},{"O":"Asturias"},{"AV":"Ávila"},{"BA":"Badajoz"},{"PM":"Baleares"},{"B":"Barcelona"},{"BU":"Burgos"},{"CC":"Cáceres"},{"CA":"Cádiz"},{"S":"Cantabria"},{"CS":"Castellón"},{"CE":"Ceuta"},{"CR":"Ciudad Real"},{"CO":"Córdoba"},{"CU":"Cuenca"},{"GI":"Gerona"},{"GR":"Granada"},{"GU":"Guadalajara"},{"SS":"Guipúzcoa"},{"H":"Huelva"},{"HU":"Huesca"},{"J":"Jaén"},{"LO":"La Rioja"},{"GC":"Las Palmas"},{"LE":"León"},{"L":"Lérida"},{"LU":"Lugo"},{"M":"Madrid"},{"MA":"Málaga"},{"ML":"Melilla"},{"MU":"Murcia"},{"NA":"Navarra"},{"OR":"Ourense"},{"P":"Palencia"},{"PO":"Pontevedra"},{"SA":"Salamanca"},{"TF":"Santa Cruz de Tenerife"},{"SG":"Segovia"},{"SE":"Sevilla"},{"SO":"Soria"},{"T":"Tarragona"},{"TE":"Teruel"},{"TO":"Toledo"},{"V":"Valencia"},{"VA":"Valladolid"},{"BI":"Vizcaya"},{"ZA":"Zamora"},{"Z":"Zaragoza"}]}}]}]},{"label":"Sri Lanka","iso":"LK","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Sudan","iso":"SD","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Suriname","iso":"SR","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"administrativearea":{"label":"Province"}}]}]},{"label":"Svalbard and Jan Mayen","iso":"SJ","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code","format":"^\\d{4}$","eg":"9170"}},{"localityname":{"label":"City"}}]}]},{"label":"Swaziland","iso":"SZ","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Sweden","iso":"SE","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code","format":"^\\d{3}[ ]?\\d{2}$","eg":"11455"}},{"localityname":{"label":"City"}}]}]},{"label":"Switzerland","iso":"CH","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code","format":"^\\d{4}$","eg":"2544"}},{"localityname":{"label":"City"}}]}]},{"label":"Syria","iso":"SY","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Taiwan","iso":"TW","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code","format":"^\\d{3}(\\d{2})?$","eg":"100"}},{"localityname":{"label":"City"}},{"administrativearea":{"label":"State","options":[{"":"--"},{"TXG":"Taichung City"},{"TPE":"Taipei City"},{"TTT":"Taitung County"},{"TNN":"Tainan City"},{"ILA":"Yilan County"},{"HUA":"Hualien County"},{"Kinmen County":"Kinmen County"},{"NAN":"Nantou County"},{"PIF":"Pingtung County"},{"MIA":"Miaoli County"},{"TAO":"Taoyuan County"},{"KHH":"Kaohsiung City"},{"KEE":"Keelung City"},{"Lienchiang County":"Lienchiang County"},{"YUN":"Yunlin County"},{"TPQ":"New Taipei City"},{"HSZ":"Hsinchu City"},{"HSQ":"Hsinchu County"},{"CYI":"Chiayi City"},{"CYQ":"Chiayi County"},{"CHA":"Changhua County"},{"PEN":"Penghu County"}]}}]}]},{"label":"Tajikistan","iso":"TJ","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Tanzania","iso":"TZ","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Thailand","iso":"TH","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"dependent_localityname":{"label":"Suburb"}},{"localityname":{"label":"City"}},{"administrativearea":{"label":"Province"}},{"postalcode":{"label":"Postal code"}}]}]},{"label":"Timor-Leste","iso":"TL","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Togo","iso":"TG","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Tokelau","iso":"TK","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Tonga","iso":"TO","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Trinidad and Tobago","iso":"TT","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Tunisia","iso":"TN","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Turkey","iso":"TR","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"administrativearea":{"label":"Province","options":[{"":"--"},{"Adana":"Adana"},{"Adıyaman":"Adıyaman"},{"Afyon":"Afyon"},{"Ağrı":"Ağrı"},{"Aksaray":"Aksaray"},{"Amasya":"Amasya"},{"Ankara":"Ankara"},{"Antalya":"Antalya"},{"Ardahan":"Ardahan"},{"Artvin":"Artvin"},{"Aydın":"Aydın"},{"Balıkesir":"Balıkesir"},{"Bartın":"Bartın"},{"Batman":"Batman"},{"Bayburt":"Bayburt"},{"Bilecik":"Bilecik"},{"Bingöl":"Bingöl"},{"Bitlis":"Bitlis"},{"Bolu":"Bolu"},{"Burdur":"Burdur"},{"Bursa":"Bursa"},{"Çanakkale":"Çanakkale"},{"Çankırı":"Çankırı"},{"Çorum":"Çorum"},{"Denizli":"Denizli"},{"Diyarbakır":"Diyarbakır"},{"Düzce":"Düzce"},{"Edirne":"Edirne"},{"Elazığ":"Elazığ"},{"Erzincan":"Erzincan"},{"Erzurum":"Erzurum"},{"Eskişehir":"Eskişehir"},{"Gaziantep":"Gaziantep"},{"Giresun":"Giresun"},{"Gümüşhane":"Gümüşhane"},{"Hakkari":"Hakkari"},{"Hatay":"Hatay"},{"Iğdır":"Iğdır"},{"Isparta":"Isparta"},{"İstanbul":"İstanbul"},{"İzmir":"İzmir"},{"Kahramanmaraş":"Kahramanmaraş"},{"Karabük":"Karabük"},{"Karaman":"Karaman"},{"Kars":"Kars"},{"Kastamonu":"Kastamonu"},{"Kayseri":"Kayseri"},{"Kırıkkale":"Kırıkkale"},{"Kırklareli":"Kırklareli"},{"Kırşehir":"Kırşehir"},{"Kilis":"Kilis"},{"Kocaeli":"Kocaeli"},{"Konya":"Konya"},{"Kütahya":"Kütahya"},{"Malatya":"Malatya"},{"Manisa":"Manisa"},{"Mardin":"Mardin"},{"Mersin":"Mersin"},{"Muğla":"Muğla"},{"Muş":"Muş"},{"Nevşehir":"Nevşehir"},{"Niğde":"Niğde"},{"Ordu":"Ordu"},{"Osmaniye":"Osmaniye"},{"Rize":"Rize"},{"Sakarya":"Sakarya"},{"Samsun":"Samsun"},{"Siirt":"Siirt"},{"Sinop":"Sinop"},{"Sivas":"Sivas"},{"Şanlıurfa":"Şanlıurfa"},{"Şırnak":"Şırnak"},{"Tekirdağ":"Tekirdağ"},{"Tokat":"Tokat"},{"Trabzon":"Trabzon"},{"Tunceli":"Tunceli"},{"Uşak":"Uşak"},{"Van":"Van"},{"Yalova":"Yalova"},{"Yozgat":"Yozgat"},{"Zonguldak":"Zonguldak"}]}},{"localityname":{"label":"City"}}]}]},{"label":"Turkmenistan","iso":"TM","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Turks and Caicos Islands","iso":"TC","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Tuvalu","iso":"TV","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"administrativearea":{"label":"Island","options":[{"":"--"},{"Funafuti":"Funafuti"},{"Funafuti Centre":"Funafuti Centre"},{"Nanumaga":"Nanumaga"},{"Nanumea":"Nanumea"},{"Niulakita":"Niulakita"},{"Niutao":"Niutao"},{"Nui":"Nui"},{"Nukulaelae":"Nukulaelae"},{"Vaitupu":"Vaitupu"}]}}]}]},{"label":"U.S. Virgin Islands","iso":"VI","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"administrativearea":{"label":"State"}},{"postalcode":{"label":"Postal code"}}]}]},{"label":"Uganda","iso":"UG","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Ukraine","iso":"UA","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"administrativearea":{"label":"Region"}},{"postalcode":{"label":"Postal code"}}]}]},{"label":"United Arab Emirates","iso":"AE","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"administrativearea":{"label":"Emirate","options":[{"":"--"},{"AZ":"Abu Dhabi"},{"FU":"Fujairah"},{"UQ":"Umm al-Quwain"},{"SH":"Sharjah"},{"DU":"Dubai"},{"RK":"Ras al-Khaimah"},{"AJ":"Ajmān"}]}}]}]},{"label":"United Kingdom","iso":"GB","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"Town/city"}},{"administrativearea":{"label":"County"}},{"postalcode":{"label":"Postcode","format":"^GIR[ ]?0AA|((AB|AL|B|BA|BB|BD|BH|BL|BN|BR|BS|BT|BX|CA|CB|CF|CH|CM|CO|CR|CT|CV|CW|DA|DD|DE|DG|DH|DL|DN|DT|DY|E|EC|EH|EN|EX|FK|FY|G|GL|GY|GU|HA|HD|HG|HP|HR|HS|HU|HX|IG|IM|IP|IV|JE|KA|KT|KW|KY|L|LA|LD|LE|LL|LN|LS|LU|M|ME|MK|ML|N|NE|NG|NN|NP|NR|NW|OL|OX|PA|PE|PH|PL|PO|PR|RG|RH|RM|S|SA|SE|SG|SK|SL|SM|SN|SO|SP|SR|SS|ST|SW|SY|TA|TD|TF|TN|TQ|TR|TS|TW|UB|W|WA|WC|WD|WF|WN|WR|WS|WV|YO|ZE)(\\d[\\dA-Z]?[ ]?\\d[ABD-HJLN-UW-Z]{2}))|BFPO[ ]?\\d{1,4}$","eg":"SE1 0SU"}}]}]},{"label":"United States","iso":"US","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"administrativearea":{"label":"State","options":[{"":"--"},{"AL":"Alabama"},{"AK":"Alaska"},{"AZ":"Arizona"},{"AR":"Arkansas"},{"CA":"California"},{"CO":"Colorado"},{"CT":"Connecticut"},{"DE":"Delaware"},{"DC":"District Of Columbia"},{"FL":"Florida"},{"GA":"Georgia"},{"HI":"Hawaii"},{"ID":"Idaho"},{"IL":"Illinois"},{"IN":"Indiana"},{"IA":"Iowa"},{"KS":"Kansas"},{"KY":"Kentucky"},{"LA":"Louisiana"},{"ME":"Maine"},{"MD":"Maryland"},{"MA":"Massachusetts"},{"MI":"Michigan"},{"MN":"Minnesota"},{"MS":"Mississippi"},{"MO":"Missouri"},{"MT":"Montana"},{"NE":"Nebraska"},{"NV":"Nevada"},{"NH":"New Hampshire"},{"NJ":"New Jersey"},{"NM":"New Mexico"},{"NY":"New York"},{"NC":"North Carolina"},{"ND":"North Dakota"},{"OH":"Ohio"},{"OK":"Oklahoma"},{"OR":"Oregon"},{"PA":"Pennsylvania"},{"RI":"Rhode Island"},{"SC":"South Carolina"},{"SD":"South Dakota"},{"TN":"Tennessee"},{"TX":"Texas"},{"UT":"Utah"},{"VT":"Vermont"},{"VA":"Virginia"},{"WA":"Washington"},{"WV":"West Virginia"},{"WI":"Wisconsin"},{"WY":"Wyoming"},{"":"--"},{"AA":"Armed Forces (Americas)"},{"AE":"Armed Forces (Europe, Canada, Middle East, Africa)"},{"AP":"Armed Forces (Pacific)"},{"AS":"American Samoa"},{"FM":"Federated States of Micronesia"},{"GU":"Guam"},{"MH":"Marshall Islands"},{"MP":"Northern Mariana Islands"},{"PW":"Palau"},{"PR":"Puerto Rico"},{"VI":"Virgin Islands"}]}},{"postalcode":{"label":"ZIP code","format":"^\\d{5}(?:[-\\s]\\d{4})?$","eg":"98103"}}]}]},{"label":"United States Minor Outlying Islands","iso":"UM","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"administrativearea":{"label":"State"}},{"postalcode":{"label":"ZIP code"}}]}]},{"label":"Uruguay","iso":"UY","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}},{"administrativearea":{"label":"State"}}]}]},{"label":"Uzbekistan","iso":"UZ","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"postalcode":{"label":"Postal code"}}]}]},{"label":"Vanuatu","iso":"VU","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]},{"label":"Vatican","iso":"VA","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Venezuela","iso":"VE","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}},{"administrativearea":{"label":"State","options":[{"":"--"},{"Z":"Amazonas"},{"B":"Anzoátegui"},{"C":"Apure"},{"D":"Aragua"},{"E":"Barinas"},{"F":"Bolívar"},{"G":"Carabobo"},{"H":"Cojedes"},{"Y":"Delta Amacuro"},{"W":"Dependencias Federales"},{"A":"Distrito Federal"},{"I":"Falcón"},{"J":"Guárico"},{"K":"Lara"},{"L":"Mérida"},{"M":"Miranda"},{"N":"Monagas"},{"O":"Nueva Esparta"},{"P":"Portuguesa"},{"R":"Sucre"},{"S":"Táchira"},{"T":"Trujillo"},{"X":"Vargas"},{"U":"Yaracuy"},{"V":"Zulia"}]}}]}]},{"label":"Vietnam","iso":"VN","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}},{"administrativearea":{"label":"State"}},{"postalcode":{"label":"Postal code"}}]}]},{"label":"Wallis and Futuna","iso":"WF","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code","format":"^986\\d{2}$","eg":"98600"}},{"localityname":{"label":"City"}}]}]},{"label":"Western Sahara","iso":"EH","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Yemen","iso":"YE","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Zambia","iso":"ZM","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"postalcode":{"label":"Postal code"}},{"localityname":{"label":"City"}}]}]},{"label":"Zimbabwe","iso":"ZW","fields":[{"thoroughfare":{"label":"Address 1"}},{"premise":{"label":"Address 2"}},{"locality":[{"localityname":{"label":"City"}}]}]}]};
+
+    var options = json.options;
+    var output = "";
+    for (var i = 0; i<options.length; i++) {
+    	output += "<option value=\""+options[i].iso+"\">"+options[i].label+"</option>";
+    }
+
+    $('#addressform').addressfield({
+	  json: json,
+	  fields: {
+	  	thoroughfare: '#thoroughfare',
+	  	premise: '#premise',
+	    country: '#country',
+	    locality: '#locality-fields',
+	    localityname: '#city',
+	    administrativearea: '#state',
+	    postalcode: '#zip'
+	  }
+	});
+</script>
