@@ -611,50 +611,50 @@
 			    	$("#order").hide();
 			    }
 		        
-			    if($("#marketingList:checked").val() == "on") {
+			    if($("#mailingCheckbox:checked").val() == "on") {
 			      
-			    var settings = {
-			        "async": true,
-			        "crossDomain": true,
-			        "url": "https://api.sendgrid.com/v3/contactdb/recipients",
-			        "method": "POST",
-			        "headers": {
-			          "authorization": "Bearer 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",
-			          "content-type": "application/json"
-			        },
-			        "processData": false,
-			        "data": "[{\"email\": \""+$("#email").val()+"\",\"full_name\": \""+$("#shippingName").val()+"\"}]"
+						    var settings = {
+						        "async": true,
+						        "crossDomain": true,
+						        "url": "https://api.sendgrid.com/v3/contactdb/recipients",
+						        "method": "POST",
+						        "headers": {
+						          "authorization": "Bearer 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",
+						          "content-type": "application/json"
+						        },
+						        "processData": false,
+						        "data": "[{\"email\": \""+$("#email").val()+"\",\"full_name\": \""+$("#shippingName").val()+"\"}]"
+						    }
+
+						    $.ajax(settings).done(function (response) {
+						        var newsettings = {
+						          "async": true,
+						          "crossDomain": true,
+						          "url": "https://api.sendgrid.com/v3/contactdb/lists/2987102/recipients/"+response.persisted_recipients[0],
+						          "method": "POST",
+						          "headers": {
+						            "authorization": "Bearer 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"
+						          },
+						          "data": "null",
+						          statusCode: {
+						            404: function() {
+						              console.log("Unable to add to Marketing");
+						            },
+						            401: function() {
+						              console.log("Unable to add to Marketing");
+						            },
+						            400: function() {
+						              console.log("Unable to add to Marketing");
+						            },
+						            201: function() {
+						              console.log("Added to Marketing");
+						            }
+						          }
+						        }
+
+			        $.ajax(newsettings);
+			      });
 			    }
-
-			    $.ajax(settings).done(function (response) {
-			        var newsettings = {
-			          "async": true,
-			          "crossDomain": true,
-			          "url": "https://api.sendgrid.com/v3/contactdb/lists/2987102/recipients/"+response.persisted_recipients[0],
-			          "method": "POST",
-			          "headers": {
-			            "authorization": "Bearer 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"
-			          },
-			          "data": "null",
-			          statusCode: {
-			            404: function() {
-			              console.log("Unable to add to Marketing");
-			            },
-			            401: function() {
-			              console.log("Unable to add to Marketing");
-			            },
-			            400: function() {
-			              console.log("Unable to add to Marketing");
-			            },
-			            201: function() {
-			              console.log("Added to Marketing");
-			            }
-			          }
-			        }
-
-        $.ajax(newsettings);
-      });
-    }
 
 		    });
 		});
