@@ -631,7 +631,13 @@
     	$("#loading").hide();
     	$("#confirmed").hide();
     	showErrorBox("Error with payment, please try again.");
+	  } else if(snapshot.val() == "emailMismatch") {
+    	$("#order").show();
+    	$("#loading").hide();
+    	$("#confirmed").hide();
+    	showErrorBox("Please use the same email that you used to order our product on Kickstarter.");
 	  }
+	  
 	  console.log(snapshot.val());
 	});
 
