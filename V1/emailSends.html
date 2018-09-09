@@ -1,0 +1,61 @@
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<script src="static/js/jquery-3.1.0.min.js"></script>
+	<script src="static/js/bootstrap.bundle.min.js"></script>
+	<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+	<link rel="stylesheet" type="text/css" href="static/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+	<link rel="shortcut icon" href="static/logos/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="static/logos/favicon.ico" type="image/x-icon">
+	<title>Prova Console</title>
+</head>
+<body>
+	<div class=container>
+		<form>
+		  <div class="form-group">
+		    <label for="json">json</label>
+		    <textarea class="form-control" id="json" rows="10"></textarea>
+		  </div>
+		</form>
+		<a class="btn btn-primary" href="#" role="button" onclick="sendEmails();">Go</a>
+	</div>
+	<div id=output>
+	</div>
+</body>
+<script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDVfbz-9JfRUha9a9O6gv49Q6tdRDNS2OQ",
+    authDomain: "prova-llc.firebaseapp.com",
+    databaseURL: "https://prova-llc.firebaseio.com",
+    projectId: "prova-llc",
+    storageBucket: "",
+    messagingSenderId: "970130907892"
+  };
+  firebase.initializeApp(config);
+</script>
+<script>
+	function sendEmails() {
+		var json = JSON.parse($("#json").val());
+		//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
+
+		var settings = {
+		  "async": true,
+		  "crossDomain": true,
+		  "url": "https://api.sendgrid.com/v3/mail/send",
+		  "method": "POST",
+		  "headers": {
+		    "authorization": "Bearer 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",
+		    "content-type": "application/json"
+		  },
+		  "processData": false,
+		  "data": $("#json").val() //JSON.stringify(json);
+		}
+
+		$.ajax(settings).done(function (response) {
+		  console.log(response);
+		});
+	}
+</script>
