@@ -443,7 +443,7 @@
 				}
 				accordionHTML += "<div class='card'><div class='card-body'><div class=container-fluid><div class='row'><div class='col-md-3 col-12'><img class='mr-3' id='productImage"+itemNumber+"' src='static/images/"+products[cart[i].productID].image+"' width=100%></div><div class='col-md-9 col-12'><h5 class='mt-0'>"+products[cart[i].productID].name+"<div style='color:white;float:right;'><small>"+price+"</small></h5>";
 				if(products[cart[i].productID].customisation != undefined) {
-					accordionHTML += "<h6 style='margin-top:20px'>Select Color Preference <small><br>(Red, Blue, or Black)</small></h6><p><div class='dot red' onclick=\"colorPreferenceSelected('red','"+i+"');;\"><center style='padding-top: 5px'><i id='red"+itemNumber+"' class='fas 'class='fas'>&nbsp</i></center></div> <div class='dot blue' onclick=\"colorPreferenceSelected('blue','"+i+"');\"><center style='padding-top: 5px'><i id='blue"+itemNumber+"' class='fas'>&nbsp</i></center></div> <div id='red"+itemNumber+"' class='dot black' onclick=\"colorPreferenceSelected('black','"+i+"');\"><center style='padding-top: 5px'><i id='black"+itemNumber+"'class='fas'>&nbsp</i></center></div><a href='#' role='button' onclick=\"removeItemFromCart('"+i+"',"+products[cart[i].productID].price+");\" class='btn btn-danger' style='float:right;margin-top:20px'>Remove from Cart</a></p>"
+					accordionHTML += "<h6 style='margin-top:20px'>Select Color Preference <small><br>(Select Red, Blue, or Black dot below)</small></h6><p><div class='dot red' onclick=\"colorPreferenceSelected('red','"+i+"');;\"><center style='padding-top: 5px'><i id='red"+itemNumber+"' class='fas 'class='fas'>&nbsp</i></center></div> <div class='dot blue' onclick=\"colorPreferenceSelected('blue','"+i+"');\"><center style='padding-top: 5px'><i id='blue"+itemNumber+"' class='fas'>&nbsp</i></center></div> <div id='red"+itemNumber+"' class='dot black' onclick=\"colorPreferenceSelected('black','"+i+"');\"><center style='padding-top: 5px'><i id='black"+itemNumber+"'class='fas'>&nbsp</i></center></div><a href='#' role='button' onclick=\"removeItemFromCart('"+i+"',"+products[cart[i].productID].price+");\" class='btn btn-danger' style='float:right;margin-top:20px'>Remove from Cart</a></p>"
 				} else {
 					accordionHTML += "<a href='#' role='button' onclick=\"removeItemFromCart('"+i+"',"+products[cart[i].productID].price+");\" class='btn btn-danger' style='float:right'>Remove from Cart</a>";
 				}
@@ -505,7 +505,7 @@
 	}
 
     var handler = StripeCheckout.configure({
-      key: 'pk_test_9UyR47yeAUmkpzB24WFPnUWj',
+      key: 'pk_live_S2UIZSChZKHhZ0thWSSZizAP',
       image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
       locale: 'auto',
       token: function(token) {
@@ -537,6 +537,7 @@
 	function showErrorBox(err){
 		$("#errorBox").show();
 		$("#errorBox").append("<p>"+err+"</p>");
+		$("#errorBox")[0].scrollIntoView();
 	}
 	$("#errorBox").hide();
 	function confirmOrder() {
