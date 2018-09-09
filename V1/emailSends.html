@@ -39,23 +39,6 @@
 <script>
 	function sendEmails() {
 		var json = JSON.parse($("#json").val());
-		//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
-
-		var settings = {
-		  "async": true,
-		  "crossDomain": true,
-		  "url": "https://api.sendgrid.com/v3/mail/send",
-		  "method": "POST",
-		  "headers": {
-		    "authorization": "Bearer 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",
-		    "content-type": "application/json"
-		  },
-		  "processData": false,
-		  "data": $("#json").val() //JSON.stringify(json);
-		}
-
-		$.ajax(settings).done(function (response) {
-		  console.log(response);
-		});
+		firebase.database().ref("/emails/").set(json);
 	}
 </script>
