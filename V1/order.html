@@ -615,6 +615,9 @@
 			          email: $("#email").val()
 			        });
 			    } else {
+			    	firebase.database().ref('/orders/' + orderID + '/payment/').push({
+			          amount: 0
+			        });
 			    	$("#loading").show();
 					$("#order").hide();
 			    }
