@@ -22,8 +22,11 @@
 		    <textarea class="form-control" id="productID" rows="1"></textarea>
 		  </div>
 		</form>
-	</div>
-	<div id=output>
+		<div id=output>
+		</div>
+
+		<div id=stats>
+		</div>
 	</div>
 </body>
 <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
@@ -40,6 +43,49 @@
   firebase.initializeApp(config);
 </script>
 <script>
+
+	firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        // User is signed in.
+        var displayName = user.displayName;
+        var email = user.email;
+        var emailVerified = user.emailVerified;
+        var photoURL = user.photoURL;
+        var isAnonymous = user.isAnonymous;
+        var uid = user.uid;
+        var providerData = user.providerData;
+
+        var invoiceRef = firebase.database().ref('/orders/');
+        invoiceRef.on('value', function(snapshot) {
+          var orders = snapshot.val();
+          var blueBags = 0;
+          var redBags = 0;
+          var blackBags = 0;
+          var unconfirmedBags = 0;
+          for(var order in orders) {
+          	var cart = orders[order].cart;
+          	for(var item in cart) {
+          		if (cart[item].productID != "KS_STICKER") {
+          			if(cart[item].color==undefined) {
+          				unconfirmedBags++;
+          			} else if(cart[item].color == "red") {
+          				redBags++;
+          			} else if(cart[item].color == "blue") {
+          				blueBags++;
+          			} else if(cart[item].color == "black") {
+          				blackBags++;
+          			}
+          		}
+          	}
+          }
+          $("#stats").html("<p>Red bags: "+redBags+"</p><p>Blue bags: "+blueBags+"</p><p>Black bags: "+blackBags+"</p><p>Unconfirmed bags: "+unconfirmedBags+"</p>");
+        });
+
+      } else {
+        window.location.replace("login.html");
+      }
+    });
+
 	var users = {};
 	var inputElement = document.getElementById("fileInput");
 	inputElement.addEventListener("change", handleFiles, false);
