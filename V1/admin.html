@@ -2,6 +2,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<script src="static/js/jquery-3.1.0.min.js"></script>
 	<script src="static/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
 	<link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 	<link rel="stylesheet" type="text/css" href="static/css/bootstrap.min.css">
@@ -27,6 +28,7 @@
 
 		<div id=stats>
 		</div>
+		<canvas id="myChart" width="400" height="400"></canvas>
 	</div>
 </body>
 <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
@@ -78,7 +80,32 @@
           		}
           	}
           }
-          $("#stats").html("<p>Red bags: "+redBags+"</p><p>Blue bags: "+blueBags+"</p><p>Black bags: "+blackBags+"</p><p>Unconfirmed bags: "+unconfirmedBags+"</p>");
+          var total = blueBags+redBags+blackBags;
+          $("#stats").html("<p>Red bags: "+redBags+" ("+Math.round(redBags/total*100)+"%)</p><p>Blue bags: "+blueBags+" ("+Math.round(blueBags/total*100)+"%)</p><p>Black bags: "+blackBags+" ("+Math.round(blackBags/total*100)+"%)</p><p>Unconfirmed bags: "+unconfirmedBags+"</p>");
+          var ctx = $("#myChart");
+          var myPieChart = new Chart(ctx,{
+			    type: 'pie',
+			    data: {
+			    	datasets: [{
+			        	data: [redBags, blueBags, blackBags],
+			        	backgroundColor: ["#ca2300","#0f00e3","#666666"]
+			    	}],
+
+			    	// These labels appear in the legend and in the tooltips when hovering different arcs
+			    	labels: [
+				        'Red',
+				        'Blue',
+				        'Black'
+				    ]
+				},
+				options: {
+			      legend: { display: false },
+			      title: {
+			        display: true,
+			        text: 'Color Selections'
+			      }
+			    }
+			});
         });
 
       } else {
