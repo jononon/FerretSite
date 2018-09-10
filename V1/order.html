@@ -390,10 +390,13 @@
     	} else {
     		$("#internationalShippingWarning").hide();
     	}
-    	if($("#country").val() == "US" ) {
-    		shipping = 0;
+    	
+    	if(country != "US") {
+    		shipping = 13;
     	} else if(country == "US" && $("#country").val() != "US") {
     		shipping = 13;
+    	} else if($("#country").val() == "US" ) {
+    		shipping = 0;
     	}
 
     	if ($("#country").val() != "US" && cartPrice>50) {
