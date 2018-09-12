@@ -246,7 +246,7 @@
 
 						<div style="padding-bottom:15%;">
 							<p><center>We have launched!</center></p>
-							<p><center><button onclick="location.href = 'http://homepagee.fnd.to/prova';" type="button" class="btn btn-light">Buy now on Kickstarter!</button></center></p>
+							<p><center><button onclick="createNewOrder()" type="button" class="btn btn-light">Buy now!</button></center></p>
 						</div>
 						
 						<!--
@@ -366,7 +366,23 @@
 		</div>
 	</div>
 </body>
+<script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
+<!-- <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase-functions.js"></script> -->
 <script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDVfbz-9JfRUha9a9O6gv49Q6tdRDNS2OQ",
+    authDomain: "prova-llc.firebaseapp.com",
+    databaseURL: "https://prova-llc.firebaseio.com",
+    projectId: "prova-llc",
+    storageBucket: "",
+    messagingSenderId: "970130907892"
+  };
+  firebase.initializeApp(config);
+</script>
+<script>
+	var functions = firebase.functions();
+
 	$('.boxtext').mouseover( function() {
 	  $(this).toggleClass('gigante2');
 	});
@@ -589,5 +605,13 @@
 		    $("#main").attr("style", "background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(static/images/_F4C1312.jpg);background-size:cover;background-repeat:no-repeat;background-position: center;height:100%;width:100%;display: flex;align-items: center;justify-content: center;flex-direction: column;");
 		});
 	}, 800);
+
+	function createNewOrder() {
+		var addMessage = firebase.functions().httpsCallable('generateOrderId');
+		addMessage({}).then(function(result) {
+		  // Read result of the Cloud Function.
+		  window.location = "order.html?order="+result.data.key;
+		});
+	}
 
 </script>
