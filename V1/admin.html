@@ -29,6 +29,9 @@
 		<div id=stats>
 		</div>
 		<canvas id="myChart" width="400" height="400"></canvas>
+		<div id=orders>
+			<a class="btn btn-primary" href="#" onclick="sendToUnconfirmedBackers()" role="button">Send Reminder Email to Unconfirmed Backers</a>
+		</div>
 	</div>
 </body>
 <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
@@ -150,4 +153,56 @@
 	  }
 	  console.log(users);
 	}
+
+
+	function sendToUnconfirmedBackers() {
+		return firebase.database().ref("/orders/").once('value').then(function(snapshot) {
+			var val = snapshot.val();
+			var emailData = {
+				template_id : "d-a28818b6a5864a3fbd8f025a6213b205",
+				from : {
+			      email : "hello@provadesign.com",
+			      name : "Prova Design"
+			    },
+			    personalizations : []
+			}
+			for(orderId in val) {
+				var order = val[orderId];
+				if(order.kickstarter != undefined && order.cart != undefined) {
+					if(order.kickstarter.notes == "collected" && order.kickstarter.numbags == "yes" && order.kickstarter.email != "" && order.kickstarter.email != undefined) {
+						for(item in order.cart) {
+							if (order.cart[item].color == undefined) {
+								
+								emailData.personalizations.push({
+							      dynamic_template_data : {
+							        orderID : orderId
+							      },
+							      to : [ {
+							        email : order.kickstarter.email
+							      }]
+							  	});
+								break;
+							}
+						}
+					}
+				}
+			}
+			console.log(emailData);
+			// var sendEmails = firebase.functions().httpsCallable('sendEmails');
+			// sendEmails({request: emailData}).then(function(result) {
+			// 	console.log(result.data);
+			// });
+		});
+	}
+
+	// var ordersRef = firebase.database().ref('/orders/');
+ //        ordersRef.on('value', function(snapshot) {
+ //        	var val = snapshot.val();
+ //        	var ordersTable = "<table class='table'><thead><tr><th scope='col'>orderNumber</th><th scope='col'>email</th><th scope='col'>status</th><th scope='col'>paid</th><th scope='col'>paymentId</th></tr></thead><tbody>";
+ //        	for(charge in val) {
+	//         	chargesTable+="<tr><td>"+val[charge].userId+"</td><td>"+val[charge].deviceId+"</td><td>"+val[charge].startTime+"</td><td>"+val[charge].duration+"</td><td>"+val[charge].paymentId+"</td></tr>";
+ //        	}
+ //        	chargesTable += "</tbody></table>";
+ //        	$("#charges").html(chargesTable);
+ //        });
 </script>
