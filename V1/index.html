@@ -159,9 +159,19 @@
 		left: 0;
 		width: 100%;
 		height: 100%;
-		z-index: 10;
+		z-index: -50;
 		background-color: rgba(255,255,255,0.95); /*dim the background*/
 		display: none;
+	}
+
+	#videooverlay{
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -95;
+		background-color: rgba(0,0,0,0.2); /*dim the background*/
 	}
 
 	.jonModal {
@@ -234,19 +244,41 @@
 	.blueLink a {
 	    color:#4286f4;
 	}
+
+
+	#video-background {
+	/*  making the video fullscreen  */
+	  position: fixed;
+	  min-width: 100%; 
+	  min-height: 100%;
+	  width: auto; 
+	  height: auto;
+	  z-index: -100;
+	  left: 50%;
+	  top: 50%;
+	  transform: translate(-50%, -50%);
+	}
+
 </style>
 <body id=body>
+	<div id=videooverlay></div>
+	<div id=video-contain>
+	<video autoplay muted loop preload="metadata" id="video-background" height=100% width=100% oncanplaythrough="$('#static-background').fadeOut();">
+		  <source src="static/images/websitebackground.mp4" type="video/mp4" plays-inline>
+	</video>
+	</div>
 	<div id=home style="color:white;">
 		<!--UNADJUSTEDNONRAW_thumb_9ab-->
-		<div id=main style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(static/images/F4C1312_1_11.jpg);background-size:cover;background-repeat:no-repeat;background-position: center;height:100%;width:100%;display: flex;align-items: center;justify-content: center;flex-direction: column;">
+		<div id=static-background style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(static/images/F4C1312_1_11.jpg);background-size:cover;background-repeat:no-repeat;background-position: center;height:100%;width:100%;display: flex;align-items: center;justify-content: center;flex-direction: column;z-index: -99;position: fixed;">
+		</div>
+		<div id=main>
 			<div class=container>
 				<div class="row">
 					<div class="col-lg-6 offset-lg-3 col-sm-10 offset-sm-1 col-xs-12">
 						<img id=mainLogo style="padding-top:20%;padding-bottom:10%;" src="static/logos/provawhitefulllogo.png" width=100%></img>
 
 						<div style="padding-bottom:15%;">
-							<p><center>We have launched!</center></p>
-							<p><center><button onclick="createNewOrder()" type="button" class="btn btn-light">Buy now!</button></center></p>
+							<p><center><button onclick="createNewOrder()" type="button" class="btn btn-outline-light">Buy now!</button></center></p>
 						</div>
 						
 						<!--
@@ -267,15 +299,19 @@
 		  	<div class=boxtext onclick="showGallery()">
 		  		gallery
 		  	</div>
-		  	&nbsp&nbsp&nbsp
+		  	&nbsp&nbsp
 		  	<div class=boxtext onclick="showStory()">
 		  		story
 		  	</div>
-		  	&nbsp&nbsp&nbsp
+		  	<!-- &nbsp&nbsp&nbsp
 		  	<div class=boxtext onclick="showContact()">
 		  		contact
+		  	</div> -->
+		  	&nbsp&nbsp
+		  	<div class=boxtext onclick="window.location.href ='kickstarter.html'">
+		  		kickstarter
 		  	</div>
-		  	&nbsp&nbsp&nbsp
+		  	&nbsp&nbsp
 		  	<div class=boxtext onclick="window.location.href ='https://drive.google.com/open?id=1Wy9eq0kJ6DRoebNc4Gyk0ZCveLgXl3Qx'">
 		  		press kit
 		  	</div>
@@ -321,10 +357,13 @@
 		</center>
 	</div>
 	<div id=story class="jonModal blueLink" style="color:black;">
-		<i class="fas fa-times" style="color:black;width:100%;text-align:right;padding-right:20px;font-size:40;position: fixed;z-index:200" onclick="closeStory()"></i>
+		<i class="fas fa-times" style="right:0;color:black;width:50;text-align:right;padding-right:20px;font-size:40;position: fixed;z-index:200" onclick="closeStory()"></i>
 		<div class=container style="margin-top:20px;margin-bottom:40px;">
 			<row>
 				<div class="col-lg-6 offset-lg-3">
+					<p>
+						Prova was made by <a href="https://www.linkedin.com/in/cameron-schiller-b96552130/">Cameron Schiller</a> and <a href="https://linkedin.com/in/jonathandamico/">Jonathan Damico</a> in Los Angeles, CA.
+					</p>
 					<p style="text-align: center;">
 						<img width=100% id=samdrawing style="max-width: 668px;">
 					</p>
@@ -360,7 +399,7 @@
 		</div>
 	</div>
 	<div id=contact class="jonModal">
-		<i class="fas fa-times" style="color:white;width:100%;text-align:right;padding-right:20px;font-size:40;position: fixed;z-index:200" onclick="closeContact()"></i>
+		<i class="fas fa-times" style="right:0;color:white;width:100;text-align:right;padding-right:20px;font-size:40;position: fixed;z-index:200" onclick="closeContact()"></i>
 		<div style="display: table;height: 100%;width: 100%;">
 		  <div style="display: table-cell;vertical-align: middle;height: 100%;width: 100%;"><center><a href="mailto:cameron@provadesign.com">cameron@provadesign.com</a><br><a href="mailto:jonathan@provadesign.com">jonathan@provadesign.com</a></center></div>
 		</div>
@@ -600,11 +639,11 @@
 		$("#emailForm").fadeIn();
 	}, 200);
 	
-	setTimeout(function () {
-		$("<img src='static/images/_F4C1312.jpg'>").on("load", function() {
-		    $("#main").attr("style", "background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(static/images/_F4C1312.jpg);background-size:cover;background-repeat:no-repeat;background-position: center;height:100%;width:100%;display: flex;align-items: center;justify-content: center;flex-direction: column;");
-		});
-	}, 800);
+	// setTimeout(function () {
+	// 	$("<img src='static/images/_F4C1312.jpg'>").on("load", function() {
+	// 	    $("#static-background").css("background", "linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(static/images/_F4C1312.jpg)");
+	// 	});
+	// }, 800);
 
 	function createNewOrder() {
 		var addMessage = firebase.functions().httpsCallable('generateOrderId');
