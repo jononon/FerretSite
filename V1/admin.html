@@ -25,7 +25,6 @@
 		</form>
 		<div id=output>
 		</div>
-
 		<div id=stats>
 		</div>
 		<canvas id="myChart" width="400" height="400"></canvas>
@@ -48,7 +47,6 @@
   firebase.initializeApp(config);
 </script>
 <script>
-
 	firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         // User is signed in.
@@ -62,13 +60,43 @@
 
         var invoiceRef = firebase.database().ref('/orders/');
         invoiceRef.on('value', function(snapshot) {
+        var orderHTML = "<table class='table'><thead><tr><th scope='col'>Order ID</th><th scope='col'>Status</th><th scope='col'>Address</th><th scope='col'>Country</th><th scope='col'>Email</th><th scope='col'>Cart</th><th scope='col'>Action</th></tr></thead><tbody>";
           var orders = snapshot.val();
           var blueBags = 0;
           var redBags = 0;
           var blackBags = 0;
           var unconfirmedBags = 0;
           for(var order in orders) {
+          	if(orders[order].status == "confirmed") {
+          		orderHTML+="<tr class='table-success'>";
+          	} else if(orders[order].status == undefined) {
+          		orderHTML+="<tr class='table-danger'>";
+          	} else if(orders[order].status == "generated") {
+          		orderHTML+="<tr class='table-warning'>";
+          	} else {
+          		orderHTML+="<tr class='table-info'>";
+          	}
+          	
+          	orderHTML+="<th>"+order+"</th><td>"+orders[order].status+"</td>";
+          	if(orders[order].address != undefined) {
+          		orderHTML+="<td><div>"+orders[order].address.thoroughfare+"</div><div>"+orders[order].address.premise+"</div><div>"+orders[order].address.city+", "+orders[order].address.state+", "+orders[order].address.zip+"</div><div>"+orders[order].address.country+"</div></td>";
+          		orderHTML+="<td>"+orders[order].address.country+"</td>";
+          	} else {
+          		orderHTML+="<td></td>"
+          		orderHTML+="<td></td>"
+          	}
           	var cart = orders[order].cart;
+          	var email = "";
+          	if(orders[order].kickstarter != undefined) {
+          		orderHTML+="<td><a href=mailto:"+orders[order].kickstarter.email+">"+orders[order].kickstarter.notes+", "+orders[order].kickstarter.email+"</a></td><td>";
+          		email = orders[order].kickstarter.email;
+          	} else if (orders[order].address != undefined) {
+          		orderHTML+="<td><a href=mailto:"+orders[order].address.email+">"+orders[order].address.email+"</a></td><td>";
+          		email = orders[order].address.email;
+          	} else {
+          		orderHTML+="<td></td><td>";
+          	}
+
           	for(var item in cart) {
           		if (cart[item].productID != "KS_STICKER") {
           			if(cart[item].color==undefined) {
@@ -80,9 +108,20 @@
           			} else if(cart[item].color == "black") {
           				blackBags++;
           			}
+
+          			if(cart[item].color == undefined) {
+						orderHTML+="<div style=color:grey;>"+cart[item].productID+"</div>";
+	          		} else {
+	          			orderHTML+="<div style=color:"+cart[item].color+";>"+cart[item].productID+"</div>";
+	          		}
+          		} else {
+          			orderHTML+="<div>"+cart[item].productID+"</div>";
           		}
+          		
           	}
+          	orderHTML+="</td><td><div class='btn-group'><a href='mailto:"+email+"' role='button' class='btn btn-secondary'>Email</a><button type='button' class='btn btn-secondary dropdown-toggle dropdown-toggle-split' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><span class='sr-only'>Toggle Dropdown</span></button><div class='dropdown-menu'><a class='dropdown-item' href='#'>Action</a><a class='dropdown-item' href='#'>Another action</a><a class='dropdown-item' href='#'>Something else here</a><div class='dropdown-divider'></div><a class='dropdown-item' href='#'>Separated link</a></div></div></td></tr>";
           }
+          $("#output").html(orderHTML+"</tbody></table>");
           var total = blueBags+redBags+blackBags;
           $("#stats").html("<p>Red bags: "+redBags+" ("+Math.round(redBags/total*100)+"%)</p><p>Blue bags: "+blueBags+" ("+Math.round(blueBags/total*100)+"%)</p><p>Black bags: "+blackBags+" ("+Math.round(blackBags/total*100)+"%)</p><p>Unconfirmed bags: "+unconfirmedBags+"</p>");
           var ctx = $("#myChart");
