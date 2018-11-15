@@ -27,7 +27,7 @@
 		</div>
 		<div id=stats>
 		</div>
-		<canvas id="myChart" width="400" height="400"></canvas>
+		<canvas id="myChart" width="200" height="200"></canvas>
 		<div id=orders>
 			<a class="btn btn-primary" href="#" onclick="sendToUnconfirmedBackers()" role="button">Send Reminder Email to Unconfirmed Backers</a>
 		</div>
@@ -88,7 +88,7 @@
           	var cart = orders[order].cart;
           	var email = "";
           	if(orders[order].kickstarter != undefined) {
-          		orderHTML+="<td><a href=mailto:"+orders[order].kickstarter.email+">"+orders[order].kickstarter.notes+", "+orders[order].kickstarter.email+"</a></td><td>";
+          		orderHTML+="<td><a href=mailto:"+orders[order].kickstarter	.email+">"+orders[order].kickstarter.notes+", "+orders[order].kickstarter.email+"</a></td><td>";
           		email = orders[order].kickstarter.email;
           	} else if (orders[order].address != undefined) {
           		orderHTML+="<td><a href=mailto:"+orders[order].address.email+">"+orders[order].address.email+"</a></td><td>";
@@ -98,7 +98,7 @@
           	}
 
           	for(var item in cart) {
-          		if (cart[item].productID != "KS_STICKER") {
+          		if (cart[item].productID != "KS_STICKER" && orders[order].status != "generated") {
           			if(cart[item].color==undefined) {
           				unconfirmedBags++;
           			} else if(cart[item].color == "red") {
@@ -123,7 +123,7 @@
           }
           $("#output").html(orderHTML+"</tbody></table>");
           var total = blueBags+redBags+blackBags;
-          $("#stats").html("<p>Red bags: "+redBags+" ("+Math.round(redBags/total*100)+"%)</p><p>Blue bags: "+blueBags+" ("+Math.round(blueBags/total*100)+"%)</p><p>Black bags: "+blackBags+" ("+Math.round(blackBags/total*100)+"%)</p><p>Unconfirmed bags: "+unconfirmedBags+"</p>");
+          $("#stats").html("<p>Red bags: "+redBags+" ("+Math.round(redBags/total*100)+"%)</p><p>Blue bags: "+blueBags+" ("+Math.round(blueBags/total*100)+"%)</p><p>Black bags: "+blackBags+" ("+Math.round(blackBags/total*100)+"%)</p><p>Unconfirmed bags: "+unconfirmedBags+"</p><p>Confirmed bags: "+total+"</p><p>total bags: "+(unconfirmedBags+total)+"</p>");
           var ctx = $("#myChart");
           var myPieChart = new Chart(ctx,{
 			    type: 'pie',

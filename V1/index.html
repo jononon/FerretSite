@@ -290,7 +290,7 @@
 <body id=body>
 	<div id=videooverlay></div>
 	<div id=video-contain>
-	<video playsinline autoplay muted loop preload="auto" id="video-background" height=100% width=100% oncanplaythrough="$('#static-background').fadeOut();">
+	<video playsinline autoplay muted loop preload="none" id="video-background" height=100% width=100% oncanplaythrough="$('#static-background').fadeOut();">
 		  <source src="static/images/websitebackground.mp4" type="video/mp4">
 		  	<source src="static/images/websitebackground.webm" type="video/webm">
 	</video>
@@ -657,6 +657,15 @@
 		$("#DSC_3338").attr("src","static/images/DSC_3338.JPG");
 
 		resize();
+		setTimeout(function() {
+			if(window.location.hash == "#gallery") {
+				showGallery();
+			}
+		},1000);
+
+		if(window.location.hash == "#story") {
+			showStory();
+		}
 		
 		if (gup("text") == "eb1") {
 			$("#mainText").html("<p>The best bag in the world for students.<br>Enter your email now to get an early bird discount when we launch!</p>");
@@ -680,5 +689,6 @@
 		  window.location = "order.html?order="+result.data.key;
 		});
 	}
+
 
 </script>
