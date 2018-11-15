@@ -290,10 +290,6 @@
 <body id=body>
 	<div id=videooverlay></div>
 	<div id=video-contain>
-	<video playsinline autoplay muted loop preload="none" id="video-background" height=100% width=100% oncanplaythrough="$('#static-background').fadeOut();">
-		  <source src="static/images/websitebackground.mp4" type="video/mp4">
-		  	<source src="static/images/websitebackground.webm" type="video/webm">
-	</video>
 	</div>
 	<div id=home style="color:white;">
 		<!--UNADJUSTEDNONRAW_thumb_9ab-->
@@ -619,6 +615,8 @@
 	}
 
 	$(document).ready(function () {
+		$("#video-contain").html("<video playsinline autoplay muted loop preload='none' id='video-background' height=100% width=100% oncanplaythrough=\"$('#static-background').fadeOut();\"><source src='static/images/websitebackground.mp4' type='video/mp4'><source src='static/images/websitebackground.webm' type='video/webm'></video>");
+
 		$("#UNADJUSTEDNONRAW_thumb_9c0").attr("src","static/images/UNADJUSTEDNONRAW_thumb_9c0.jpg");
 		$("#UNADJUSTEDNONRAW_thumb_9ce").attr("src","static/images/UNADJUSTEDNONRAW_thumb_9ce.jpg");
 		$("#UNADJUSTEDNONRAW_thumb_b61").attr("src","static/images/UNADJUSTEDNONRAW_thumb_b61.jpg");
@@ -657,6 +655,7 @@
 		$("#DSC_3338").attr("src","static/images/DSC_3338.JPG");
 
 		resize();
+
 		setTimeout(function() {
 			if(window.location.hash == "#gallery") {
 				showGallery();
