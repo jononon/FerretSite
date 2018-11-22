@@ -682,6 +682,8 @@
 	// }, 800);
 
 	function createNewOrder() {
+		fbq('trackCustom', 'createNewOrder');
+		ga('send', 'event', 'actions', 'createNewOrder');
 		var addMessage = firebase.functions().httpsCallable('generateOrderId');
 		addMessage({}).then(function(result) {
 		  // Read result of the Cloud Function.
