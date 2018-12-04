@@ -12,25 +12,8 @@
 	<title>Prova Console</title>
 </head>
 <body>
-	<div class=container>
-		<form>
-		  <div class="form-group">
-		    <label for="exampleFormControlFile1">Update CSV</label>
-		    <input id="fileInput" type="file" class="form-control-file" id="exampleFormControlFile1" accept=".csv" multiple>
-		  </div>
-		  <div class="form-group">
-		    <label for="json">Product ID</label>
-		    <textarea class="form-control" id="productID" rows="1"></textarea>
-		  </div>
-		</form>
-		<div id=output>
-		</div>
-		<div id=stats>
-		</div>
-		<canvas id="myChart" width="200" height="200"></canvas>
-		<div id=orders>
-			<a class="btn btn-primary" href="#" onclick="sendToUnconfirmedBackers()" role="button">Send Reminder Email to Unconfirmed Backers</a>
-		</div>
+	<div class=container id=main>
+
 	</div>
 </body>
 <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
@@ -59,6 +42,36 @@
 		}
 	} // gup() - Get URL Param
 
+	function generateUPSRates(orderId) {
+		var func = firebase.functions().httpsCallable('generateUPSRates')
+		func({orderId:orderId}).then(function(result) {
+			console.log(result.data);
+			$("$#columns").append("<div class='card' style='width: 18rem;'><h5 class='card-header'>UPS</h5><ul class='list-group list-group-flush'><li class='list-group-item'><h6 class='card-title'>Linted Address</h6><p class='card-text'>Jonathan Damico<br>1124 Napoli Drive<br>Pacific Palisades, CA 90272</p></li><li class='list-group-item'><h6 class='card-title'>Cost</h6><p class='card-text'>$6.55</p><a href='#' class='btn btn-primary'>Refresh</a></li></ul><div class='card-body'><a href='#' class='btn btn-primary'>Ship</a></div></div>");
+		});
+	}
+
+	function generateUPSSticker(orderId) {
+		var func = firebase.functions().httpsCallable('generateUPSSticker')
+		func({orderId:orderId}).then(function(result) {
+			console.log(result.data);
+			$("$#columns").append("<div class='card' style='width: 18rem;'><h5 class='card-header'>UPS</h5><ul class='list-group list-group-flush'><li class='list-group-item'><h6 class='card-title'>Linted Address</h6><p class='card-text'>Jonathan Damico<br>1124 Napoli Drive<br>Pacific Palisades, CA 90272</p></li><li class='list-group-item'><h6 class='card-title'>Cost</h6><p class='card-text'>$6.55</p><a href='#' class='btn btn-primary'>Refresh</a></li></ul><div class='card-body'><a href='#' class='btn btn-primary'>Ship</a></div></div>");
+		});
+	}
+
+	function generateUSPSRates(orderId) {
+		var func = firebase.functions().httpsCallable('generateUSPSRates')
+		func({orderId:orderId}).then(function(result) {
+			console.log(result.data);
+		});
+	}
+
+	function generateUSPSIntlRates(orderId) {
+		var func = firebase.functions().httpsCallable('generateUSPSIntlRates')
+		func({orderId:orderId}).then(function(result) {
+			console.log(result.data);
+		});
+	}
+
 	var numBagsArr = [];
 	var countriesArr = [];
 	firebase.auth().onAuthStateChanged(function(user) {
@@ -72,10 +85,40 @@
         var uid = user.uid;
         var providerData = user.providerData;
 
-        var orderNumber = gup("order")
-        var invoiceRef = firebase.database().ref('/orders/'+orderNumber);
+        var orderNumber = gup("orderNumber");
+
+
+        var csv = "Order Number,Value,Description,Length,Width,Height,Weight,Name,Address 1,Address 2,City,State,Postal Code,Country,Email,Rubber Stamp\n";
+
+        var invoiceRef = firebase.database().ref('/orders/');
         invoiceRef.on('value', function(snapshot) {
-       		getUPSQuote()
+        	var orders = snapshot.val()
+       		for(var order in orders) {
+       			if(orders[order].status == "confirmed") {
+       				var numBlue = 0;
+       				var numRed = 0;
+       				var numBlack = 0;
+       				for (var item in orders[order].cart) {
+       					if(orders[order].cart[item].productID != "KS_STICKER") {
+       						if(orders[order].cart[item].color == "black") {
+       							numBlack++;
+       						} else if (orders[order].cart[item].color == "blue") {
+       							numBlue++;
+       						} else if (orders[order].cart[item].color == "red") {
+       							numRed++;
+       						}
+       					}
+       				}
+       				var height = (numBlue+numRed+numBlack)>2?6:3;
+       				var rubberStamp = "";
+       				if(numBlue>0) { rubberStamp+= ""+numBlue+"xBlue "; }
+       				if(numBlack>0) { rubberStamp+= ""+numBlack+"xBlack "; }
+       				if(numRed>0) { rubberStamp+= ""+numRed+"xRed "; }
+       				var fields = [order, 20*(numRed+numBlue+numBlack), "Backpacks", 19, 12, height, orders[order].address.name,orders[order].address.thoroughfare,orders[order].address.premise,orders[order].address.city,orders[order].address.state,orders[order].address.zip,orders[order].address.country,orders[order].address.email,rubberStamp];
+       				csv+=fields.toString()+"\n";
+       			}
+       		}
+       		$("#main").html(csv);
         });
 
       } else {
@@ -83,25 +126,4 @@
       }
     });
 
-	function getUPSQuote() {
-		var settings = {
-  "async": true,
-  "crossDomain": true,
-  "url": "https://wwwcie.ups.com/rest/Rate",
-  "method": "POST",
-  "headers": {
-    "Content-Type": "application/json",
-    "Access-Control-Request-Headers": "Origin, X-Requested-With, Content-Type, Accept",
-    "Access-Control-Allow-Origin": "*",
-    "cache-control": "no-cache",
-    "Postman-Token": "4d093ca1-0a0a-4856-aa48-eb4657d77f5e"
-  },
-  "processData": false,
-  "data": "\n\n{\n\t\"UPSSecurity\": {\n\t\t\"UsernameToken\":{\n\t\t\t\"Username\":\"jonathandamico\",\n\t\t\t\"Password\":\"Jonathan1928\"\n\t\t},\n\t\t\"ServiceAccessToken\": {\n\t\t\t\"AccessLicenseNumber\":\"AD54FB714B479A68\"\n\t\t}\n\t},\n\t\"RateRequest\": {\n\t\t\"Request\": {\n\t\t\t\"RequestOption\": \"Rate\"\n\t\t}, \"Shipment\": {\n\t\t\t\"Description\": \"Backpacks\",\n\t\t\t\"Shipper\": {\n\t\t\t\t\"Name\": \"Prova Design LLC\",\n\t\t\t\t\"ShipperNumber\":\"VY8825\",\n\t\t\t\t\"Address\": {\n\t\t\t\t\t\"AddressLine\": \"1124 Napoli Drive\",\n\t\t\t\t\t\"City\": \"Pacific Palisades\",\n\t\t\t\t\t\"StateProvinceCode\": \"CA\",\n\t\t\t\t\t\"PostalCode\": \"90272\",\n\t\t\t\t\t\"CountryCode\": \"US\"\n\t\t\t\t}\n\t\t\t}, \"ShipTo\": {\n\t\t\t\t\"Name\": \"Cameron Schiller\",\n\t\t\t\t\"Address\": {\n\t\t\t\t\t\"AddressLine\": \"3021 Rangeview Drive\",\n\t\t\t\t\t\"City\": \"Glendale\",\n\t\t\t\t\t\"StateProvinceCode\": \"CA\",\n\t\t\t\t\t\"PostalCode\": \"91201\",\n\t\t\t\t\t\"CountryCode\": \"US\",\n\t\t\t\t\t\"ResidentialAddressIndicator\": \"True\"\n\t\t\t\t}\n\t\t\t},\"ShipFrom\": {\n\t\t\t\t\"Name\": \"Prova Design LLC\",\n\t\t\t\t\"Address\": {\n\t\t\t\t\t\"AddressLine\": \"1124 Napoli Drive\",\n\t\t\t\t\t\"City\": \"Pacific Palisades\",\n\t\t\t\t\t\"StateProvinceCode\": \"CA\",\n\t\t\t\t\t\"PostalCode\": \"90272\",\n\t\t\t\t\t\"CountryCode\": \"US\"\n\t\t\t\t}\n\t\t\t}, \"PaymentInformation\": { \n\t\t\t\t\"ShipmentCharge\": {\n\t\t\t\t\t\"Type\": \"01\", \n\t\t\t\t\t\"BillShipper\": {\n\t\t\t\t\t\t\"AccountNumber\":\"VY8825\"\n\t\t\t\t\t} \n\t\t\t\t}\n\t\t\t}, \"Service\": {\n\t\t\t\t\"Code\": \"03\"\n\t\t\t},\n\t\t\t\"Package\": {\n\t\t\t\t\"Description\": \"Backpacks\",\n\t\t\t    \"ReferenceNumber\": {\n\t\t\t        \"Value\": \"20\"\n\t\t\t    },\n\t\t\t    \"PackagingType\": {\n\t\t\t        \"Code\": \"02\",\n\t\t\t        \"Description\": \"Customer Supplied\"\n\t\t\t    },\n\t\t\t    \"Packaging\": {\n\t\t\t        \"Code\": \"02\",\n\t\t\t        \"Description\": \"Customer Supplied\"\n\t\t\t    },\n\t\t\t    \"Dimensions\": {\n\t\t\t        \"UnitOfMeasurement\": {\n\t\t\t            \"Code\": \"IN\",\n\t\t\t            \"Description\": \"Inches\"\n\t\t\t        },\n\t\t\t        \"Length\": \"19\",\n\t\t\t        \"Width\": \"12\",\n\t\t\t        \"Height\": \"3\"\n\t\t\t    },\n\t\t\t    \"PackageWeight\": {\n\t\t\t        \"UnitOfMeasurement\": {\n\t\t\t            \"Code\": \"LBS\",\n\t\t\t            \"Description\": \"Pounds\"\n\t\t\t        },\n\t\t\t        \"Weight\": \"1\"\n\t\t\t    }\n\t\t\t}\n\t\t},\n\t\t\"ShipmentRatingOptions\": {\n\t\t\t\"NegotiatedRatesIndicator\": \"*\" \n\t\t}\n\t}\n}"
-}
-
-$.ajax(settings).done(function (response) {
-  console.log(response);
-});
-	}
 </script>
