@@ -114,8 +114,9 @@
        				if(numBlue>0) { rubberStamp+= ""+numBlue+"xBlue "; }
        				if(numBlack>0) { rubberStamp+= ""+numBlack+"xBlack "; }
        				if(numRed>0) { rubberStamp+= ""+numRed+"xRed "; }
-       				var fields = [order, 20*(numRed+numBlue+numBlack), "Backpacks", 19, 12, height, orders[order].address.name,orders[order].address.thoroughfare,orders[order].address.premise,orders[order].address.city,orders[order].address.state,orders[order].address.zip,orders[order].address.country,orders[order].address.email,rubberStamp];
-       				csv+=fields.toString()+"\r\n";
+       				var weight = 16*(numBlue+numBlack+numRed)
+       				var fields = [order, 20*(numRed+numBlue+numBlack), "Backpacks", 19, 12, height, weight, orders[order].address.name,orders[order].address.thoroughfare,orders[order].address.premise,orders[order].address.city,orders[order].address.state,orders[order].address.zip,orders[order].address.country,orders[order].address.email,rubberStamp];
+       				csv+="\""+fields.join("\",\"")+"\"\r\n";
        			}
        		}
        		$("#main").html(csv);
