@@ -91,7 +91,7 @@
         var csv = "Order Number,Value,Description,Length,Width,Height,Weight,Name,Address 1,Address 2,City,State,Postal Code,Country,Email,Rubber Stamp\r\n";
 
         var invoiceRef = firebase.database().ref('/orders/');
-        invoiceRef.on('value', function(snapshot) {
+        invoiceRef.once('value').then(function(snapshot) {
         	var orders = snapshot.val()
        		for(var order in orders) {
        			if(orders[order].status == "confirmed") {
