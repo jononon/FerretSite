@@ -88,7 +88,7 @@
         var orderNumber = gup("orderNumber");
 
 
-        var csv = "Order Number,Value,Description,Length,Width,Height,Weight,Name,Address 1,Address 2,City,State,Postal Code,Country,Email,Rubber Stamp\n";
+        var csv = "Order Number,Value,Description,Length,Width,Height,Weight,Name,Address 1,Address 2,City,State,Postal Code,Country,Email,Rubber Stamp\r\n";
 
         var invoiceRef = firebase.database().ref('/orders/');
         invoiceRef.on('value', function(snapshot) {
@@ -115,10 +115,13 @@
        				if(numBlack>0) { rubberStamp+= ""+numBlack+"xBlack "; }
        				if(numRed>0) { rubberStamp+= ""+numRed+"xRed "; }
        				var fields = [order, 20*(numRed+numBlue+numBlack), "Backpacks", 19, 12, height, orders[order].address.name,orders[order].address.thoroughfare,orders[order].address.premise,orders[order].address.city,orders[order].address.state,orders[order].address.zip,orders[order].address.country,orders[order].address.email,rubberStamp];
-       				csv+=fields.toString()+"\n";
+       				csv+=fields.toString()+"\r\n";
        			}
        		}
        		$("#main").html(csv);
+       		let csvContent = "data:text/csv;charset=utf-8,"+csv;
+       		var encodedUri = encodeURI(csvContent);
+			window.open(encodedUri);
         });
 
       } else {
