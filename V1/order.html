@@ -282,6 +282,15 @@
 						<div> <!-- class="col-lg-3"> -->
 							<h5>Shipping Info</h5>
 							<form id=addressform>
+								<div class="form-group row">
+							    <div class="col-sm-10 offset-sm-2 offset-1">
+							      <div class="form-check">
+							        <input class="form-check-input" type="checkbox" id="hwPickup" onclick="hwPickupSelected()">
+							        <label class="form-check-label" for="hwPickup">Pickup at Harvard-Westlake (Today after school in KC201)</label>
+
+							      </div>
+							    </div>
+							  </div>
 								<div class="field-wrapper form-group row">
 							      <label for="shippingName" class="col-sm-2 col-form-label">Name</label>
 							      <div class="col-sm-10">
@@ -289,7 +298,7 @@
 							      </div>
 							    </div>
 							  <div class="field-wrapper">
-							    <div class="field-wrapper form-group row">
+							    <div class="field-wrapper form-group row" id="countryWrapper">
 							      <label for="country" class="col-sm-2 col-form-label">Country</label>
 							      <div class="col-sm-10">
 								      <select id="country" style="width:100%">
@@ -298,32 +307,32 @@
 								  </div>
 							    </div>
 							  </div>
-							  <div class="field-wrapper form-group row">
+							  <div class="field-wrapper form-group row" id="thoroughfareWrapper">
 							      <label for="thoroughfare" class="col-sm-2 col-form-label">Thoroughfare</label>
 							      <div class="col-sm-10">
 							      	<input type="text" class="form-control" id="thoroughfare" />
 							      </div>
 							    </div>
-							    <div class="field-wrapper form-group row">
+							    <div class="field-wrapper form-group row" id="premiseWrapper">
 							      <label for="premise" class="col-sm-2 col-form-label">Premise</label>
 							      <div class="col-sm-10">
 							      	<input type="text" class="form-control" id="premise" />
 							      </div>
 							    </div>
 							  <div id="locality-fields">
-							    <div class="field-wrapper form-group row">
+							    <div class="field-wrapper form-group row" id="cityWrapper">
 							      <label for="city" class="col-sm-2 col-form-label">City</label>
 							      <div class="col-sm-10">
 							      	<input type="text" class="form-control" id="city" />
 							      </div>
 							    </div>
-							    <div class="field-wrapper form-group row">
+							    <div class="field-wrapper form-group row" id="stateWrapper">
 							      <label for="state" class="col-sm-2 col-form-label">Administrative Area</label>
 							      <div class="col-sm-10">
 							      	<input type="text" class="form-control" id="state" />
 							      </div>
 							    </div>
-							    <div class="field-wrapper form-group row">
+							    <div class="field-wrapper form-group row" id="zipWrapper">
 							      <label for="zip" class="col-sm-2 col-form-label">Postal Code</label>
 							      <div class="col-sm-10">
 							      	<input type="text" class="form-control" id="zip" />
@@ -363,7 +372,7 @@
 							<div class="alert alert-danger" role="alert" id="errorBox">
 							  A simple danger alert—check it out!
 							</div>
-							<a id="confirmOrderButton" role="button" onclick="confirmOrder();" class="btn btn-success">Confirm Order!</a>
+							<a id="confirmOrderButton" role="button" onclick="confirmOrder();" class="btn btn-success" style="margin-bottom:125px;">Confirm Order!</a>
 						</div>
 					</div>
 					<div class="col-lg-10 offset-lg-1 col-sm-10 offset-sm-1 col-xs-12" style="padding-top:50px;" id=loading>
@@ -550,6 +559,40 @@
 		$("#productImage"+id).attr("src","static/images/productPreview_"+color+".jpg");
 	}
 
+	function hwPickupSelected() {
+	  // Get the checkbox
+	  var checkBox = document.getElementById("hwPickup");
+
+	  // If the checkbox is checked, display the output text
+	  if (checkBox.checked == true){
+		$("#countryWrapper").hide();
+		$("#thoroughfareWrapper").hide();
+		$("#premiseWrapper").hide();
+		$("#cityWrapper").hide();
+		$("#stateWrapper").hide();
+		$("#zipWrapper").hide();
+		$("#country").val("US");
+		$("#thoroughfare").val("3700 Coldwater Canyon Ave (HW Pickup)");
+		$("#premise").val("");
+		$("#city").val("Studio City");
+		$("#state").val("CA");
+		$("#zip").val("91604");
+	  } else {
+	    $("#countryWrapper").show()
+		$("#thoroughfareWrapper").show()
+		$("#premiseWrapper").show()
+		$("#cityWrapper").show()
+		$("#stateWrapper").show()
+		$("#zipWrapper").show()
+		$("#country").val("")
+		$("#thoroughfare").val("")
+		$("#premise").val("")
+		$("#city").val("")
+		$("#state").val("")
+		$("#zip").val("")
+	  }
+	}
+
 	function colorPreferenceSelected(color,id) {
 		firebase.database().ref("/orders/"+orderID+"/cart/"+id+"/color/").set(color);
 		drawOrders();
@@ -574,7 +617,7 @@
 	}
 
     var handler = StripeCheckout.configure({
-      key: /*'pk_test_9UyR47yeAUmkpzB24WFPnUWj',*/'pk_live_S2UIZSChZKHhZ0thWSSZizAP',
+      key: 'pk_test_9UyR47yeAUmkpzB24WFPnUWj',//'pk_live_S2UIZSChZKHhZ0thWSSZizAP',
       image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
       locale: 'auto',
       token: function(token) {
