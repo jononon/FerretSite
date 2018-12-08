@@ -53,7 +53,54 @@
     }
     $('#barcode').val('');
     for (var order in orders) {
-      if(orders[order].shipments != undefined) {
+      if(order == scannedText) {
+        var outputText = "<div class='card border-success mb-3' style='width: 18rem;'><ul class='list-group list-group-flush'>";
+            if(orders[order].address != undefined) {
+              outputText += "<li class='list-group-item'>"+orders[order].address.name+"<br>"+orders[order].address.thoroughfare+"<br>"+orders[order].address.premise+"<br>"+orders[order].address.city+", "+ orders[order].address.state+", "+orders[order].address.zip+"<br>"+orders[order].address.country+"</li>";
+            } else {
+              outputText += "<li class='list-group-item'>Address Error</li>";
+            }
+
+            if(orders[order].cart != undefined) {
+              outputText += "<li class='list-group-item'>";
+              for(var item in orders[order].cart) {
+              
+              if (orders[order].cart[item].productID != "KS_STICKER") {
+
+                if(orders[order].cart[item].color == undefined) {
+            outputText+="<div style=color:grey;>"+orders[order].cart[item].productID+"</div>";
+                } else {
+                  outputText+="<div style=color:"+orders[order].cart[item].color+";>"+orders[order].cart[item].productID+"</div>";
+                }
+              } else {
+                outputText+="<div>"+orders[order].cart[item].productID+"</div>";
+              }
+            }
+
+              outputText +="</li>";
+            }
+
+            outputText += "<li class='list-group-item'>"+orders[order].status+"</li></ul></div>";
+            $("#main").html(outputText);
+
+            var inLA = false;
+            for (var i =0; i<laZIPs.length; i++) {
+              if(orders[order].address.zip == laZIPs[i]) {
+                inLA = true;
+                $("#main").append("<div class='alert alert-danger' role='alert'>LA Zip!</div>");
+              }
+            }
+            // if(!inLA) {
+              firebase.database().ref('/orders/' + order + "/status/").set("delivered", function(error) {
+                if (error) {
+                  $("#main").append("<div class='alert alert-danger' role='alert'>Failed to set status to shipped2!</div>");
+                } else {
+                  $("#main").append("<div class='alert alert-success' role='alert'>Set status to shipped2!</div>");
+                }
+              });
+            // }
+      }
+      else if(orders[order].shipments != undefined) {
         for(var shipment in orders[order].shipments) {
           if(orders[order].shipments[shipment].tracking == scannedText) {
             var outputText = "<div class='card border-success mb-3' style='width: 18rem;'><ul class='list-group list-group-flush'>";
@@ -92,15 +139,15 @@
                 $("#main").append("<div class='alert alert-danger' role='alert'>LA Zip!</div>");
               }
             }
-            if(!inLA) {
-              firebase.database().ref('/orders/' + order + "/status/").set("shipped2", function(error) {
+            // if(!inLA) {
+              firebase.database().ref('/orders/' + order + "/status/").set("delivered", function(error) {
                 if (error) {
                   $("#main").append("<div class='alert alert-danger' role='alert'>Failed to set status to shipped2!</div>");
                 } else {
                   $("#main").append("<div class='alert alert-success' role='alert'>Set status to shipped2!</div>");
                 }
               });
-            }
+            // }
           }
         }
       }
