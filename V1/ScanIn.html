@@ -93,9 +93,9 @@
             // if(!inLA) {
               firebase.database().ref('/orders/' + order + "/status/").set("delivered", function(error) {
                 if (error) {
-                  $("#main").append("<div class='alert alert-danger' role='alert'>Failed to set status to shipped2!</div>");
+                  $("#main").append("<div class='alert alert-danger' role='alert'>Failed to set status to delivered!</div>");
                 } else {
-                  $("#main").append("<div class='alert alert-success' role='alert'>Set status to shipped2!</div>");
+                  $("#main").append("<div class='alert alert-success' role='alert'>Set status to delivered!</div>");
                 }
               });
             // }
@@ -142,9 +142,9 @@
             // if(!inLA) {
               firebase.database().ref('/orders/' + order + "/status/").set("delivered", function(error) {
                 if (error) {
-                  $("#main").append("<div class='alert alert-danger' role='alert'>Failed to set status to shipped2!</div>");
+                  $("#main").append("<div class='alert alert-danger' role='alert'>Failed to set status to delivered!</div>");
                 } else {
-                  $("#main").append("<div class='alert alert-success' role='alert'>Set status to shipped2!</div>");
+                  $("#main").append("<div class='alert alert-success' role='alert'>Set status to delivered!</div>");
                 }
               });
             // }
