@@ -125,6 +125,8 @@
           for(var order in orders) {
           	if(orders[order].status == "confirmed") {
           		orderHTML+="<tr class='table-success'>";
+          	} else if(orders[order].status == "delivered") {
+          		orderHTML+="<tr class='table-secondary'>";
           	} else if(orders[order].status == undefined) {
           		orderHTML+="<tr class='table-danger'>";
           	} else if(orders[order].status == "generated") {
