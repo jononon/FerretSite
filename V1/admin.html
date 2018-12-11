@@ -71,6 +71,33 @@
 		});
 	}
 
+	function USPSTracking(trackingNumbers) {
+		var func = firebase.functions().httpsCallable('USPSTrackingRequest')
+		func({numbers:trackingNumbers}).then(function(result) {
+			// console.log(result);
+			var arr = result.data.TrackResponse.TrackInfo;
+			for (var i = 0; i < arr.length; i++) {
+				var str = ""+arr[i].Status[0];
+				if(arr[i].ExpectedDeliveryDate != undefined) {
+					str+= ", Expected "+arr[i].ExpectedDeliveryDate[0];
+				}
+				$("#track_"+arr[i].ds.ID).html(str);
+				if(arr[i].StatusCategory[0] == "Delivered") {
+					var func = firebase.functions().httpsCallable('USPSmarkAsDelivered')
+					func({trackingNumber:arr[i].ds.ID});
+				}
+			}
+		});
+	}
+
+	var didGetTracking = false;
+	function tracking(trackingNumbers) {
+		while(trackingNumbers.length) {
+		    USPSTracking(trackingNumbers.splice(0,10));
+		}
+		didGetTracking = true;
+	}
+
 	function markAsShipped(order) {
 		firebase.database().ref('/orders/'+order+'/status/').set("shipped");
 	}
@@ -87,13 +114,16 @@
         var providerData = user.providerData;
 
         var invoiceRef = firebase.database().ref('/orders/');
+
         invoiceRef.on('value', function(snapshot) {
+        	var trackingNumbers = [];
         var orderHTML = "<table class='table'><thead><tr><th scope='col'>Order ID</th><th scope='col'>Status</th><th scope='col'>Address</th><th scope='col'>Country</th><th scope='col'>Email</th><th scope='col'>Cart</th><th scope='col'>Action</th></tr></thead><tbody>";
           var orders = snapshot.val();
           var blueBags = 0;
           var redBags = 0;
           var blackBags = 0;
           var unconfirmedBags = 0;
+          
 
           var parcelSelect1Lb = [6.55,6.55,7.00,7.10,7.19,7.34,7.49,7.75,7.75];
           for(var order in orders) {
@@ -117,7 +147,8 @@
           	orderHTML+="<td>";
           	if(orders[order].shipments != undefined) {
           		for(var shipment in orders[order].shipments) {
-      				orderHTML+="<div><a href=https://tools.usps.com/go/TrackConfirmAction?tLabels="+orders[order].shipments[shipment].tracking+">"+orders[order].shipments[shipment].tracking+"</a></div>";
+      				orderHTML+="<div><a href=https://tools.usps.com/go/TrackConfirmAction?tLabels="+orders[order].shipments[shipment].tracking+">"+orders[order].shipments[shipment].tracking+"</a></div><div id='track_"+orders[order].shipments[shipment].tracking+"'></div>";
+      				trackingNumbers.push(orders[order].shipments[shipment].tracking);
       			}
           	} else if(orders[order].address != undefined) {
 	          	if(orders[order].shipping == undefined) {
@@ -197,6 +228,9 @@
           	orderHTML+="</td><td><div class='btn-group'><a onclick=\"markAsShipped('"+order+"')\" role='button' class='btn btn-secondary'>Set As Shipped</a><button type='button' class='btn btn-secondary dropdown-toggle dropdown-toggle-split' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><span class='sr-only'>Toggle Dropdown</span></button><div class='dropdown-menu'><a class='dropdown-item' href='#'>Action</a><a class='dropdown-item' href='#'>Another action</a><a class='dropdown-item' href='#'>Something else here</a><div class='dropdown-divider'></div><a class='dropdown-item' href='#'>Separated link</a></div></div></td></tr>";
           }
           $("#output").html(orderHTML+"</tbody></table>");
+          if(!didGetTracking) {
+          		tracking(trackingNumbers);
+          }
           var total = blueBags+redBags+blackBags;
           $("#stats").html("<p>Red bags: "+redBags+" ("+Math.round(redBags/total*100)+"%)</p><p>Blue bags: "+blueBags+" ("+Math.round(blueBags/total*100)+"%)</p><p>Black bags: "+blackBags+" ("+Math.round(blackBags/total*100)+"%)</p><p>Unconfirmed bags: "+unconfirmedBags+"</p><p>Confirmed bags: "+total+"</p><p>total bags: "+(unconfirmedBags+total)+"</p>");
           var ctx = $("#myChart");
