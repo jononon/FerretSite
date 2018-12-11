@@ -82,20 +82,16 @@
 					str+= ", Expected "+arr[i].ExpectedDeliveryDate[0];
 				}
 				$("#track_"+arr[i].ds.ID).html(str);
-				if(arr[i].StatusCategory[0] == "Delivered") {
-					var func = firebase.functions().httpsCallable('USPSmarkAsDelivered')
-					func({trackingNumber:arr[i].ds.ID});
-				}
 			}
 		});
 	}
 
 	var didGetTracking = false;
 	function tracking(trackingNumbers) {
+		didGetTracking = true;
 		while(trackingNumbers.length) {
 		    USPSTracking(trackingNumbers.splice(0,10));
 		}
-		didGetTracking = true;
 	}
 
 	function markAsShipped(order) {
