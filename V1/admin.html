@@ -71,24 +71,29 @@
 		});
 	}
 
+	var didGetTracking = false;
+	var statuses = {};
+
 	function USPSTracking(trackingNumbers) {
 		var func = firebase.functions().httpsCallable('USPSTrackingRequest')
 		func({numbers:trackingNumbers}).then(function(result) {
 			// console.log(result);
 			var arr = result.data.TrackResponse.TrackInfo;
 			for (var i = 0; i < arr.length; i++) {
-				var str = ""+arr[i].Status[0];
+				var str = "<a href=\"#\" id=\"tooltip_"+arr[i].ds.ID+"\" data-toggle=\"tooltip\" data-placement=\"right\" title=\""+arr[i].StatusSummary[0]+"\">"+arr[i].Status[0]+" "+arr[i].TrackSummary[0].EventCity[0]+"</a>";
 				if(arr[i].ExpectedDeliveryDate != undefined) {
 					str+= ", Expected "+arr[i].ExpectedDeliveryDate[0];
 				}
 				$("#track_"+arr[i].ds.ID).html(str);
+				$("#tooltip_"+arr[i].ds.ID).tooltip();
+				statuses[arr[i].ds.ID] = arr[i];
 			}
 		});
 	}
 
-	var didGetTracking = false;
 	function tracking(trackingNumbers) {
 		didGetTracking = true;
+		statuses = {};
 		while(trackingNumbers.length) {
 		    USPSTracking(trackingNumbers.splice(0,10));
 		}
@@ -145,7 +150,15 @@
           	orderHTML+="<td>";
           	if(orders[order].shipments != undefined) {
           		for(var shipment in orders[order].shipments) {
-      				orderHTML+="<div><a href=https://tools.usps.com/go/TrackConfirmAction?tLabels="+orders[order].shipments[shipment].tracking+">"+orders[order].shipments[shipment].tracking+"</a></div><div id='track_"+orders[order].shipments[shipment].tracking+"'></div>";
+      				orderHTML+="<div><a href=https://tools.usps.com/go/TrackConfirmAction?tLabels="+orders[order].shipments[shipment].tracking+">"+orders[order].shipments[shipment].tracking+"</a></div><div id='track_"+orders[order].shipments[shipment].tracking+"'>";
+      				if(statuses[orders[order].shipments[shipment].tracking] != undefined) {
+      					var obj = statuses[orders[order].shipments[shipment].tracking];
+      					orderHTML+= "<a href=\"#\" id=\"tooltip_"+obj.ds.ID+"\" data-toggle=\"tooltip\" data-placement=\"right\" title=\""+obj.StatusSummary[0]+"\">"+obj.Status[0]+" "+obj.TrackSummary[0].EventCity[0]+"</a>";
+      					if(obj.ExpectedDeliveryDate != undefined) {
+							orderHTML+= ", Expected "+obj.ExpectedDeliveryDate[0];
+						}
+      				}
+      				orderHTML+="</div>";
       				trackingNumbers.push(orders[order].shipments[shipment].tracking);
       			}
           	} else if(orders[order].address != undefined) {
