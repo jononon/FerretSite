@@ -495,9 +495,9 @@
     		$("#creditDesc").hide();
     	}
 
-		$("#subtotal").html("Subtotal: $"+cartPrice+".00");
-		$("#shipping").html("Shipping: $"+shipping+".00");
-		$("#credit").html("Kickstarter Credit: $"+leftoverCredit+".00")
+		$("#subtotal").html("Subtotal: $"+cartPrice);
+		$("#shipping").html("Shipping: $"+shipping);
+		$("#credit").html("Kickstarter Credit: $"+leftoverCredit)
 		if(shipping+cartPrice-leftoverCredit<0) {
 			total = 0;
 		} else {
@@ -527,7 +527,7 @@
 			cartPrice = 0;
 			hiddenPrice = 0;
 			for(var i in cart) {
-				var price = (products[cart[i].productID].price==0)?"Already Purchased":("$"+products[cart[i].productID].price+".00");
+				var price = (products[cart[i].productID].price==0)?"Already Purchased":("$"+products[cart[i].productID].price);
 				cartPrice += products[cart[i].productID].price;
 				if(products[cart[i].productID].ksValue != undefined) {
 					hiddenPrice += products[cart[i].productID].ksValue;
