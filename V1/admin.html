@@ -103,6 +103,23 @@
 		firebase.database().ref('/orders/'+order+'/status/').set("shipped");
 	}
 
+	function markAsDelivered(order) {
+		firebase.database().ref('/orders/'+order+'/status/').set("delivered");
+	}
+
+	function addTrackingNumber(order){
+		var trackingNumber = prompt("Please enter the Tracking Number:");
+		if (trackingNumber == null || trackingNumber == "") {
+		    return;
+		} else {
+			firebase.database().ref('/orders/'+order+'/shipments/').push({
+				tracking: trackingNumber,
+				courrier: "USPS"
+			});
+			markAsShipped(order);
+		}
+	}
+
 	firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         // User is signed in.
@@ -236,7 +253,7 @@
           	numBagsArr.push(numBags);
           	countriesArr.push(orders[order].address==undefined?"UNDEF":orders[order].address.country);
           	// orderHTML+="</td><td><div class='btn-group'><a href='mailto:"+email+"' role='button' class='btn btn-secondary'>Email</a><button type='button' class='btn btn-secondary dropdown-toggle dropdown-toggle-split' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><span class='sr-only'>Toggle Dropdown</span></button><div class='dropdown-menu'><a class='dropdown-item' href='#'>Action</a><a class='dropdown-item' href='#'>Another action</a><a class='dropdown-item' href='#'>Something else here</a><div class='dropdown-divider'></div><a class='dropdown-item' href='#'>Separated link</a></div></div></td></tr>";
-          	orderHTML+="</td><td><div class='btn-group'><a onclick=\"markAsShipped('"+order+"')\" role='button' class='btn btn-secondary'>Set As Shipped</a><button type='button' class='btn btn-secondary dropdown-toggle dropdown-toggle-split' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><span class='sr-only'>Toggle Dropdown</span></button><div class='dropdown-menu'><a class='dropdown-item' href='#'>Action</a><a class='dropdown-item' href='#'>Another action</a><a class='dropdown-item' href='#'>Something else here</a><div class='dropdown-divider'></div><a class='dropdown-item' href='#'>Separated link</a></div></div></td></tr>";
+          	orderHTML+="</td><td><div class='btn-group'><a onclick=\"markAsShipped('"+order+"')\" role='button' class='btn btn-secondary'>Set As Shipped</a><button type='button' class='btn btn-secondary dropdown-toggle dropdown-toggle-split' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><span class='sr-only'>Toggle Dropdown</span></button><div class='dropdown-menu'><a class='dropdown-item' onclick=\"addTrackingNumber('"+order+"')\">Add Tracking Number</a><a class='dropdown-item' onclick=\"markAsDelivered('"+order+"')\">Mark as Delivered</a><a class='dropdown-item' href='#'>Something else here</a><div class='dropdown-divider'></div><a class='dropdown-item' href='#'>Separated link</a></div></div></td></tr>";
           }
           $("#output").html(orderHTML+"</tbody></table>");
           if(!didGetTracking) {
