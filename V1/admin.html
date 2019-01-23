@@ -13,7 +13,7 @@
 </head>
 <body>
 	<div class=container-fluid>
-		<form>
+		<!-- <form>
 		  <div class="form-group">
 		    <label for="exampleFormControlFile1">Update CSV</label>
 		    <input id="fileInput" type="file" class="form-control-file" id="exampleFormControlFile1" accept=".csv" multiple>
@@ -22,7 +22,9 @@
 		    <label for="json">Product ID</label>
 		    <textarea class="form-control" id="productID" rows="1"></textarea>
 		  </div>
-		</form>
+		</form> -->
+		<div id=progress>
+		</div>
 		<div id=output>
 		</div>
 		<div id=stats>
@@ -141,19 +143,33 @@
           var redBags = 0;
           var blackBags = 0;
           var unconfirmedBags = 0;
+
+          var numConfirmed = 0;
+          var numDelivered = 0;
+          var numGenerated = 0;
+          var numShipped = 0;
+          var numUndefined = 0;
           
 
           var parcelSelect1Lb = [6.55,6.55,7.00,7.10,7.19,7.34,7.49,7.75,7.75];
           for(var order in orders) {
           	if(orders[order].status == "confirmed") {
+          		numConfirmed++;
           		orderHTML+="<tr class='table-success'>";
           	} else if(orders[order].status == "delivered") {
+          		numDelivered++;
           		orderHTML+="<tr class='table-secondary'>";
           	} else if(orders[order].status == undefined) {
+          		numUndefined++;
           		orderHTML+="<tr class='table-danger'>";
           	} else if(orders[order].status == "generated") {
+          		numGenerated++;
           		orderHTML+="<tr class='table-warning'>";
-          	} else {
+          	} else if(orders[order].status == "shipped") {
+          		numShipped++;
+          		orderHTML+="<tr class='table-info'>";
+          	}
+          	  else {
           		orderHTML+="<tr class='table-info'>";
           	}
           	
@@ -256,6 +272,11 @@
           	orderHTML+="</td><td><div class='btn-group'><a onclick=\"markAsShipped('"+order+"')\" role='button' class='btn btn-secondary'>Set As Shipped</a><button type='button' class='btn btn-secondary dropdown-toggle dropdown-toggle-split' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><span class='sr-only'>Toggle Dropdown</span></button><div class='dropdown-menu'><a class='dropdown-item' onclick=\"addTrackingNumber('"+order+"')\">Add Tracking Number</a><a class='dropdown-item' onclick=\"markAsDelivered('"+order+"')\">Mark as Delivered</a><a class='dropdown-item' href='#'>Something else here</a><div class='dropdown-divider'></div><a class='dropdown-item' href='#'>Separated link</a></div></div></td></tr>";
           }
           $("#output").html(orderHTML+"</tbody></table>");
+
+          var totalBags = numConfirmed+numDelivered+numGenerated+numShipped+numUndefined;
+          // $("#progress").html("<div class='progress' style='margin-top:20px;margin-bottom:20px;'><div class='progress-bar bg-info' role='progressbar' style='width: "+(numUndefined/totalBags*100)+"' aria-valuenow='"+(numUndefined/totalBags*100)+"' aria-valuemin='0' aria-valuemax='100'>Undefined: "+numUndefined+"</div><div class='progress-bar bg-info' role='progressbar' style='width: "+(numGenerated/totalBags*100)+"' aria-valuenow='"+(numGenerated/totalBags*100)+"' aria-valuemin='0' aria-valuemax='100'>Generated: "+numGenerated+"</div><div class='progress-bar bg-info' role='progressbar' style='width: "+(numConfirmed/totalBags*100)+"' aria-valuenow='"+(numConfirmed/totalBags*100)+"' aria-valuemin='0' aria-valuemax='100'>Confirmed: "+numConfirmed+"</div><div class='progress-bar bg-info' role='progressbar' style='width: "+(numShipped/totalBags*100)+"' aria-valuenow='"+(numShipped/totalBags*100)+"' aria-valuemin='0' aria-valuemax='100'>Shipped: "+numShipped+"</div><div class='progress-bar bg-info' role='progressbar' style='width: "+(numDelivered/totalBags*100)+"' aria-valuenow='"+(numDelivered/totalBags*100)+"' aria-valuemin='0' aria-valuemax='100'>Delivered: "+numDelivered+"</div></div>");
+          $("#progress").html("<div class='progress' style='margin-top:20px;margin-bottom:20px;height: 30px;'><div class='progress-bar bg-danger' role='progressbar' style='width: 20%' aria-valuenow='"+(numUndefined/totalBags*100)+"%' aria-valuemin='0' aria-valuemax='100'>Undefined: "+numUndefined+"</div><div class='progress-bar bg-warning' role='progressbar' style='width: "+(numGenerated/totalBags*100)+"%' aria-valuenow='"+(numGenerated/totalBags*100)+"' aria-valuemin='0' aria-valuemax='100'>Generated: "+numGenerated+"</div><div class='progress-bar bg-success' role='progressbar' style='width: "+(numConfirmed/totalBags*100)+"%' aria-valuenow='"+(numConfirmed/totalBags*100)+"' aria-valuemin='0' aria-valuemax='100'>Confirmed: "+numConfirmed+"</div><div class='progress-bar bg-info' role='progressbar' style='width: "+(numShipped/totalBags*100)+"%' aria-valuenow='"+(numShipped/totalBags*100)+"' aria-valuemin='0' aria-valuemax='100'>Shipped: "+numShipped+"</div><div class='progress-bar bg-secondary' role='progressbar' style='width: "+(numDelivered/totalBags*100)+"%' aria-valuenow='"+(numDelivered/totalBags*100)+"' aria-valuemin='0' aria-valuemax='100'>Delivered: "+numDelivered+"</div></div>Total Ordered:"+(numConfirmed+numDelivered+numShipped+numUndefined));
+
           if(!didGetTracking) {
           		tracking(trackingNumbers);
           }
