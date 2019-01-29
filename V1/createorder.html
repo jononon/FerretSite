@@ -78,9 +78,5 @@
 </script>
 <script>
 	fbq('trackCustom', 'createNewOrder');
-	var addMessage = firebase.functions().httpsCallable('generateOrderId');
-	addMessage({}).then(function(result) {
-	  // Read result of the Cloud Function.
-	  window.location = "order.html?order="+result.data.key;
-	});
+	window.location = "order-new.html";
 </script>
