@@ -322,9 +322,7 @@
 				<div class="row">
 					<div class="col-lg-10 offset-lg-1 col-sm-10 offset-sm-1 col-xs-12" style="padding-top:5px;padding-bottom:5px" id=order>
 						<center><img src="static/logos/provacrownlogo.png" width=50px></img></center>
-						<div id="orderCarousel" class="carousel slide carousel-fade" data-ride="carousel">
-						  <div class="carousel-inner">
-						    <div class="carousel-item active" style="background:white;">
+						    <div id=slide1 style="background:white;">
 						    	<div style="height:150px" class="d-none d-md-block"></div>
 						        <div id=addons>
 						        	<div class='row'>
@@ -377,7 +375,7 @@
 								</div>
 								<a style="float:right" class="btn btn-outline-dark" href="#" role="button" onclick="firstSlideNextButtonPressed();">Next</a>
 						    </div>
-						    <div class="carousel-item" style="background:white;">
+						    <div id=slide2 style="background:white;display:none;">
 						    	<div style="height:50px" class="d-none d-md-block"></div>
 						      <div> <!-- class="col-lg-3"> -->
 							<h5>Shipping Info</h5>
@@ -456,7 +454,7 @@
 							    </div>
 							  </div>
 							</form>
-							<a style="float:left" class="btn btn-outline-dark" href="#orderCarousel" role="button" data-slide="prev">Previous</a>
+							<a style="float:left" class="btn btn-outline-dark" href="#" role="button" onclick="$('#slide2').fadeOut();$('#slide1').fadeIn();">Previous</a>
 							<button style="float:right" class="btn btn-outline-dark" type="button" disabled id=loadingButton>
 							  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
 							  Loading...
@@ -464,7 +462,7 @@
 							<a id=secondSlideNextButton style="float:right; display:none;" class="btn btn-outline-dark" href="#" role="button" onclick="secondSlideNextButtonPressed();">Next</a>
 						</div>
 						    </div>
-						    <div class="carousel-item" style="background:white;">
+						    <div id=slide3 style="background:white;display:none;">
 						    	<div style="height:150px" class="d-none d-md-block"></div>
 						      <div>
 								<h5>Total</h5>
@@ -473,12 +471,10 @@
 								<p id=internationalShippingWarning><small>Shipments to regions outside of the contiguous United States are subject to a shipping surcharge.</small></p>
 								<br>
 								<p id=total><b>Total: $0</b></p>
-								<a style="float:left" class="btn btn-outline-dark" href="#orderCarousel" role="button" data-slide="prev">Previous</a>
+								<a style="float:left" class="btn btn-outline-dark" href="#" role="button" onclick="$('#slide3').fadeOut();$('#slide2').fadeIn();">Previous</a>
 								<a id="confirmOrderButton" role="button" onclick="confirmOrder();" class="btn btn-success" style="margin-bottom:125px;float:right;">Confirm Order!</a>
 							</div>
-						    </div>
 						  </div>
-						</div>
 						<br>
 						
 						<div> <!-- class="col-lg-3"> -->
@@ -558,7 +554,8 @@
 		interval: false,
 		wrap: false,
 		touch: false,
-		keyboard: false
+		keyboard: false,
+		ride: false
 	})
 
 	var cartPrice = 0;
@@ -672,9 +669,10 @@
 		if(redBagsInCart <= 0 && blackBagsInCart <= 0 && blueBagsInCart <= 0) {
 			showErrorBox("Please select a color for your bag!");
 		} else {
-			$("#orderCarousel").carousel("next");
 			$("#errorBox").hide();
-			updateCart()
+			updateCart();
+			$("#slide1").fadeOut();
+			$("#slide2").fadeIn();
 		}
 	}
 
@@ -719,8 +717,9 @@
 
 		if(!errorOccured) {
 			updatePrices();
-			$("#orderCarousel").carousel("next");
 			$("#errorBox").hide();
+			$("#slide2").fadeOut();
+			$("#slide3").fadeIn();
 		}
 	}
 
