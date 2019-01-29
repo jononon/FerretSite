@@ -58,7 +58,7 @@
 	        a.appendChild(r);
 	    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
 	</script>
-	
+	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<script src="static/js/jquery-3.1.0.min.js"></script>
 	<script src="static/js/bootstrap.bundle.min.js"></script>
@@ -172,12 +172,6 @@
 		width:100%;
 		display: none;
 		color:white;
-	}
-
-	#home {
-		position: fixed;
-		height:100%;
-		width:100%;
 	}
 
 	#emailForm {
@@ -315,9 +309,10 @@
 
 </style>
 <body id=body>
-	<div id=home style="color:black;">
+	<div style="color:black;">
 		<!--UNADJUSTEDNONRAW_thumb_9ab-->
-		<div id=main style="height:100%;width:100%;overflow-y: scroll;padding-bottom: 50px;display:none;">
+		<div id=main style=";padding-bottom: 100px;display:none;">
+			<div class="alert alert-danger" role="alert" id="errorBox" style="display:none;"></div>
 			<div class=container-fluid>
 				<div class="row">
 					<div class="col-lg-10 offset-lg-1 col-sm-10 offset-sm-1 col-xs-12" style="padding-top:5px;padding-bottom:5px" id=order>
@@ -476,11 +471,6 @@
 							</div>
 						  </div>
 						<br>
-						
-						<div> <!-- class="col-lg-3"> -->
-							<div class="alert alert-danger" role="alert" id="errorBox"></div>
-							
-						</div>
 					</div>
 					<div class="col-lg-10 offset-lg-1 col-sm-10 offset-sm-1 col-xs-12" style="padding-top:50px;display:none;" id=loading>
 						<img src="static/logos/provafulllogo.png" width=300px></img>
