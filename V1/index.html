@@ -626,7 +626,8 @@
 	  return results == null ? null : results[1] || true;
 	}
 
-	$(document).ready(function () {
+	$(window).on('load',function () {
+
 		$("#video-contain").html("<video playsinline autoplay muted loop preload='none' id='video-background' height=100% width=100% oncanplaythrough=\"$('#static-background').fadeOut();\"><source src='static/images/websitebackground.mp4' type='video/mp4'><source src='static/images/websitebackground.webm' type='video/webm'></video>");
 
 		$("#UNADJUSTEDNONRAW_thumb_9c0").attr("src","static/images/UNADJUSTEDNONRAW_thumb_9c0.jpg");

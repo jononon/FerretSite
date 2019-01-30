@@ -312,11 +312,11 @@
 	<div style="color:black;">
 		<!--UNADJUSTEDNONRAW_thumb_9ab-->
 		<div id=main style=";padding-bottom: 100px;display:none;">
-			<div class="alert alert-danger" role="alert" id="errorBox" style="display:none;"></div>
 			<div class=container-fluid>
 				<div class="row">
 					<div class="col-lg-10 offset-lg-1 col-sm-10 offset-sm-1 col-xs-12" style="padding-top:5px;padding-bottom:5px" id=order>
 						<center style="padding-bottom:5px;"><a href=index.html><img src="static/logos/provacrownlogo.png" width=50px></img></a></center>
+						<div class="alert alert-danger" role="alert" id="errorBox" style="display:none;"></div>
 						    <div id=slide1 style="background:white;">
 						    	<div style="height:150px" class="d-none d-md-block"></div>
 						        <div id=addons>
@@ -466,7 +466,7 @@
 								<p id=internationalShippingWarning><small>Shipments to regions outside of the contiguous United States are subject to a shipping surcharge.</small></p>
 								<br>
 								<p id=total><b>Total: $0</b></p>
-								<a style="float:left" class="btn btn-outline-dark" href="#" role="button" onclick="$('#slide3').fadeOut();$('#slide2').fadeIn();">Previous</a>
+								<a style="float:left" class="btn btn-outline-dark" href="#" role="button" onclick="secondSlidePreviousButtonPressed()">Previous</a>
 								<a id="confirmOrderButton" role="button" onclick="confirmOrder();" class="btn btn-success" style="margin-bottom:125px;float:right;">Confirm Order!</a>
 							</div>
 						  </div>
@@ -664,6 +664,13 @@
 			$("#slide1").fadeOut();
 			$("#slide2").fadeIn();
 		}
+	}
+
+	function secondSlidePreviousButtonPressed() {
+		$('#errorBox').html("");
+		$("#errorBox").hide();
+		$('#slide3').fadeOut();
+		$('#slide2').fadeIn();
 	}
 
 	function secondSlideNextButtonPressed() {
