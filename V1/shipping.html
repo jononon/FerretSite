@@ -97,7 +97,9 @@
         invoiceRef.once('value').then(function(snapshot) {
         	var orders = snapshot.val()
        		for(var order in orders) {
+       			// if(orders[order].status == "shipped" || orders[order].status == "shipped2") {
        			if(orders[order].status == "confirmed") {
+
        				var numBlue = 0;
        				var numRed = 0;
        				var numBlack = 0;
@@ -119,16 +121,16 @@
        				if(numRed>0) { rubberStamp+= ""+numRed+"xRed "; }
        				var weight = 2*16*(numBlue+numBlack+numRed)
        				// var fields = [order, 20*(numRed+numBlue+numBlack), "Backpacks", 19, 12, height, weight, orders[order].address.name,orders[order].address.thoroughfare,orders[order].address.premise,orders[order].address.city,orders[order].address.state,orders[order].address.zip,orders[order].address.country,orders[order].address.email,rubberStamp];
-       				var fields = [order, 20*(numRed+numBlue+numBlack),orders[order].address.name,orders[order].address.name,orders[order].address.thoroughfare,orders[order].address.premise,orders[order].address.state,orders[order].address.city,orders[order].address.zip,orders[order].address.country,orders[order].address.email, weight, 19, 12, height, rubberStamp, rubberStamp];
+       				var fields = [order.replace(/-/g, ''), 20*(numRed+numBlue+numBlack),orders[order].address.name,orders[order].address.name,orders[order].address.thoroughfare,orders[order].address.premise,orders[order].address.state,orders[order].address.city,orders[order].address.zip,orders[order].address.country,orders[order].address.email, weight, 19, 12, height, rubberStamp, rubberStamp];
 
-       				var inLA = false;
-       				for (var i =0; i<laZIPs.length; i++) {
-       					if(orders[order].address.zip == laZIPs[i]) {
+       				// var inLA = false;
+       				// for (var i =0; i<laZIPs.length; i++) {
+       				// 	if(orders[order].address.zip == laZIPs[i]) {
        						// console.log(zip);
        						csv+="\""+fields.join("\",\"")+"\"\r\n";
        						// inLA = true;
-       					}
-       				}
+       				// 	}
+       				// }
        				// if(!inLA) {
        					
        				// }

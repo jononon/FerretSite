@@ -561,6 +561,7 @@
 			generateOrderId({}).then(function(result) {
 			  // Read result of the Cloud Function.
 			  orderID = result.data.key;
+			  fbq('trackCustom', 'createNewOrder');
 			  $("#orderNumber").html("You will receive an email confirming your order shortly. Your order number is "+orderID);
 			  $("#loadingButton").hide();
 			  $("#secondSlideNextButton").show();
