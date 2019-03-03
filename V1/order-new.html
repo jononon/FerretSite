@@ -652,6 +652,7 @@
 	}
 
 	function firstSlideNextButtonPressed() {
+		fbq('track', 'advanceToAddress');
 		$("#errorBox").html("");
 		if(redBagsInCart <= 0 && blackBagsInCart <= 0 && blueBagsInCart <= 0) {
 			showErrorBox("Please select a color for your bag!");
@@ -671,6 +672,7 @@
 	}
 
 	function secondSlideNextButtonPressed() {
+		fbq('track', 'advanceToPayment');
 		$("#errorBox").html("");
 		var errorOccured = false
 
@@ -756,6 +758,7 @@
 	}
 
 	function confirmOrder() {
+  		fbq('track', 'AddPaymentInfo');
 		var errorOccured = false;
 		$("#errorBox").hide();
 		$("#errorBox").html("");
