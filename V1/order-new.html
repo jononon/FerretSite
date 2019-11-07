@@ -364,6 +364,7 @@ snaptr('track', 'PAGE_VIEW');
 													    <button class='right red' onclick="modifyCart('red',1);">+</button>
 													  </div>
 													</div>
+													<p><small>Only two reds left!</small></p>
 							        			</div>
 							        			<div class=col-4>
 							        				<center>
@@ -554,6 +555,8 @@ snaptr('track', 'PAGE_VIEW');
 		if(redBagsInCart <0) { redBagsInCart = 0; }
 		if(blackBagsInCart <0) { blackBagsInCart = 0; }
 		if(blueBagsInCart <0) { blueBagsInCart = 0; }
+
+		if(redBagsInCart > 2) { redBagsInCart = 2; }
 
 		$("#redQuantity").html(redBagsInCart);
 		$("#blueQuantity").html(blueBagsInCart);
