@@ -97,6 +97,24 @@ snaptr('track', 'PAGE_VIEW');
 	<link rel="icon" href="static/logos/favicon.ico" type="image/x-icon">
 	<title>Prova Design</title>
 	<meta name="description" content="Prova Design strives to make incredible products for students, by students. We're excited to launch our first product, Series One: the best backpack in the world for students">
+
+	<!-- Facebook Pixel Code -->
+	<script>
+	  !function(f,b,e,v,n,t,s)
+	  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+	  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+	  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+	  n.queue=[];t=b.createElement(e);t.async=!0;
+	  t.src=v;s=b.getElementsByTagName(e)[0];
+	  s.parentNode.insertBefore(t,s)}(window, document,'script',
+	  'https://connect.facebook.net/en_US/fbevents.js');
+	  fbq('init', '180828266470943');
+	  fbq('track', 'PageView');
+	</script>
+	<noscript><img height="1" width="1" style="display:none"
+	  src="https://www.facebook.com/tr?id=180828266470943&ev=PageView&noscript=1"
+	/></noscript>
+	<!-- End Facebook Pixel Code -->
 </head>
 <style type="text/css">
 
@@ -352,8 +370,8 @@ snaptr('track', 'PAGE_VIEW');
 						        		<div class='col-md-6 col-12'>
 						        			<h3 class='mt-0' id=productTitle></h3>
 						        			<h6 id=productDescription></h6>
-						        			<h5 id=productPrice></h5>
-						        			<h6>Select Colors<br><small>Use the plus/minus buttons to select quantities.</small></h6>
+						        			<h5><span id=dollar>$</span><span id=productPrice></span></h5>
+						        			<h6 id=selectColors>Select Colors<br><small>Use the plus/minus buttons to select quantities.</small></h6>
 							        		<div class=row>
 							        			<div class=col-4>
 							        				<div>
@@ -364,7 +382,7 @@ snaptr('track', 'PAGE_VIEW');
 													    <button class='right red' onclick="modifyCart('red',1);">+</button>
 													  </div>
 													</div>
-													<p><small>Only two reds left!</small></p>
+													<p><small id=redLeft>Only two reds left!</small></p>
 							        			</div>
 							        			<div class=col-4>
 							        				<center>
@@ -390,15 +408,16 @@ snaptr('track', 'PAGE_VIEW');
 							        			</div>
 							        		</div>
 							        		<small id='bulkmessage' class='form-text text-muted'>Ordering in bulk? Reach out to us at <a href='mailto:bulk@provadesign'>bulk@provadesign.com</a> to place your order.</small>
+							        		<br>
 							        	</div>
 						        	</div>
 								</div>
-								<a style="float:right" class="btn btn-outline-dark" href="#" role="button" onclick="firstSlideNextButtonPressed();">Next</a>
+								<a id="nextPage" style="float:right" class="btn btn-outline-dark" href="#" role="button" onclick="firstSlideNextButtonPressed();">Next</a>
 						    </div>
 						    <div id=slide2 style="background:white;display:none;">
 						    	<div style="height:50px" class="d-none d-md-block"></div>
 						      <div> <!-- class="col-lg-3"> -->
-							<h5>Shipping Info</h5>
+							<h5 id="shippingInfo">Shipping Info</h5>
 							<form id=addressform>
 								<!-- <div class="form-group row">
 							    <div class="col-sm-10 offset-sm-2 offset-1">
@@ -410,55 +429,55 @@ snaptr('track', 'PAGE_VIEW');
 							    </div>
 							  </div> -->
 								<div class="field-wrapper form-group row">
-							      <label for="shippingName" class="col-sm-2 col-form-label">Name</label>
+							      <label id="shippingNameLabel" for="shippingName" class="col-sm-2 col-form-label">Name</label>
 							      <div class="col-sm-10">
 							      	<input type="text" class="form-control" id="shippingName" />
 							      </div>
 							    </div>
 							  <div class="field-wrapper">
 							    <div class="field-wrapper form-group row" id="countryWrapper">
-							      <label for="country" class="col-sm-2 col-form-label">Country</label>
+							      <label id="shippingCountryLabel" for="country" class="col-sm-2 col-form-label">Country</label>
 							      <div class="col-sm-10">
 								      <select id="country" style="width:100%">
-								      	<option value="AF">Afghanistan</option><option value="AX">Aland Islands</option><option value="AL">Albania</option><option value="DZ">Algeria</option><option value="AS">American Samoa</option><option value="AD">Andorra</option><option value="AO">Angola</option><option value="AI">Anguilla</option><option value="AQ">Antarctica</option><option value="AG">Antigua and Barbuda</option><option value="AR">Argentina</option><option value="AM">Armenia</option><option value="AW">Aruba</option><option value="AU">Australia</option><option value="AT">Austria</option><option value="AZ">Azerbaijan</option><option value="BS">Bahamas</option><option value="BH">Bahrain</option><option value="BD">Bangladesh</option><option value="BB">Barbados</option><option value="BY">Belarus</option><option value="BE">Belgium</option><option value="BZ">Belize</option><option value="BJ">Benin</option><option value="BM">Bermuda</option><option value="BT">Bhutan</option><option value="BO">Bolivia</option><option value="BA">Bosnia and Herzegovina</option><option value="BW">Botswana</option><option value="BV">Bouvet Island</option><option value="BR">Brazil</option><option value="IO">British Indian Ocean Territory</option><option value="VG">British Virgin Islands</option><option value="BN">Brunei</option><option value="BG">Bulgaria</option><option value="BF">Burkina Faso</option><option value="BI">Burundi</option><option value="KH">Cambodia</option><option value="CM">Cameroon</option><option value="CA">Canada</option><option value="CV">Cape Verde</option><option value="KY">Cayman Islands</option><option value="CF">Central African Republic</option><option value="TD">Chad</option><option value="CL">Chile</option><option value="CN">China</option><option value="CX">Christmas Island</option><option value="CC">Cocos (Keeling) Islands</option><option value="CO">Colombia</option><option value="KM">Comoros</option><option value="CG">Congo (Brazzaville)</option><option value="CD">Congo (Kinshasa)</option><option value="CK">Cook Islands</option><option value="CR">Costa Rica</option><option value="CU">Cuba</option><option value="HR">Croatia</option><option value="CW">CuraÁao</option><option value="CY">Cyprus</option><option value="CZ">Czech Republic</option><option value="DK">Denmark</option><option value="DJ">Djibouti</option><option value="DM">Dominica</option><option value="DO">Dominican Republic</option><option value="EC">Ecuador</option><option value="EG">Egypt</option><option value="SV">El Salvador</option><option value="GQ">Equatorial Guinea</option><option value="ER">Eritrea</option><option value="EE">Estonia</option><option value="ET">Ethiopia</option><option value="FK">Falkland Islands</option><option value="FO">Faroe Islands</option><option value="FJ">Fiji</option><option value="FI">Finland</option><option value="FR">France</option><option value="GF">French Guiana</option><option value="PF">French Polynesia</option><option value="TF">French Southern Territories</option><option value="GA">Gabon</option><option value="GM">Gambia</option><option value="GE">Georgia</option><option value="DE">Germany</option><option value="GH">Ghana</option><option value="GI">Gibraltar</option><option value="GR">Greece</option><option value="GL">Greenland</option><option value="GD">Grenada</option><option value="GP">Guadeloupe</option><option value="GU">Guam</option><option value="GT">Guatemala</option><option value="GG">Guernsey</option><option value="GN">Guinea</option><option value="GW">Guinea-Bissau</option><option value="GY">Guyana</option><option value="HT">Haiti</option><option value="HM">Heard Island and McDonald Islands</option><option value="HN">Honduras</option><option value="HK">Hong Kong S.A.R., China</option><option value="HU">Hungary</option><option value="IS">Iceland</option><option value="IN">India</option><option value="ID">Indonesia</option><option value="IR">Iran</option><option value="IQ">Iraq</option><option value="IE">Ireland</option><option value="IM">Isle of Man</option><option value="IL">Israel</option><option value="IT">Italy</option><option value="CI">Ivory Coast</option><option value="JM">Jamaica</option><option value="JP">Japan</option><option value="JE">Jersey</option><option value="JO">Jordan</option><option value="KZ">Kazakhstan</option><option value="KE">Kenya</option><option value="KI">Kiribati</option><option value="KW">Kuwait</option><option value="KG">Kyrgyzstan</option><option value="LA">Laos</option><option value="LV">Latvia</option><option value="LB">Lebanon</option><option value="LS">Lesotho</option><option value="LR">Liberia</option><option value="LY">Libya</option><option value="LI">Liechtenstein</option><option value="LT">Lithuania</option><option value="LU">Luxembourg</option><option value="MO">Macao S.A.R., China</option><option value="MK">Macedonia</option><option value="MG">Madagascar</option><option value="MW">Malawi</option><option value="MY">Malaysia</option><option value="MV">Maldives</option><option value="ML">Mali</option><option value="MT">Malta</option><option value="MH">Marshall Islands</option><option value="MQ">Martinique</option><option value="MR">Mauritania</option><option value="MU">Mauritius</option><option value="YT">Mayotte</option><option value="MX">Mexico</option><option value="FM">Micronesia</option><option value="MD">Moldova</option><option value="MC">Monaco</option><option value="MN">Mongolia</option><option value="ME">Montenegro</option><option value="MS">Montserrat</option><option value="MA">Morocco</option><option value="MZ">Mozambique</option><option value="MM">Myanmar</option><option value="NA">Namibia</option><option value="NR">Nauru</option><option value="NP">Nepal</option><option value="NL">Netherlands</option><option value="AN">Netherlands Antilles</option><option value="NC">New Caledonia</option><option value="NZ">New Zealand</option><option value="NI">Nicaragua</option><option value="NE">Niger</option><option value="NG">Nigeria</option><option value="NU">Niue</option><option value="NF">Norfolk Island</option><option value="MP">Northern Mariana Islands</option><option value="KP">North Korea</option><option value="NO">Norway</option><option value="OM">Oman</option><option value="PK">Pakistan</option><option value="PW">Palau</option><option value="PS">Palestinian Territory</option><option value="PA">Panama</option><option value="PG">Papua New Guinea</option><option value="PY">Paraguay</option><option value="PE">Peru</option><option value="PH">Philippines</option><option value="PN">Pitcairn</option><option value="PL">Poland</option><option value="PT">Portugal</option><option value="PR">Puerto Rico</option><option value="QA">Qatar</option><option value="RE">Reunion</option><option value="RO">Romania</option><option value="RU">Russia</option><option value="RW">Rwanda</option><option value="BL">Saint BarthÈlemy</option><option value="SH">Saint Helena</option><option value="KN">Saint Kitts and Nevis</option><option value="LC">Saint Lucia</option><option value="MF">Saint Martin (French part)</option><option value="PM">Saint Pierre and Miquelon</option><option value="VC">Saint Vincent and the Grenadines</option><option value="WS">Samoa</option><option value="SM">San Marino</option><option value="ST">Sao Tome and Principe</option><option value="SA">Saudi Arabia</option><option value="SN">Senegal</option><option value="RS">Serbia</option><option value="SC">Seychelles</option><option value="SL">Sierra Leone</option><option value="SG">Singapore</option><option value="SK">Slovakia</option><option value="SI">Slovenia</option><option value="SB">Solomon Islands</option><option value="SO">Somalia</option><option value="ZA">South Africa</option><option value="GS">South Georgia and the South Sandwich Islands</option><option value="KR">South Korea</option><option value="ES">Spain</option><option value="LK">Sri Lanka</option><option value="SD">Sudan</option><option value="SR">Suriname</option><option value="SJ">Svalbard and Jan Mayen</option><option value="SZ">Swaziland</option><option value="SE">Sweden</option><option value="CH">Switzerland</option><option value="SY">Syria</option><option value="TW">Taiwan</option><option value="TJ">Tajikistan</option><option value="TZ">Tanzania</option><option value="TH">Thailand</option><option value="TL">Timor-Leste</option><option value="TG">Togo</option><option value="TK">Tokelau</option><option value="TO">Tonga</option><option value="TT">Trinidad and Tobago</option><option value="TN">Tunisia</option><option value="TR">Turkey</option><option value="TM">Turkmenistan</option><option value="TC">Turks and Caicos Islands</option><option value="TV">Tuvalu</option><option value="VI">U.S. Virgin Islands</option><option value="UG">Uganda</option><option value="UA">Ukraine</option><option value="AE">United Arab Emirates</option><option value="GB">United Kingdom</option><option value="US">United States</option><option value="UM">United States Minor Outlying Islands</option><option value="UY">Uruguay</option><option value="UZ">Uzbekistan</option><option value="VU">Vanuatu</option><option value="VA">Vatican</option><option value="VE">Venezuela</option><option value="VN">Vietnam</option><option value="WF">Wallis and Futuna</option><option value="EH">Western Sahara</option><option value="YE">Yemen</option><option value="ZM">Zambia</option><option value="ZW">Zimbabwe</option>
+								      	<option value="AF">Afghanistan</option><option value="AX">Aland Islands</option><option value="AL">Albania</option><option value="DZ">Algeria</option><option value="AS">American Samoa</option><option value="AD">Andorra</option><option value="AO">Angola</option><option value="AI">Anguilla</option><option value="AQ">Antarctica</option><option value="AG">Antigua and Barbuda</option><option value="AR">Argentina</option><option value="AM">Armenia</option><option value="AW">Aruba</option><option value="AU">Australia</option><option value="AT">Austria</option><option value="AZ">Azerbaijan</option><option value="BS">Bahamas</option><option value="BH">Bahrain</option><option value="BD">Bangladesh</option><option value="BB">Barbados</option><option value="BY">Belarus</option><option value="BE">Belgium</option><option value="BZ">Belize</option><option value="BJ">Benin</option><option value="BM">Bermuda</option><option value="BT">Bhutan</option><option value="BO">Bolivia</option><option value="BA">Bosnia and Herzegovina</option><option value="BW">Botswana</option><option value="BV">Bouvet Island</option><option value="BR">Brazil</option><option value="IO">British Indian Ocean Territory</option><option value="VG">British Virgin Islands</option><option value="BN">Brunei</option><option value="BG">Bulgaria</option><option value="BF">Burkina Faso</option><option value="BI">Burundi</option><option value="KH">Cambodia</option><option value="CM">Cameroon</option><option value="CA">Canada</option><option value="CV">Cape Verde</option><option value="KY">Cayman Islands</option><option value="CF">Central African Republic</option><option value="TD">Chad</option><option value="CL">Chile</option><option value="CN">China</option><option value="CX">Christmas Island</option><option value="CC">Cocos (Keeling) Islands</option><option value="CO">Colombia</option><option value="KM">Comoros</option><option value="CG">Congo (Brazzaville)</option><option value="CD">Congo (Kinshasa)</option><option value="CK">Cook Islands</option><option value="CR">Costa Rica</option><option value="CU">Cuba</option><option value="HR">Croatia</option><option value="CW">CuraÁao</option><option value="CY">Cyprus</option><option value="CZ">Czech Republic</option><option value="DK">Denmark</option><option value="DJ">Djibouti</option><option value="DM">Dominica</option><option value="DO">Dominican Republic</option><option value="EC">Ecuador</option><option value="EG">Egypt</option><option value="SV">El Salvador</option><option value="GQ">Equatorial Guinea</option><option value="ER">Eritrea</option><option value="EE">Estonia</option><option value="ET">Ethiopia</option><option value="FK">Falkland Islands</option><option value="FO">Faroe Islands</option><option value="FJ">Fiji</option><option value="FI">Finland</option><option value="FR">France</option><option value="GF">French Guiana</option><option value="PF">French Polynesia</option><option value="TF">French Southern Territories</option><option value="GA">Gabon</option><option value="GM">Gambia</option><option value="GE">Georgia</option><option value="DE">Germany</option><option value="GH">Ghana</option><option value="GI">Gibraltar</option><option value="GR">Greece</option><option value="GL">Greenland</option><option value="GD">Grenada</option><option value="GP">Guadeloupe</option><option value="GU">Guam</option><option value="GT">Guatemala</option><option value="GG">Guernsey</option><option value="GN">Guinea</option><option value="GW">Guinea-Bissau</option><option value="GY">Guyana</option><option value="HT">Haiti</option><option value="HM">Heard Island and McDonald Islands</option><option value="HN">Honduras</option><option value="HK">Hong Kong S.A.R., China</option><option value="HU">Hungary</option><option value="IS">Iceland</option><option value="IN">India</option><option value="ID">Indonesia</option><option value="IR">Iran</option><option value="IQ">Iraq</option><option value="IE">Ireland</option><option value="IM">Isle of Man</option><option value="IL">Israel</option><option value="IT">Italy</option><option value="CI">Ivory Coast</option><option value="JM">Jamaica</option><option value="JP" id="japan">Japan</option><option value="JE">Jersey</option><option value="JO">Jordan</option><option value="KZ">Kazakhstan</option><option value="KE">Kenya</option><option value="KI">Kiribati</option><option value="KW">Kuwait</option><option value="KG">Kyrgyzstan</option><option value="LA">Laos</option><option value="LV">Latvia</option><option value="LB">Lebanon</option><option value="LS">Lesotho</option><option value="LR">Liberia</option><option value="LY">Libya</option><option value="LI">Liechtenstein</option><option value="LT">Lithuania</option><option value="LU">Luxembourg</option><option value="MO">Macao S.A.R., China</option><option value="MK">Macedonia</option><option value="MG">Madagascar</option><option value="MW">Malawi</option><option value="MY">Malaysia</option><option value="MV">Maldives</option><option value="ML">Mali</option><option value="MT">Malta</option><option value="MH">Marshall Islands</option><option value="MQ">Martinique</option><option value="MR">Mauritania</option><option value="MU">Mauritius</option><option value="YT">Mayotte</option><option value="MX">Mexico</option><option value="FM">Micronesia</option><option value="MD">Moldova</option><option value="MC">Monaco</option><option value="MN">Mongolia</option><option value="ME">Montenegro</option><option value="MS">Montserrat</option><option value="MA">Morocco</option><option value="MZ">Mozambique</option><option value="MM">Myanmar</option><option value="NA">Namibia</option><option value="NR">Nauru</option><option value="NP">Nepal</option><option value="NL">Netherlands</option><option value="AN">Netherlands Antilles</option><option value="NC">New Caledonia</option><option value="NZ">New Zealand</option><option value="NI">Nicaragua</option><option value="NE">Niger</option><option value="NG">Nigeria</option><option value="NU">Niue</option><option value="NF">Norfolk Island</option><option value="MP">Northern Mariana Islands</option><option value="KP">North Korea</option><option value="NO">Norway</option><option value="OM">Oman</option><option value="PK">Pakistan</option><option value="PW">Palau</option><option value="PS">Palestinian Territory</option><option value="PA">Panama</option><option value="PG">Papua New Guinea</option><option value="PY">Paraguay</option><option value="PE">Peru</option><option value="PH">Philippines</option><option value="PN">Pitcairn</option><option value="PL">Poland</option><option value="PT">Portugal</option><option value="PR">Puerto Rico</option><option value="QA">Qatar</option><option value="RE">Reunion</option><option value="RO">Romania</option><option value="RU">Russia</option><option value="RW">Rwanda</option><option value="BL">Saint BarthÈlemy</option><option value="SH">Saint Helena</option><option value="KN">Saint Kitts and Nevis</option><option value="LC">Saint Lucia</option><option value="MF">Saint Martin (French part)</option><option value="PM">Saint Pierre and Miquelon</option><option value="VC">Saint Vincent and the Grenadines</option><option value="WS">Samoa</option><option value="SM">San Marino</option><option value="ST">Sao Tome and Principe</option><option value="SA">Saudi Arabia</option><option value="SN">Senegal</option><option value="RS">Serbia</option><option value="SC">Seychelles</option><option value="SL">Sierra Leone</option><option value="SG">Singapore</option><option value="SK">Slovakia</option><option value="SI">Slovenia</option><option value="SB">Solomon Islands</option><option value="SO">Somalia</option><option value="ZA">South Africa</option><option value="GS">South Georgia and the South Sandwich Islands</option><option value="KR">South Korea</option><option value="ES">Spain</option><option value="LK">Sri Lanka</option><option value="SD">Sudan</option><option value="SR">Suriname</option><option value="SJ">Svalbard and Jan Mayen</option><option value="SZ">Swaziland</option><option value="SE">Sweden</option><option value="CH">Switzerland</option><option value="SY">Syria</option><option value="TW">Taiwan</option><option value="TJ">Tajikistan</option><option value="TZ">Tanzania</option><option value="TH">Thailand</option><option value="TL">Timor-Leste</option><option value="TG">Togo</option><option value="TK">Tokelau</option><option value="TO">Tonga</option><option value="TT">Trinidad and Tobago</option><option value="TN">Tunisia</option><option value="TR">Turkey</option><option value="TM">Turkmenistan</option><option value="TC">Turks and Caicos Islands</option><option value="TV">Tuvalu</option><option value="VI">U.S. Virgin Islands</option><option value="UG">Uganda</option><option value="UA">Ukraine</option><option value="AE">United Arab Emirates</option><option value="GB">United Kingdom</option><option value="US">United States</option><option value="UM">United States Minor Outlying Islands</option><option value="UY">Uruguay</option><option value="UZ">Uzbekistan</option><option value="VU">Vanuatu</option><option value="VA">Vatican</option><option value="VE">Venezuela</option><option value="VN">Vietnam</option><option value="WF">Wallis and Futuna</option><option value="EH">Western Sahara</option><option value="YE">Yemen</option><option value="ZM">Zambia</option><option value="ZW">Zimbabwe</option>
 								      </select>
 								  </div>
 							    </div>
 							  </div>
 							  <div class="field-wrapper form-group row" id="thoroughfareWrapper">
-							      <label for="thoroughfare" class="col-sm-2 col-form-label">Thoroughfare</label>
+							      <label id="shippingThoroughfareLabel" for="thoroughfare" class="col-sm-2 col-form-label">Thoroughfare</label>
 							      <div class="col-sm-10">
 							      	<input type="text" class="form-control" id="thoroughfare" />
 							      </div>
 							    </div>
 							    <div class="field-wrapper form-group row" id="premiseWrapper">
-							      <label for="premise" class="col-sm-2 col-form-label">Premise</label>
+							      <label id="shippingPremiseLabel" for="premise" class="col-sm-2 col-form-label">Premise</label>
 							      <div class="col-sm-10">
 							      	<input type="text" class="form-control" id="premise" />
 							      </div>
 							    </div>
 							  <div id="locality-fields">
 							    <div class="field-wrapper form-group row" id="cityWrapper">
-							      <label for="city" class="col-sm-2 col-form-label">City</label>
+							      <label id="shippingCityLabel" for="city" class="col-sm-2 col-form-label">City</label>
 							      <div class="col-sm-10">
 							      	<input type="text" class="form-control" id="city" />
 							      </div>
 							    </div>
 							    <div class="field-wrapper form-group row" id="stateWrapper">
-							      <label for="state" class="col-sm-2 col-form-label">Administrative Area</label>
+							      <label id="shippingStateLabel" for="state" class="col-sm-2 col-form-label">Administrative Area</label>
 							      <div class="col-sm-10">
 							      	<input type="text" class="form-control" id="state" />
 							      </div>
 							    </div>
 							    <div class="field-wrapper form-group row" id="zipWrapper">
-							      <label for="zip" class="col-sm-2 col-form-label">Postal Code</label>
+							      <label id="shippingZipLabel" for="zip" class="col-sm-2 col-form-label">Postal Code</label>
 							      <div class="col-sm-10">
 							      	<input type="text" class="form-control" id="zip" />
 							      </div>
 							    </div>
 							  </div>
 							  <div class="form-group row">
-						    	<label for="email" class="col-sm-2 col-form-label">Email</label>
+						    	<label id="emailLabel" for="email" class="col-sm-2 col-form-label">Email</label>
 						    	<div class="col-sm-10">
 						    		<input type="email" class="form-control" aria-describedby="emailHelp" id="email" />
 						    	</div>
@@ -467,14 +486,14 @@ snaptr('track', 'PAGE_VIEW');
 							    <div class="col-sm-10 offset-sm-2 offset-1">
 							      <div class="form-check">
 							        <input class="form-check-input" type="checkbox" id="mailingCheckbox">
-							        <label class="form-check-label" for="mailingCheckbox">
+							        <label id="subscribeMailingListLabel" class="form-check-label" for="mailingCheckbox">
 							          Subscribe to our mailing list!
 							        </label>
 							      </div>
 							    </div>
 							  </div>
 							</form>
-							<a style="float:left" class="btn btn-outline-dark" href="#" role="button" onclick="$('#slide2').fadeOut();$('#slide1').fadeIn();">Previous</a>
+							<a id="previousPage" style="float:left" class="btn btn-outline-dark" href="#" role="button" onclick="$('#slide2').fadeOut();$('#slide1').fadeIn();">Previous</a>
 							<button style="float:right" class="btn btn-outline-dark" type="button" disabled id=loadingButton>
 							  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
 							  Loading...
@@ -485,12 +504,12 @@ snaptr('track', 'PAGE_VIEW');
 						    <div id=slide3 style="background:white;display:none;">
 						    	<div style="height:150px" class="d-none d-md-block"></div>
 						      <div>
-								<h5>Total</h5>
-								<p id=subtotal>Subtotal: $0</p>
-								<p id=shipping>Shipping: $0</p>
+								<h5><span id="totalLabel">Total:</span></strong></h5>
+								<p><span id="subtotalLabel">Subtotal: $</span><span id=subtotal>0</span></p>
+								<p><span id="shippingLabel">Shipping: $</span><span id=shipping>0</span></p>
 								<p id=internationalShippingWarning><small>Shipments to regions outside of the contiguous United States are subject to a shipping surcharge.</small></p>
 								<br>
-								<p id=total><b>Total: $0</b></p>
+								<p><b><span id="grandTotalLabel">Total: $</span><span id=total>0</span></b></p>
 								<a style="float:left" class="btn btn-outline-dark" href="#" role="button" onclick="secondSlidePreviousButtonPressed()">Previous</a>
 								<a id="confirmOrderButton" role="button" onclick="confirmOrder();" class="btn btn-success" style="margin-bottom:125px;float:right;">Confirm Order!</a>
 							</div>
@@ -500,15 +519,15 @@ snaptr('track', 'PAGE_VIEW');
 					<div class="col-lg-10 offset-lg-1 col-sm-10 offset-sm-1 col-xs-12" style="padding-top:50px;display:none;" id=loading>
 						<a href=index.html><img src="static/logos/provafulllogo.png" width=300px></img></a>
 						<br><br>
-						<h3>Your order is processing...</h3>
-						<p>Just a second while we verify your order.</p>
+						<h3 id="orderProcessingLabel">Your order is processing...</h3>
+						<p id="orderVerificationLabel">Just a second while we verify your order.</p>
 					</div>
 					<div class="col-lg-10 offset-lg-1 col-sm-10 offset-sm-1 col-xs-12" style="padding-top:50px;display:none;" id=confirmed>
 						<a href=index.html><img src="static/logos/provafulllogo.png" width=300px></img></a>
 						<br><br>
-						<h3>Your order has been confirmed!</h3>
+						<h3 id="orderConfirmedLabel">Your order has been confirmed!</h3>
 						<h6 id=orderNumber></h6>
-						<p>Thank you for the support! We look forward to delivering your bags soon.</p>
+						<p id="thankYouLabel">Thank you for the support! We look forward to delivering your bags soon.</p>
 					</div>
 				</div>
 			</div>
@@ -541,6 +560,12 @@ snaptr('track', 'PAGE_VIEW');
   firebase.initializeApp(config);
 </script>
 <script>
+	function gup(name, url) {
+	  name = name.replace(/[\[]/, '\\\[').replace(/[\]]/, '\\\]');
+	  var results = new RegExp('[?&]'+name+'=?([^&#]*)').exec(url || window.location.href);
+	  return results == null ? null : results[1] || true;
+	}
+
 	var orderID;
 
 	var generateOrderId = firebase.functions().httpsCallable('generateOrderId');
@@ -587,16 +612,26 @@ snaptr('track', 'PAGE_VIEW');
 		var product = snapshot.val();
 		if(product.available) {
 			$("#productImage").attr("src","static/images/"+product.image);
-			$("#productTitle").html(product.name);
-			$("#productDescription").html(product.description);
-			$("#productPrice").html("$"+product.price);
+			if(japanese) {
+				$("#productTitle").html("Prova バージョン1");
+				$("#productDescription").html("オリジナルのバックパック：学生向けに作成され、学生によって作成されました。");
+			} else {
+				$("#productTitle").html(product.name);
+				$("#productDescription").html(product.description);
+			}
+
+			$("#productPrice").html(product.price);
 			bagPrice = product.price;
 			$("#main").fadeIn();
 			generateOrderId({}).then(function(result) {
 			  // Read result of the Cloud Function.
 			  orderID = result.data.key;
 			  fbq('trackCustom', 'createNewOrder');
-			  $("#orderNumber").html("You will receive an email confirming your order shortly. Your order number is "+orderID);
+			  if(japanese) { 
+					$("#orderNumber").html("まもなく注文の領収書が記載されたメールが届きます。注文番号は"+orderID+"です");
+			  } else {
+					$("#orderNumber").html("You will receive an email confirming your order shortly. Your order number is "+orderID);
+			  }
 			  $("#loadingButton").hide();
 			  $("#secondSlideNextButton").show();
 
@@ -610,7 +645,11 @@ snaptr('track', 'PAGE_VIEW');
 			    	$("#order").show();
 			    	$("#loading").hide();
 			    	$("#confirmed").hide();
-			    	showErrorBox("Error with payment, please try again.");
+			    	if(japanese) {
+				    	showErrorBox("支払いでエラーが発生しました。もう一度お試しください。");
+				    } else {
+				    	showErrorBox("Error with payment, please try again.");
+				    }
 				  } else if(snapshot.val() == "emailMismatch") {
 			    	$("#order").show();
 			    	$("#loading").hide();
@@ -638,26 +677,26 @@ snaptr('track', 'PAGE_VIEW');
 		var shipping = 0;
 
 		if($("#country").val() != "US") {
-    		$("#internationalShippingWarning").show();
-    	} else {
-    		$("#internationalShippingWarning").hide();
-    	}
+  		$("#internationalShippingWarning").show();
+  	} else {
+  		$("#internationalShippingWarning").hide();
+  	}
     	
-		if($("#country").val() == "US" ) {
+		if($("#country").val() == "US") {
 			shipping = 0;
 		} else {
 			shipping = 13;
 		}
 
-		$("#subtotal").html("Subtotal: $"+cartPrice);
-		$("#shipping").html("Shipping: $"+shipping);
+		$("#subtotal").html(""+cartPrice);
+		$("#shipping").html(""+shipping);
 
 		if((shipping+cartPrice)<0) {
 			total = 0;
 		} else {
 			total = shipping+cartPrice
 		}
-		$("#total").html("<strong>Total: $"+total+"</strong>");
+		$("#total").html(total);
 	}
 
 	function updateCart() {
@@ -715,37 +754,61 @@ snaptr('track', 'PAGE_VIEW');
 		var errorOccured = false
 
 		if($("#shippingName").parent().is(":visible") && $("#shippingName").val() == "") {
-			showErrorBox("Please ensure you have entered your name for shipping.")
+			if(japanese)
+				showErrorBox("配送用に名前を入力したことを確認してください。");
+			else 
+				showErrorBox("Please ensure you have entered your name for shipping.");
 			errorOccured = true;
 		}
 		if($("#country").parent().is(":visible") && $("#country").val() == "") {
-			showErrorBox("Please ensure you have entered a country.")
+			if(japanese)
+				showErrorBox("配送先の国を入力してください。");
+			else
+				showErrorBox("Please ensure you have entered a country.")
 			errorOccured = true;
 		}
 		if($("#thoroughfare").parent().is(":visible") && $("#thoroughfare").val() == "") {
-			showErrorBox("Please ensure you have entered a street.")
+			if(japanese)
+				showErrorBox("通りに入ったことを確認してください。");
+			else
+				showErrorBox("Please ensure you have entered a street.")
 			errorOccured = true;
 		}
 		if($("#city").parent().is(":visible") && $("#city").val() == "") {
-			showErrorBox("Please ensure you have entered a city.")
+			if(japanese)
+				showErrorBox("都市に入ったことを確認してください。");
+			else
+				showErrorBox("Please ensure you have entered a city.")
 			errorOccured = true;
 		}
 		if($("#state").parent().is(":visible") && $("#state").val() == "") {
-			showErrorBox("Please ensure you have entered a state.")
+			if(japanese)
+				showErrorBox("県に入ったことを確認してください。");
+			else
+				showErrorBox("Please ensure you have entered a state.")
 			errorOccured = true;
 		}
 		if($("#zip").parent().is(":visible") && $("#zip").val() == "") {
-			showErrorBox("Please ensure you have entered a zip.")
+			if(japanese)
+				showErrorBox("郵便番号を入力したことを確認してください。");
+			else
+				showErrorBox("Please ensure you have entered a zip.")
 			errorOccured = true;
 		}
 
 		if($("#email").val() == "") {
-			showErrorBox("Please ensure you have entered an email.")
+			if(japanese)
+				showErrorBox("メールを入力したことを確認してください。");
+			else
+				showErrorBox("Please ensure you have entered an email.")
 			errorOccured = true;
 		}
 
 		if(!validateEmail($("#email").val())) {
-			showErrorBox("Please enter a valid email.")
+			if(japanese)
+				showErrorBox("正しいメールアドレスを入力してください。");
+			else
+				showErrorBox("Please enter a valid email.")
 			errorOccured = true;
 		}
 
@@ -758,8 +821,8 @@ snaptr('track', 'PAGE_VIEW');
 	}
 
     var handler = StripeCheckout.configure({
-      key: /*'pk_test_9UyR47yeAUmkpzB24WFPnUWj',*/'pk_live_S2UIZSChZKHhZ0thWSSZizAP',
-      image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+      key: 'pk_test_9UyR47yeAUmkpzB24WFPnUWj',//'pk_live_S2UIZSChZKHhZ0thWSSZizAP',
+      image: 'static/logos/provacrownlogo.png',
       locale: 'auto',
       token: function(token) {
         firebase.database().ref('/orders/' + orderID + '/payment/').push({
@@ -777,10 +840,16 @@ snaptr('track', 'PAGE_VIEW');
     });
 
     function getLang() {
-	 if (navigator.languages != undefined) {
-	 	$("#country").val(navigator.languages[0].substring(3));
-	 }
-	}
+     if(gup("lang") == "jp") {
+     	japanese = true;
+     }
+		 if (navigator.languages != undefined) {
+		 	$("#country").val(navigator.languages[0].substring(3));
+		 }
+		 if (japanese) {
+		 	$("#country").val("JP");
+		 }
+		}
 	getLang();
 
 	function showErrorBox(err){
@@ -796,8 +865,8 @@ snaptr('track', 'PAGE_VIEW');
 	}
 
 	function confirmOrder() {
-  		fbq('track', 'AddPaymentInfo');
-  		ga('send', 'event', 'actions', 'addPaymentInfo');
+  		fbq('track', 'OpenStripePaymentWindow');
+  		ga('send', 'event', 'actions', 'openStripePaymentWindow');
 		var errorOccured = false;
 		$("#errorBox").hide();
 		$("#errorBox").html("");
@@ -831,7 +900,7 @@ snaptr('track', 'PAGE_VIEW');
 		          name: 'Prova Order',
 		          description: 'Additional Items',
 		          amount: total*100,
-		          locale: 'auto',
+		          locale: (japanese?'jp':'auto'),
 		          zipCode: true,
 		          bitcoin: false,
 		          email: $("#email").val()
@@ -873,4 +942,60 @@ snaptr('track', 'PAGE_VIEW');
 		"static/images/productPreview_red.jpg",
 		"static/images/productPreview_black.jpg"
 	)	
+
+	var japanese = gup("lang") == "jp";
+
+	var japaneseTranslations = {
+		"gallery-text":"フォトギャラリー",
+		"story-text":"私たちの物語",
+		"kickstarter-text":"kickstarter",
+		"presskit-text":"プレスキット",
+		"buynow-text":"今買う！",
+		"productDescription":"オリジナルのバックパック：学生向けに作成され、学生によって作成されました。",
+		"productTitle":"バージョン1",
+		"estimatedShip":"発送予定日：注文日から1週間。",
+		"dollar":"US$",
+		"selectColors":"色の選択<br><small>プラスまたはマイナスボタンを使用して、数量を選択します。</small>",
+		"redLeft":"赤いバックパックは2つだけ残っています！",
+		"bulkmessage":"一括注文ですか？ bulk@provadesign.comにご連絡いただき、ご注文ください。",
+		"nextPage":"次のページ",
+		"secondSlideNextButton":"次のページ",
+		"bagColor":"バッグの色を選択してください！",
+		"shippingInfo":"配送情報",
+		"shippingNameLabel":"名前",
+		"shippingCountryLabel":"国",
+		"japan":"日本",
+		"shippingThoroughfareLabel":"住所1",
+		"shippingPremiseLabel":"住所2",
+		"shippingZipLabel":"郵便番号",
+		"shippingCityLabel":"市",
+		"shippingStateLabel":"県",
+		"emailLabel":"Eメール",
+		"subscribeMailingListLabel":"メーリングリストに登録してください！",
+		"previousPage":"前のページ",
+		"nameError":"配送用に名前を入力したことを確認してください。",
+		"streetError":"通りに入ったことを確認してください。",
+		"cityError":"都市に入ったことを確認してください。",
+		"stateError":"県に入ったことを確認してください。",
+		"zipError":"郵便番号を入力したことを確認してください。",
+		"emailError":"メールを入力したことを確認してください。",
+		"emailValidationError":"正しいメールアドレスを入力してください。",
+		"totalLabel":"価格内訳",
+		"grandTotalLabel":"総計: US$",
+		"subtotalLabel":"小計: US$",
+		"shippingLabel":"輸送費: US$",
+		"internationalShippingWarning":"米国本土外への配送には、この配送料がかかります。",
+		"confirmOrderButton":"ご注文ください！",
+		"orderProcessingLabel":"ご注文は処理中です…",
+		"orderVerificationLabel":"注文の確認が完了するまでお待ちください。",
+		"orderConfirmedLabel":"ご注文が確認されました！",
+		"thankYouLabel":"サポートしてくれてありがとう！ すぐにお届けできることを楽しみにしています。",
+		"orderConfirmationMessage":"まもなく注文の領収書が記載されたメールが届きます。注文番号は11111-11111-11111です",
+		"paymentErrorMessage":"支払いでエラーが発生しました。もう一度お試しください。"
+	};
+	if(japanese) {
+		for(var key in japaneseTranslations) {
+			$("#"+key).html(japaneseTranslations[key]);
+		}
+	}
 </script>
